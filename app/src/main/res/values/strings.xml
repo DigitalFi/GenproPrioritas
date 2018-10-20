@@ -1,0 +1,135 @@
+<resources>
+    <string name="app_name">Genpro Prioritas</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_edit__profile">Edit_Profile</string>
+    <string name="title_activity_add__usaha">Add_Usaha</string>
+    <string name="title_activity_search">Search</string>
+    <string name="title_activity_splash_sc">Splash_sc</string>
+    <string name="title_activity_login">Login</string>
+    <string name="title_activity_gmb_menu">GMB_menu</string>
+    <string name="title_activity_gmb_genpro">GMB_genpro</string>
+
+    <string-array name="kecamatan">
+        <item>SELECT</item>
+        <item>Beji</item>
+        <item>Bojongsari</item>
+        <item>Cilodong</item>
+        <item>Cimanggis</item>
+        <item>Cinere</item>
+        <item>Cipayung</item>
+        <item>Limo</item>
+        <item>PancoranMas</item>
+        <item>Sawangan</item>
+        <item>Sukmajaya</item>
+        <item>Tapos</item>
+    </string-array>
+
+    <string-array name="SELECT">
+        <item>SELECT</item>
+    </string-array>
+
+    <string-array name="Beji">
+        <item>SELECT</item>
+        <item>Beji</item>
+        <item>Beji Timur</item>
+        <item>Kemiri Muka</item>
+        <item>Pondok Cina</item>
+        <item>Kukusan</item>
+        <item>Tanah Baru</item>
+    </string-array>
+    <string-array name="Bojongsari">
+        <item>SELECT</item>
+        <item>Bojongsari Baru</item>
+        <item>Boojong Sari Lama</item>
+        <item>Curug</item>
+        <item>Duren Mekar</item>
+        <item>Duren Seribu</item>
+        <item>Pondok Petir</item>
+        <item>Serua</item>
+    </string-array>
+    <string-array name="Cilodong">
+        <item>SELECT</item>
+        <item>Cilodong</item>
+        <item>Jatimulya</item>
+        <item>Kalibaru</item>
+        <item>kalimulya</item>
+        <item>Sukamaju</item>
+    </string-array>
+    <string-array name="Cimanggis">
+        <item>SELECT</item>
+        <item>Curug</item>
+        <item>Harjamukti</item>
+        <item>Cisalak Pasar</item>
+        <item>Mekarsari</item>
+        <item>Tugu</item>
+        <item>Pasir Gunung Selatan</item>
+    </string-array>
+    <string-array name="Cinere">
+        <item>SELECT</item>
+        <item>Cinere</item>
+        <item>Gandul</item>
+        <item>Pangkalan Jati Baru</item>
+        <item>Pangkalan Jati Lama</item>
+    </string-array>
+    <string-array name="Cipayung">
+        <item>SELECT</item>
+        <item>Bojong Pondok Terong</item>
+        <item>Cipayung</item>
+        <item>Cipayung jaya</item>
+        <item>Pondok Jaya</item>
+        <item>Ratujaya</item>
+    </string-array>
+    <string-array name="Limo">
+        <item>SELECT</item>
+        <item>Grogol</item>
+        <item>Krukut</item>
+        <item>Limo</item>
+        <item>Meruyung</item>
+    </string-array>
+    <string-array name="PancoranMas">
+        <item>SELECT</item>
+        <item>Depok</item>
+        <item>Depok Jaya</item>
+        <item>Mampang</item>
+        <item>Pancoran Mas</item>
+        <item>Rangkapan Jaya</item>
+        <item>Rangkapan Jaya Baru</item>
+    </string-array>
+    <string-array name="Sawangan">
+        <item>SELECT</item>
+        <item>Bedahan</item>
+        <item>Cinangka</item>
+        <item>Kedaung</item>
+        <item>Pasir Putih</item>
+        <item>Pengasinan</item>
+        <item>Sawangan Baru</item>
+        <item>Sawangan Lama</item>
+    </string-array>
+    <string-array name="Sukmajaya">
+        <item>SELECT</item>
+        <item>Abadijaya</item>
+        <item>Bakti Jaya</item>
+        <item>Cisalak</item>
+        <item>Mekar Jaya</item>
+        <item>Sukmajaya</item>
+        <item>Tritajaya</item>
+    </string-array>
+    <string-array name="Tapos">
+        <item>SELECT</item>
+        <item>Cilangkap</item>
+        <item>Cimpaeun</item>
+        <item>Jatijajar</item>
+        <item>Leuwinangun</item>
+        <item>Sukamaju Baru</item>
+        <item>Sukatani</item>
+        <item>Tapos</item>
+    </string-array>
+    <string name="title_activity_landing_page">Landing_page</string>
+
+</resources>
+

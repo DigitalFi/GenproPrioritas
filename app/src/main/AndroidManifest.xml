@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.j_zone.genproprioritas">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_genpro"
+        android:label="Genpro Priotitas"
+        android:roundIcon="@mipmap/ic_genpro_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".Menu_main"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Edit_Profile"
+            android:label="@string/title_activity_edit__profile"
+            android:parentActivityName=".Menu_main"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.j_zone.genproprioritas.Menu_main" />
+        </activity>
+        <activity
+            android:name=".Add_Usaha"
+            android:label="@string/title_activity_add__usaha"
+            android:parentActivityName=".Menu_main"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.j_zone.genproprioritas.Menu_main" />
+        </activity>
+        <activity
+            android:name=".Search"
+            android:label="@string/title_activity_search"
+            android:parentActivityName=".Menu_main"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.j_zone.genproprioritas.Menu_main" />
+        </activity>
+        <activity
+            android:name=".Splash_sc"
+            android:label="Genpro Prioritas"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Login"
+            android:label="@string/title_activity_login"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".GMB_genpro"
+            android:label="@string/title_activity_gmb_genpro"
+            android:parentActivityName=".Menu_main"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.j_zone.genproprioritas.Menu_main" />
+        </activity>
+    </application>
+
+</manifest>

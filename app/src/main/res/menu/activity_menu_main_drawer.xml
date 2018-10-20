@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_search"
+            android:icon="@drawable/baseline_home_black_18dp"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_manage_profile"
+            android:icon="@drawable/baseline_account_box_black_18dp"
+            android:title="Profile" />
+        <item
+            android:id="@+id/nav_manage_usaha"
+            android:icon="@drawable/baseline_business_center_black_18dp"
+            android:title="Bussiness" />
+        <item
+            android:id="@+id/nav_gmb_genpro"
+            android:icon="@drawable/genpro_ic"
+            android:title="GMB Genpro" />
+    </group>
+
+    <item android:title="Version">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:title="0.1 Betatest" />
+        </menu>
+    </item>
+
+</menu>
