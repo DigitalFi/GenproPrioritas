@@ -17,7 +17,7 @@
         android:layout_height="80dp"
         android:padding="3dp"
         android:contentDescription="@string/nav_header_desc"
-        app:srcCompat="@drawable/profile" />
+        app:srcCompat="@drawable/baseline_account_box_black_18dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,18 +32,19 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/nama_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="Muhammad Reza Saputra"
+        android:text="-"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="#000"/>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/nomor_anggota"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1001724"
+        android:text="-"
         android:textColor="#000"/>
 
 </LinearLayout>

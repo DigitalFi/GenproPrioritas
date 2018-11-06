@@ -1,11 +1,10 @@
 package com.example.j_zone.genproprioritas;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -28,43 +27,44 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Login extends Activity {
+public class Register extends AppCompatActivity {
+    private static final String TAG = Register.class.getSimpleName();
 
-
-    private static final String TAG = Login.class.getSimpleName();
-
-    private Button btnLogin;
+    private Button btnRegister;
+    private EditText inputNama;
     private EditText inputEmail;
     private EditText inputPassword;
     private ProgressDialog pDialog;
-    private SharedPreferences user;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_register);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        user = getSharedPreferences("data_user", MODE_PRIVATE);
-
+        inputNama = (EditText) findViewById(R.id.input_nama);
         inputEmail = (EditText) findViewById(R.id.input_email);
         inputPassword = (EditText) findViewById(R.id.input_password);
-        btnLogin = (Button) findViewById(R.id.btn_login);
+        btnRegister = (Button) findViewById(R.id.btn_register);
 
         // Progress dialog
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
 
         // ketika login button di klik
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+        btnRegister.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
+
+                String nama = inputNama.getText().toString().trim();
                 String email = inputEmail.getText().toString().trim();
                 String password = inputPassword.getText().toString().trim();
 
                 // ngecek apakah inputannya kosong atau Tidak
-                if (!email.isEmpty() && !password.isEmpty()) {
+                if (!nama.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
                     // login user
-                    checkLogin(email, password);
+                    checkRegister(nama, email, password);
                 } else {
                     // jika inputan kosong tampilkan pesan
                     Toast.makeText(getApplicationContext(),
@@ -74,40 +74,22 @@ public class Login extends Activity {
             }
 
         });
-
-        // ngecek apakah user udah login atau belum
-        user = getSharedPreferences("data_user", Context.MODE_PRIVATE);
-        final int login = user.getInt("login", 0);
-        final String nama = user.getString("user_name","");
-        if (login == 1) {
-
-            Intent intent = new Intent(Login.this,
-                    Menu_main.class);
-
-            Toast.makeText(getApplicationContext(),
-                    "Selamat Datang : "+nama, Toast.LENGTH_LONG).show();
-
-            startActivity(intent);
-
-            finish();
-        }
-
-
     }
 
-    private void checkLogin(final String email, final String password) {
+    private void checkRegister(final String nama, final String email, final String password) {
 
         // Tag biasanya digunakan ketika ingin membatalkan request volley
         String tag_string_req = "req_login";
         pDialog.setMessage("Logging in ...");
         showDialog();
 
+
         StringRequest strReq = new StringRequest(Request.Method.POST,
-                AppConfig.URL_LOGIN, new Response.Listener<String>() {
+                AppConfig.URL_REGISTER, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
-                Log.d(TAG, "Login Response: " + response.toString());
+                Log.d(TAG, "Register Respon: " + response.toString());
                 hideDialog();
 
                 try
@@ -116,23 +98,12 @@ public class Login extends Activity {
                     boolean error = jObj.getBoolean("error");
                     // ngecek node error dari api
                     if (!error) {
-                        //user berhasil login
-                        String user_id = jObj.getString("user_id");
-                        String user_name = jObj.getString("user_name");
-                        String email = jObj.getString("email");
 
-                        // buat session user yang sudah login yang menyimpan id,nama,full name, roles id, roles name
-                        SharedPreferences.Editor editor = user.edit();
-                        editor.putString("user_id", user_id);
-                        editor.putString("user_name", user_name);
-                        editor.putString("email", email);
-                        editor.putInt("login", 1);
-                        editor.commit();
-
-                        //setelah mendapatkan value maka langsung lanjut pada activity selanjutnya
-                        Intent intent = new Intent(Login.this,
-                                Menu_main.class);
+                        Intent intent = new Intent(Register.this, Login.class);
                         startActivity(intent);
+
+                        Toast.makeText(getApplicationContext(),
+                                "Register Success!", Toast.LENGTH_LONG).show();
 
                         finish();
                     } else {
@@ -146,12 +117,12 @@ public class Login extends Activity {
                     e.printStackTrace();
                     Toast.makeText(getApplicationContext(), "Json error: " + e.getMessage(), Toast.LENGTH_LONG).show();
                 }
+
             }
         }, new Response.ErrorListener() {
-
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e(TAG, "Login Error: " + error.getMessage());
+                Log.e(TAG, "Register Error: " + error.getMessage());
                 //cek error timeout, noconnection dan network error
                 if ( error instanceof TimeoutError || error instanceof NoConnectionError ||error instanceof NetworkError) {
                     Toast.makeText(getApplicationContext(),
@@ -159,11 +130,12 @@ public class Login extends Activity {
                             Toast.LENGTH_SHORT).show();}
                 hideDialog();
             }
-        }) {
+        }){
             @Override
             protected Map<String, String> getParams() {
                 // kirim parameter ke server
                 Map<String, String> params = new HashMap<String, String>();
+                params.put("user_name", nama);
                 params.put("email", email);
                 params.put("password", password);
 
@@ -172,7 +144,6 @@ public class Login extends Activity {
         };
         // menggunakan fungsi volley adrequest yang kita taro di appcontroller
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
-
     }
 
     private void showDialog() {
@@ -185,8 +156,4 @@ public class Login extends Activity {
             pDialog.dismiss();
     }
 
-    public void Register(View view) {
-        Intent intent = new Intent(Login.this, Register.class);
-        startActivity(intent);
-    }
 }

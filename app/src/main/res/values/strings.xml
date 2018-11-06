@@ -130,6 +130,7 @@
         <item>Tapos</item>
     </string-array>
     <string name="title_activity_landing_page">Landing_page</string>
+    <string name="title_activity_register">Register</string>
 
 </resources>
 
