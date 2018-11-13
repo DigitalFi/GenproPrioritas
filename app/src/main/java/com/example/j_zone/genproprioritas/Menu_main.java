@@ -17,6 +17,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.toolbox.StringRequest;
+import com.example.j_zone.genproprioritas.helper.AppConfig;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Menu_main extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -42,6 +50,7 @@ public class Menu_main extends AppCompatActivity
         final String nama = user.getString("user_name", "");
         final String email = user.getString("email", "");
 
+
         View headerView = navigationView.getHeaderView(0);
 
         TextView n = (TextView) headerView.findViewById(R.id.nama_user);
@@ -51,12 +60,15 @@ public class Menu_main extends AppCompatActivity
         TextView kolom_nama = (TextView) findViewById(R.id.profil_nama);
         TextView kolom_email = (TextView) findViewById(R.id.profil_email);
 
+
+
         n.setText(nama);
         r.setText(email);
 
         depan.setText(nama);
-        kolom_email.setText("Email : "+email);
-        kolom_nama.setText("Nama : "+nama);
+        kolom_email.setText("Email : " +email);
+        kolom_nama.setText("Nama : " +nama);
+
 
 
     }

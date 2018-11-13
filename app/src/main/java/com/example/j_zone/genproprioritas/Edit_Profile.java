@@ -63,7 +63,7 @@ public class Edit_Profile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit__profile);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
@@ -75,15 +75,16 @@ public class Edit_Profile extends AppCompatActivity {
 
         }
 
-        btnImage = (Button)findViewById(R.id.btn_picture);
-        btnSubmit = (Button)findViewById(R.id.btn_submit);
-        imageView = (ImageView)findViewById(R.id.imageView);
-        Sp1 = (Spinner)findViewById(R.id.SpFirst);
-        nama = (EditText)findViewById(R.id.nama);
-        namaPanjang = (EditText)findViewById(R.id.nama_pendek);
-        phone = (EditText)findViewById(R.id.tlp);
-        alamat = (EditText)findViewById(R.id.alamat);
+        btnImage = findViewById(R.id.btn_picture);
+        btnSubmit = findViewById(R.id.btn_submit);
+        imageView = findViewById(R.id.imageView);
+        Sp1 = findViewById(R.id.SpFirst);
+        nama = findViewById(R.id.nama);
+        namaPanjang = findViewById(R.id.nama_pendek);
+        phone = findViewById(R.id.tlp);
+        alamat = findViewById(R.id.alamat);
         //Sp2 = (Spinner)findViewById(R.id.SpSecond);
+
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -95,23 +96,23 @@ public class Edit_Profile extends AppCompatActivity {
 
             }
         });
-
-        /*SpFirst.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String name = SpFirst.getSelectedItem().toString();
-                int idSpinner = getResources().getIdentifier(name, "array", Edit_Profile.this.getPackageName());
-
-                ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(Edit_Profile.this, android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(idSpinner));
-                SpSecond.setAdapter(spinnerArrayAdapter);
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });*/
+//
+//        Sp1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                String name = Sp1.getSelectedItem().toString();
+//                int idSpinner = getResources().getIdentifier(name, "array", Edit_Profile.this.getPackageName());
+//
+//                ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(Edit_Profile.this, android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(idSpinner));
+//                Sp2.setAdapter(spinnerArrayAdapter);
+//
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//                Toast.makeText(Edit_Profile.this, "Tolong Pilih", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
         /*btnImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,6 +146,7 @@ public class Edit_Profile extends AppCompatActivity {
 
 
     }
+
 
     private void dispatchTakePictureIntent() {
 

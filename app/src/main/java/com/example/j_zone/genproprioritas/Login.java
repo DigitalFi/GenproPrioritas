@@ -135,6 +135,7 @@ public class Login extends Activity {
                         startActivity(intent);
 
                         finish();
+                        Toast.makeText(Login.this, "id"+ user_id, Toast.LENGTH_SHORT).show();
                     } else {
                         //terjadi error dan tampilkan pesan error dari API
                         //String errorMsg = jObj.getString("message");
