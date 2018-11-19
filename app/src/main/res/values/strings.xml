@@ -131,6 +131,6 @@
     </string-array>
     <string name="title_activity_landing_page">Landing_page</string>
     <string name="title_activity_register">Register</string>
-
+    <string name="URL_GET_BISNIS">http://genprodev.lavenderprograms.com/apigw/bisnis_info/getbisnis_info</string>
 </resources>
 

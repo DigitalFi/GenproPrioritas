@@ -1,5 +1,6 @@
 package com.example.j_zone.genproprioritas;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,24 +12,43 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.example.j_zone.genproprioritas.helper.AppConfig;
+import com.example.j_zone.genproprioritas.helper.AppController;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Menu_main extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private SharedPreferences user;
+    private RecyclerView mList;
+
+    private LinearLayoutManager linearLayoutManager;
+    private DividerItemDecoration dividerItemDecoration;
+    private List<Bisnis> bisnisList;
+    private RecyclerView.Adapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,8 +89,77 @@ public class Menu_main extends AppCompatActivity
         kolom_email.setText("Email : " +email);
         kolom_nama.setText("Nama : " +nama);
 
+        user = getSharedPreferences("data_user", Context.MODE_PRIVATE);
+        final String userid = user.getString("user_id","");
 
 
+        mList = findViewById(R.id.main_list);
+        bisnisList = new ArrayList<>();
+        adapter = new BisnisAdapter(getApplication(),bisnisList);
+
+        linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        dividerItemDecoration = new DividerItemDecoration(mList.getContext(),linearLayoutManager.getOrientation());
+
+        mList.setAdapter(adapter);
+        mList.setHasFixedSize(true);
+        mList.setLayoutManager(linearLayoutManager);
+        mList.addItemDecoration(dividerItemDecoration);
+        getBisnis();
+
+
+    }
+
+    private void getBisnis() {
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, getResources().getString(R.string.URL_GET_BISNIS), new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject object = new JSONObject(response);
+                    JSONArray jsonArray = object.getJSONArray("data");
+                    for (int i = 0; i<jsonArray.length(); i++){
+                        JSONObject object2 = jsonArray.getJSONObject(i);
+                        Bisnis bisnis2 = new Bisnis();
+                        bisnis2.setNmbisnislain(object2.getString("nm_bisnis_lain"));
+                        bisnis2.setNmusaha(object2.getString("nm_usaha"));
+                        bisnis2.setTglTerdaftar(object2.getString("tgl_terdaftar"));
+
+                        bisnisList.add(bisnis2);
+                    }
+                }catch (JSONException e){
+                    e.printStackTrace();
+                    progressDialog.dismiss();
+                }
+                adapter.notifyDataSetChanged();
+                progressDialog.dismiss();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d("volley", "Error: " + error.getMessage());
+                error.printStackTrace();
+                progressDialog.dismiss();
+            }
+        }){
+            @Override
+            public String getBodyContentType() {
+                return "application/x-www-form-urlencoded; charset=UTF-8";
+            }
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                user = getSharedPreferences("data_user", Context.MODE_PRIVATE);
+                final String userid = user.getString("user_id","");
+                params.put("user_id",userid);
+                return params;
+            }
+        };
+        AppController.getInstance().addToRequestQueue(stringRequest);
     }
 
     public void showBottomSheetDialogFragment() {
