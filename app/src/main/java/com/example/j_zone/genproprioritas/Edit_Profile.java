@@ -67,7 +67,6 @@ public class Edit_Profile extends AppCompatActivity {
     static final int REQUEST_TAKE_PHOTO = 1;
 
     String URL="http://genprodev.lavenderprograms.com/apigw/reff/get_propinsi";
-    //String URL1="http://genprodev.lavenderprograms.com/apigw/reff/get_propinsi";
     String URLS="http://genprodev.lavenderprograms.com/apigw/reff/get_kabupaten";
 
     @Override
@@ -183,25 +182,25 @@ public class Edit_Profile extends AppCompatActivity {
             }
         });
 
-        Sp2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                kabupaten kode_kabupaten = (kabupaten)adapterView.getSelectedItem();
-                String kode_kab = kode_kabupaten.getKode();
+//        Sp2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+//                kabupaten kode_kabupaten = (kabupaten)adapterView.getSelectedItem();
+//                String kode_kab = kode_kabupaten.getKode();
+//
+//                final SharedPreferences kabupate = getApplicationContext().getSharedPreferences("kabupaten",0);
+//                final SharedPreferences.Editor editor = kabupate.edit();
+//                editor.putString("kode",kode_kab);
+//                editor.commit();
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> adapterView) {
+//
+//            }
+//        });
 
-                final SharedPreferences kabupate = getApplicationContext().getSharedPreferences("kabupaten",0);
-                final SharedPreferences.Editor editor = kabupate.edit();
-                editor.putString("kode",kode_kab);
-                editor.commit();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
-
+//sp2 atasnya
     }
 
 
@@ -501,7 +500,7 @@ public class Edit_Profile extends AppCompatActivity {
                     boolean error = jsonObject.getBoolean("error");
                     if(!error) {
                         JSONArray jsonArray = jsonObject.getJSONArray("data");
-                        kabupatenList.add(new kabupaten("", "-Select-"));
+                        kabupatenList.add(new kabupaten("", "Pilih Kabupaten"));
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                             kabupatenList.add(new kabupaten(jsonObject1.getString("kode"), jsonObject1.getString("nama")));
@@ -526,7 +525,7 @@ public class Edit_Profile extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams(){
                 Map<String, String> params = new HashMap<String,String>();
-                params.put("kode","32");
+                params.put("kd_propinsi","32");
                 return params;
             }
         };

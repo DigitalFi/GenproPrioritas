@@ -114,7 +114,6 @@ public class Add_Usaha extends AppCompatActivity {
 
     private void checkSubmit(final String namabisnis,final String usahainput, final String namausaha, final String merek,final String id, final String jml_karyawan, final String jml_cabang, final String omset_tahunan, final String no_tlp, final String facebook, final String instagram) {
 
-        // Tag biasanya digunakan ketika ingin membatalkan request volley
         String tag_string_req = "req_login";
         pDialog.setMessage("Sedang Input");
         showDialog();
@@ -154,8 +153,6 @@ public class Add_Usaha extends AppCompatActivity {
 
                         finish();
                     } else {
-                        //terjadi error dan tampilkan pesan error dari API
-                        //String errorMsg = jObj.getString("message");
                         Toast.makeText(getApplicationContext(),
                                 "msg "+msg, Toast.LENGTH_LONG).show();
                     }
@@ -181,6 +178,7 @@ public class Add_Usaha extends AppCompatActivity {
             protected Map<String, String> getParams() {
 
                 Map<String, String> params = new HashMap<String,String>();
+                params.put("user_id",id);
                 params.put("nm_bisnis_lain", namabisnis);
                 params.put("nm_usaha", namausaha);
                 params.put("merk", merek);
@@ -190,7 +188,6 @@ public class Add_Usaha extends AppCompatActivity {
                 params.put("no_tlp", no_tlp);
                 params.put("facebook", facebook);
                 params.put("instagram", instagram);
-                params.put("user_id",id);
 
 
                 return params;
