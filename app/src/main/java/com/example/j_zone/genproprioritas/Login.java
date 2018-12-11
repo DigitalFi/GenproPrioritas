@@ -107,7 +107,7 @@ public class Login extends Activity {
 
             @Override
             public void onResponse(String response) {
-                Log.d(TAG, "Login Response: " + response.toString());
+                Log.d(TAG, "Login Response: " + response);
                 hideDialog();
 
                 try
@@ -120,6 +120,8 @@ public class Login extends Activity {
                         String user_id = jObj.getString("user_id");
                         String user_name = jObj.getString("user_name");
                         String email = jObj.getString("email");
+                        String n_anggota = jObj.getString("no_anggota");
+                        String pic = jObj.getString("picture");
 
                         // buat session user yang sudah login yang menyimpan id,nama,full name, roles id, roles name
                         SharedPreferences.Editor editor = user.edit();
@@ -135,7 +137,6 @@ public class Login extends Activity {
                         startActivity(intent);
 
                         finish();
-                        Toast.makeText(Login.this, "id"+ user_id, Toast.LENGTH_SHORT).show();
                     } else {
                         //terjadi error dan tampilkan pesan error dari API
                         //String errorMsg = jObj.getString("message");

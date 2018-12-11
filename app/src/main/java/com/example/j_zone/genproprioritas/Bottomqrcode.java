@@ -20,6 +20,7 @@ public class Bottomqrcode extends BottomSheetDialogFragment  {
     String text2qr;
     ImageView image;
 
+    private SharedPreferences updt;
     private SharedPreferences user;
 
     public Bottomqrcode() {
@@ -40,9 +41,11 @@ public class Bottomqrcode extends BottomSheetDialogFragment  {
 
         SharedPreferences user = this.getActivity().getSharedPreferences("data_user", Context.MODE_PRIVATE);
         final String nama = user.getString("user_name", "");
-        final String email = user.getString("email", "");
 
-        text2qr = "Nama :" + nama + "<br/>" + "Email :" + email;
+        SharedPreferences updt = this.getActivity().getSharedPreferences("data_update", Context.MODE_PRIVATE);
+        final String no_anggota = updt.getString("no_anggota", "");
+
+        text2qr = "nama :"+nama+" Nomor :"+no_anggota;
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
         try {
             BitMatrix bitMatrix = multiFormatWriter.encode(text2qr, BarcodeFormat.QR_CODE,500,500);

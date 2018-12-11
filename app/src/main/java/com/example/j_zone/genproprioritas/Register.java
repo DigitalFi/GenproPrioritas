@@ -96,6 +96,7 @@ public class Register extends AppCompatActivity {
                 {
                     JSONObject jObj = new JSONObject(response);
                     boolean error = jObj.getBoolean("error");
+                    String msg = jObj.getString("msg");
                     // ngecek node error dari api
                     if (!error) {
 
@@ -109,8 +110,7 @@ public class Register extends AppCompatActivity {
                     } else {
                         //terjadi error dan tampilkan pesan error dari API
                         //String errorMsg = jObj.getString("message");
-                        Toast.makeText(getApplicationContext(),
-                                "Username atau password yang anda masukan salah", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), msg , Toast.LENGTH_LONG).show();
                     }
                 } catch (JSONException e) {
                     // JSON error

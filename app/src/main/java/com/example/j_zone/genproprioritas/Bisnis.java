@@ -1,5 +1,9 @@
 package com.example.j_zone.genproprioritas;
 
+/**
+ * Created by Muhammad on 12/9/2018.
+ */
+
 public class Bisnis {
     private String nmbisnislain;
     private String nmusaha;

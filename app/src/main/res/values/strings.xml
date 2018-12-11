@@ -14,126 +14,658 @@
     <string name="title_activity_gmb_menu">GMB_menu</string>
     <string name="title_activity_gmb_genpro">GMB_genpro</string>
 
-    <string-array name="kecamatan">
+    <string-array name="Provinsi">
         <item>SELECT</item>
-        <item>Beji</item>
-        <item>Bojongsari</item>
-        <item>Cilodong</item>
-        <item>Cimanggis</item>
-        <item>Cinere</item>
-        <item>Cipayung</item>
-        <item>Limo</item>
-        <item>PancoranMas</item>
-        <item>Sawangan</item>
-        <item>Sukmajaya</item>
-        <item>Tapos</item>
+        <item>ACEH</item>
+        <item>SUMATERA_UTARA</item>
+        <item>SUMATERA_BARAT</item>
+        <item>RIAU</item>
+        <item>JAMBI</item>
+        <item>SUMATERA_SELATAN</item>
+        <item>BENGKULU</item>
+        <item>LAMPUNG</item>
+        <item>KEPULAUAN_BANGKA_BELITUNG</item>
+        <item>KEPULAUAN_RIAU</item>
+        <item>DKI_JAKARTA</item>
+        <item>JAWA_BARAT</item>
+        <item>JAWA_TENGAH</item>
+        <item>DAERAH_ISTIMEWA</item>
+        <item>JAWA_TIMUR</item>
+        <item>BANTEN</item>
+        <item>BALI</item>
+        <item>NUSA_TENGGARA_BARAT</item>
+        <item>NUSA_TENGGARA_TIMUR</item>
+        <item>KALIMANTAN_BARAT</item>
+        <item>KALIMANTAN_TENGAH</item>
+        <item>KALIMANTAN_SELATAN</item>
+        <item>KALIMANTAN_TIMUR</item>
+        <item>KALIMANTAN_UTARA</item>
+        <item>SULAWESI_UTARA</item>
+        <item>SULAWESI_TENGAH</item>
+        <item>SULAWESI_SELATAN</item>
+        <item>SULAWESI_TENGGARA</item>
+        <item>GORONTALO</item>
+        <item>SULAWESI_BARAT</item>
+        <item>MALUKU</item>
+        <item>MALUKU_UTARA</item>
+        <item>PAPUA</item>
+        <item>PAPUA_BARAT</item>
     </string-array>
 
     <string-array name="SELECT">
         <item>SELECT</item>
     </string-array>
 
-    <string-array name="Beji">
-        <item>SELECT</item>
-        <item>Beji</item>
-        <item>Beji Timur</item>
-        <item>Kemiri Muka</item>
-        <item>Pondok Cina</item>
-        <item>Kukusan</item>
-        <item>Tanah Baru</item>
+    <string-array name="ACEH">
+        <item>	KAB. ACEH BARAT	</item>
+        <item>	KAB. ACEH BESAR	</item>
+        <item>	KAB. ACEH SELATAN	</item>
+        <item>	KAB. ACEH TIMUR	</item>
+        <item>	KAB. ACEH TENGAH	</item>
+        <item>	KAB. ACEH UTARA	</item>
+        <item>	KAB. PIDIE	</item>
+        <item>	KAB. ACEH TENGGARA	</item>
+        <item>	KAB. ACEH SINGKIL	</item>
+        <item>	KAB. BIREUEN	</item>
+        <item>	KAB. SIMEULUE	</item>
+        <item>	KAB. ACEH BARAT DAYA	</item>
+        <item>	KAB. ACEH TAMIANG	</item>
+        <item>	KAB. ACEH JAYA	</item>
+        <item>	KAB. GAYO LUES	</item>
+        <item>	KAB. NAGAN RAYA	</item>
+        <item>	KAB. BENER MERIAH	</item>
+        <item>	KAB. PIDIE JAYA	</item>
+        <item>	KOTA BANDA ACEH	</item>
+        <item>	KOTA SABANG	</item>
+        <item>	KOTA LHOKSEUMAWE	</item>
+        <item>	KOTA LANGSA	</item>
+        <item>	KOTA SUBULUSSALAM	</item>
     </string-array>
-    <string-array name="Bojongsari">
-        <item>SELECT</item>
-        <item>Bojongsari Baru</item>
-        <item>Boojong Sari Lama</item>
-        <item>Curug</item>
-        <item>Duren Mekar</item>
-        <item>Duren Seribu</item>
-        <item>Pondok Petir</item>
-        <item>Serua</item>
+
+    <string-array name="SUMATERA_UTARA">
+        <item>	KAB. ASAHAN	</item>
+        <item>	KAB. DELI SERDANG	</item>
+        <item>	KAB. KARO	</item>
+        <item>	KAB. LABUHAN BATU	</item>
+        <item>	KAB. LANGKAT	</item>
+        <item>	KAB. NIAS	</item>
+        <item>	KAB. SIMALUNGUN	</item>
+        <item>	KAB. TAPANULI SELATAN	</item>
+        <item>	KAB. TAPANULI TENGAH	</item>
+        <item>	KAB. TAPANULI UTARA	</item>
+        <item>	KAB. DAIRI	</item>
+        <item>	KAB. MANDAILING NATAL	</item>
+        <item>	KAB. TOBA SAMOSIR	</item>
+        <item>	KAB. HUMBANG HASUNDUTAN	</item>
+        <item>	KAB. NIAS SELATAN	</item>
+        <item>	KAB. PAKPAK BHARAT	</item>
+        <item>	KAB. SAMOSIR	</item>
+        <item>	KAB. SERDANG BEDAGAI	</item>
+        <item>	KAB. BATU BARA	</item>
+        <item>	KAB. PADANG LAWAS UTARA	</item>
+        <item>	KAB. PADANG LAWAS	</item>
+        <item>	KAB. LABUHANBATU SELATAN	</item>
+        <item>	KAB. LABUHANBATU UTARA	</item>
+        <item>	KAB. NIAS UTARA	</item>
+        <item>	KAB.NIAS BARAT	</item>
+        <item>	KOTA MEDAN	</item>
+        <item>	KOTA PEMATANG SIANTAR	</item>
+        <item>	KOTA SIBOLGA	</item>
+        <item>	KOTA BINJAI	</item>
+        <item>	KOTA. TANJUNG BALAI	</item>
+        <item>	KOTA TEBING TINGGI	</item>
+        <item>	KOTA PADANG SIDEMPUAN	</item>
+        <item>	KOTA GUNUNGSITOLI	</item>
     </string-array>
-    <string-array name="Cilodong">
-        <item>SELECT</item>
-        <item>Cilodong</item>
-        <item>Jatimulya</item>
-        <item>Kalibaru</item>
-        <item>kalimulya</item>
-        <item>Sukamaju</item>
+
+    <string-array name="SUMATERA_BARAT">
+        <item>	KOTA BUKITTINGGI	</item>
+        <item>	KOTA PADANG	</item>
+        <item>	KOTA PARIAMAN	</item>
+        <item>	KAB. AGAM	</item>
+        <item>	KAB. LIMA PULUH KOTA	</item>
+        <item>	KAB. PADANG PARIAMAN	</item>
+        <item>	KAB. PASAMAN	</item>
+        <item>	KAB. PESISIR SELATAN	</item>
+        <item>	KAB.SIJUNJUNG	</item>
+        <item>	KAB. SOLOK	</item>
+        <item>	KAB. TANAH DATAR	</item>
+        <item>	KAB. KEPULAUAN MENTAWAI	</item>
+        <item>	KAB. DHARMASRAYA	</item>
+        <item>	KAB. PASAMAN BARAT	</item>
+        <item>	KAB. SOLOK SELATAN	</item>
+        <item>	KOTA PADANGPANJANG	</item>
+        <item>	KOTA PAYAKUMBUH	</item>
+        <item>	KOTA SAWAHLUNTO	</item>
+        <item>	KOTA SOLOK	</item>
     </string-array>
-    <string-array name="Cimanggis">
-        <item>SELECT</item>
-        <item>Curug</item>
-        <item>Harjamukti</item>
-        <item>Cisalak Pasar</item>
-        <item>Mekarsari</item>
-        <item>Tugu</item>
-        <item>Pasir Gunung Selatan</item>
+
+    <string-array name="RIAU">
+        <item>	KAB. BENGKALIS	</item>
+        <item>	KAB. INDRAGIRI HULU	</item>
+        <item>	KAB. KAMPAR	</item>
+        <item>	KAB. INDRAGIRI HILIR	</item>
+        <item>	KAB. KUATAN SINGINGI	</item>
+        <item>	KAB. PELALAWAN	</item>
+        <item>	KAB. ROKAN HULU	</item>
+        <item>	KAB. ROKAN HILIR	</item>
+        <item>	KAB. SIAK	</item>
+        <item>	KAB. KEPULAUAN MERANTI	</item>
+        <item>	KOTA PEKANBARU	</item>
+        <item>	KOTA DUMAI	</item>
     </string-array>
-    <string-array name="Cinere">
-        <item>SELECT</item>
-        <item>Cinere</item>
-        <item>Gandul</item>
-        <item>Pangkalan Jati Baru</item>
-        <item>Pangkalan Jati Lama</item>
+
+    <string-array name="JAMBI">
+        <item>	KAB. BATANG HARI	</item>
+        <item>	KAB. BUNGO	</item>
+        <item>	KAB. MERANGIN	</item>
+        <item>	KAB. TANJUNG JABUNG BARAT	</item>
+        <item>	KAB. KERINCI	</item>
+        <item>	KAB. TEBO	</item>
+        <item>	KAB. MUARO JAMBI	</item>
+        <item>	KAB. SAROLANGUN	</item>
+        <item>	KAB. TANJUNG JABUNG TIMUR	</item>
+        <item>	KOTA JAMBI	</item>
+        <item>	KOTA SUNGAI PENUH	</item>
+        <item>	KAB. KARIMUN	</item>
+        <item>	KAB. NATUNA	</item>
+        <item>	KAB. LINGGA	</item>
+        <item>	KAB. KEPULAUAN ANAMBAS	</item>
+        <item>	KOTA BATAM	</item>
+        <item>	KOTA TANJUNG PINANG	</item>
+        <item>	KAB. BANYUASIN	</item>
     </string-array>
-    <string-array name="Cipayung">
-        <item>SELECT</item>
-        <item>Bojong Pondok Terong</item>
-        <item>Cipayung</item>
-        <item>Cipayung jaya</item>
-        <item>Pondok Jaya</item>
-        <item>Ratujaya</item>
+
+    <string-array name="SUMATERA_SELATAN">
+        <item>	KAB. LAHAT	</item>
+        <item>	KAB. MUARA ENIM	</item>
+        <item>	KAB. MUSI BANYUASIN	</item>
+        <item>	KAB. MUSI RAWAS	</item>
+        <item>	KAB. OGAN KOMERING ILIR	</item>
+        <item>	KAB. OGAN KOMERING ULU	</item>
+        <item>	KAB. OGAN ILIR	</item>
+        <item>	KAB. OGAN KOMERING ULU TIMUR	</item>
+        <item>	KAB. OGAN KOMERING ULU SELATAN	</item>
+        <item>	KAB. EMPAT LAWANG	</item>
+        <item>	KAB. PENUKAI ABAB LEMATANG ILIR	</item>
+        <item>	KAB. MUSI RAWAS UTARA	</item>
+        <item>	KOTA PALEMBANG	</item>
+        <item>	KOTA PRABUMULIH	</item>
+        <item>	KOTA LUBUK LINGGAU	</item>
+        <item>	KOTA PAGAR ALAM	</item>
     </string-array>
-    <string-array name="Limo">
-        <item>SELECT</item>
-        <item>Grogol</item>
-        <item>Krukut</item>
-        <item>Limo</item>
-        <item>Meruyung</item>
+
+    <string-array name="BENG_KULU">
+        <item>	KAB. BENGKULU SELATAN	</item>
+        <item>	KAB. BENGKULU UTARA	</item>
+        <item>	KAB. REJANG LEMBONG	</item>
+        <item>	KAB. KAUR	</item>
+        <item>	KAB. SELUMA	</item>
+        <item>	KAB. MUKO-MUKO	</item>
+        <item>	KAB. KEPAHIANG	</item>
+        <item>	KAB. LEBONG	</item>
+        <item>	KAB. BENGKULU TENGAH	</item>
+        <item>	KOTA BENGKULU	</item>
     </string-array>
-    <string-array name="PancoranMas">
-        <item>SELECT</item>
-        <item>Depok</item>
-        <item>Depok Jaya</item>
-        <item>Mampang</item>
-        <item>Pancoran Mas</item>
-        <item>Rangkapan Jaya</item>
-        <item>Rangkapan Jaya Baru</item>
+
+    <string-array name="LAMPUNG">
+        <item>	KAB. LAMPUNG SELATAN	</item>
+        <item>	KAB. LAMPUNG TENGAH	</item>
+        <item>	KAB. LAMPUNG UTARA	</item>
+        <item>	KAB. LAMPUNG BARAT	</item>
+        <item>	KAB. TANGGAMUS	</item>
+        <item>	KAB. TULANG BAWANG	</item>
+        <item>	KAB. LAMPUNG TIMUR	</item>
+        <item>	KAB. WAY KANAN	</item>
+        <item>	KAB. PESAWARAN	</item>
+        <item>	KAB. PRINGSEWU	</item>
+        <item>	KAB. MESUJI	</item>
+        <item>	KAB. TULANGBAWANG BARAT	</item>
+        <item>	KAB. PESISIR BARAT	</item>
+        <item>	KOTA BANDAR LAMPUNG	</item>
+        <item>	KOTA METRO	</item>
     </string-array>
-    <string-array name="Sawangan">
-        <item>SELECT</item>
-        <item>Bedahan</item>
-        <item>Cinangka</item>
-        <item>Kedaung</item>
-        <item>Pasir Putih</item>
-        <item>Pengasinan</item>
-        <item>Sawangan Baru</item>
-        <item>Sawangan Lama</item>
+
+    <string-array name="KEPULAUAN_BANGKA_BELITUNG">
+        <item>	KAB. BANGKA	</item>
+        <item>	KAB. BELITUNG	</item>
+        <item>	KAB. BANGKA BARAT	</item>
+        <item>	KAB. BANGKA TENGAH	</item>
+        <item>	KAB. BANGKA SELATAN	</item>
+        <item>	KAB. BELITUNG TIMUR	</item>
+        <item>	KOTA PANGKAL PINANG	</item>
     </string-array>
-    <string-array name="Sukmajaya">
-        <item>SELECT</item>
-        <item>Abadijaya</item>
-        <item>Bakti Jaya</item>
-        <item>Cisalak</item>
-        <item>Mekar Jaya</item>
-        <item>Sukmajaya</item>
-        <item>Tritajaya</item>
+
+    <string-array name="KEPULAUAN_RIAU">
+        <item>	KAB. BINTAN	</item>
     </string-array>
-    <string-array name="Tapos">
-        <item>SELECT</item>
-        <item>Cilangkap</item>
-        <item>Cimpaeun</item>
-        <item>Jatijajar</item>
-        <item>Leuwinangun</item>
-        <item>Sukamaju Baru</item>
-        <item>Sukatani</item>
-        <item>Tapos</item>
+
+    <string-array name="DKI_JAKARTA">
+        <item>	KOTA ADMINISTRATIF JAKARTA BARAT	</item>
+        <item>	KOTA ADMINISTRATIF JAKARTA PUSAT	</item>
+        <item>	KOTA ADMINSTRATIF JAKARTA UTARA	</item>
+        <item>	KOTA ADMINISTRATIF JAKARTA TIMUR	</item>
+        <item>	KOTA ADMINISTRATIF JAKARTA SELATAN	</item>
+        <item>	KAB. ADMINISTRATIF KEPULAUAN SERIBU	</item>
     </string-array>
+
+    <string-array name="JAWA_BARAT">
+        <item>	KAB. BOGOR	</item>
+        <item>	KAB. SUKABUMI	</item>
+        <item>	KAB. CIANJUR	</item>
+        <item>	KAB. BANDUNG	</item>
+        <item>	KAB. GARUT	</item>
+        <item>	KAB. TASIKMALAYA	</item>
+        <item>	KAB. CIAMIS	</item>
+        <item>	KAB. KUNINGAN	</item>
+        <item>	KAB. CIREBON	</item>
+        <item>	KAB. SUMEDANG	</item>
+        <item>	KAB. INDRAMAYU	</item>
+        <item>	KAB. SUBANG	</item>
+        <item>	KAB. PURWAKARTA	</item>
+        <item>	KAB. KARAWANG	</item>
+        <item>	KAB. BEKASI	</item>
+        <item>	KAB. BANDUNG BARAT	</item>
+        <item>	KAB. PANGANDARAN	</item>
+        <item>	KOTA BOGOR	</item>
+        <item>	KOTA SUKABUMI	</item>
+        <item>	KOTA BANDUNG	</item>
+        <item>	KOTA CIREBON	</item>
+        <item>	KOTA BEKASI	</item>
+        <item>	KOTA DEPOK	</item>
+        <item>	KOTA CIMAHI	</item>
+        <item>	KOTA TASIKMALAYA	</item>
+        <item>	KOTA BANJAR	</item>
+        <item>	KAB. MAJALENGKA	</item>
+    </string-array>
+
+    <string-array name="JAWA_TENGAH">
+        <item>	KAB. BANJAR NEGARA	</item>
+        <item>	KAB. BANYUMAS	</item>
+        <item>	KAB. BLORA	</item>
+        <item>	KAB. BOYOLALI	</item>
+        <item>	KAB. BREBES	</item>
+        <item>	KAB. CILACAP	</item>
+        <item>	KAB. DEMAK	</item>
+        <item>	KAB. GROBOGAN	</item>
+        <item>	KAB. JEPARA	</item>
+        <item>	KAB. KARANGANYAR	</item>
+        <item>	KAB. KEBUMEN	</item>
+        <item>	KAB. KENDAL	</item>
+        <item>	KAB. KLATEN	</item>
+        <item>	KAB. KUDUS	</item>
+        <item>	KAB. MAGELANG	</item>
+        <item>	KAB. PATI	</item>
+        <item>	KAB. PEKALONGAN	</item>
+        <item>	KAB. PEMALANG	</item>
+        <item>	KAB. PURBALINGGA	</item>
+        <item>	KAB. PURWOREJO	</item>
+        <item>	KAB. REMBANG	</item>
+        <item>	KAB. SEMARANG	</item>
+        <item>	KAB. SRAGEN	</item>
+        <item>	KAB. SUKOHARJO	</item>
+        <item>	KAB. TEGAL	</item>
+        <item>	KAB. TEMANGGUNG	</item>
+        <item>	KAB. WONOGIRI	</item>
+        <item>	KAB. WONOSOBO	</item>
+        <item>	KAB. BATANG	</item>
+        <item>	KOTA SURAKARTA	</item>
+        <item>	KOTA SEMARANG	</item>
+        <item>	KOTA PEKALONGAN	</item>
+        <item>	KOTA MAGELANG	</item>
+        <item>	KOTA SALATIGA	</item>
+        <item>	KOTA TEGAL	</item>
+    </string-array>
+
+    <string-array name="DAERAH_ISTIMEWA">
+        <item>	KAB. BANTUL	</item>
+        <item>	KAB. GUNUNG KIDUL	</item>
+        <item>	KAB. SLEMAN	</item>
+        <item>	KAB. KULON PROGO	</item>
+        <item>	KOTA YOGYAKARTA	</item>
+    </string-array>
+
+    <string-array name="JAWA_TIMUR">
+        <item>	KAB. BANGKALAN	</item>
+        <item>	KAB. BANYUWANGI	</item>
+        <item>	KAB. BLITAR	</item>
+        <item>	KAB. BOJONEGORO	</item>
+        <item>	KAB. BONDOWOSO	</item>
+        <item>	KAB. GRESIK	</item>
+        <item>	KAB. JEMBER	</item>
+        <item>	KAB. JOMBANG	</item>
+        <item>	KAB. KEDIRI	</item>
+        <item>	KAB. LAMONGAN	</item>
+        <item>	KAB. LUMAJANG	</item>
+        <item>	KAB. MADIUN	</item>
+        <item>	KAB. MAGETAN	</item>
+        <item>	KAB. MALANG	</item>
+        <item>	KAB. MOJOKERTO	</item>
+        <item>	KAB. NGAJUK	</item>
+        <item>	KAB. NGAWI	</item>
+        <item>	KAB. PACITAN	</item>
+        <item>	KAB. PAMEKASAN	</item>
+        <item>	KAB. PASURUAN	</item>
+        <item>	KAB. PONOROGO	</item>
+        <item>	KAB. PROBOLINGGO	</item>
+        <item>	KAB. SAMPANG	</item>
+        <item>	KAB. SIDOARJO	</item>
+        <item>	KAB. SITUBONDO	</item>
+        <item>	KAB. SUMENEP	</item>
+        <item>	KAB. TRENGGALEK	</item>
+        <item>	KAB. TUBAN	</item>
+        <item>	KAB. TULUNGAGUNG	</item>
+        <item>	KOTA KEDIRI	</item>
+        <item>	KOTA MADIUN	</item>
+        <item>	KOTA MALANG	</item>
+        <item>	KOTA SURABAYA	</item>
+        <item>	KOTA MOJOKERT0	</item>
+        <item>	KOTA PASURUAN	</item>
+        <item>	KOTA PROBOLINGGO	</item>
+        <item>	KOTA BLITAR	</item>
+        <item>	KOTA BATU	</item>
+    </string-array>
+
+    <string-array name="BANTEN">
+        <item>	KAB. LEBAK	</item>
+        <item>	KAB. PENDEGLANG	</item>
+        <item>	KAB. SERANG	</item>
+        <item>	KAB. TANGERANG	</item>
+        <item>	KOTA TANGERANG	</item>
+        <item>	KOTA CILEGON	</item>
+        <item>	KOTA SERANG	</item>
+        <item>	KOTA TANGERANG SELATAN	</item>
+    </string-array>
+
+    <string-array name="BALI">
+        <item>	KAB. BADUNG	</item>
+        <item>	KAB. BANGLI	</item>
+        <item>	KAB. BULELENG	</item>
+        <item>	KAB. GIANYAR	</item>
+        <item>	KAB. JEMBRANA	</item>
+        <item>	KAB. KARANGASEM	</item>
+        <item>	KAB. KLUNGKUNG	</item>
+        <item>	KAB. TABANAN	</item>
+    </string-array>
+
+    <string-array name="NUSA_TENGGARA_BARAT">
+        <item>	KOTA DENPASAR	</item>
+        <item>	KAB. BIMA	</item>
+        <item>	KAB. DOMPU	</item>
+        <item>	KAB. LOMBOK BARAT	</item>
+        <item>	KAB. LOMBOK TENGAH	</item>
+        <item>	KAB. LOMBOK TIMUR	</item>
+        <item>	KAB. SUMBAWA	</item>
+        <item>	KAB. SUMBAWA BARAT	</item>
+        <item>	KAB. LOMBOK UTARA	</item>
+        <item>	KOTA MATARAM	</item>
+        <item>	KOTA BIMA	</item>
+    </string-array>
+
+    <string-array name="NUSA_TENGGARA_TIMUR">
+        <item>	KAB. ALOR	</item>
+        <item>	KAB. BELU	</item>
+        <item>	KAB. ENDE	</item>
+        <item>	KAB. FLORES TIMUR	</item>
+        <item>	KAB. KUPANG	</item>
+        <item>	KAB. MANGGARAI	</item>
+        <item>	KAB. NGADA	</item>
+        <item>	KAB. SIKKA	</item>
+        <item>	KAB. SUMBA BARAT	</item>
+        <item>	KAB. SUMBA TIMUR	</item>
+        <item>	KAB. TIMOR TENGAH SELATAN	</item>
+        <item>	KAB. TIMOR TENGAH UTARA	</item>
+        <item>	KAB. LEMBATA	</item>
+        <item>	KAB. ROTE NDAO	</item>
+        <item>	KAB. MANGGARAI BARAT	</item>
+        <item>	KAB. MANGGARAI TIMUR	</item>
+        <item>	KAB. NAGEKEO	</item>
+        <item>	KAB. SUMBA BARAT DAYA	</item>
+        <item>	KAB. SUMBA TENGAH	</item>
+        <item>	KAB. SABU RAIJUA	</item>
+        <item>	KAB. MALAKA	</item>
+        <item>	KOTA KUPANG	</item>
+    </string-array>
+
+    <string-array name="KALIMANTAN_BARAT">
+        <item>	KAB. KAPUAS HULU	</item>
+        <item>	KAB. KETAPANG	</item>
+        <item>	KAB. PONTIANAK	</item>
+        <item>	KAB. SAMBAS	</item>
+        <item>	KAB. SANGGAU	</item>
+        <item>	KAB. SINTANG	</item>
+        <item>	KAB. BENGKAYANG	</item>
+        <item>	KAB. LANDAK	</item>
+        <item>	KAB. MELAWI	</item>
+        <item>	KAB. SEKADAU	</item>
+        <item>	KAB. KAYONG UTARA	</item>
+        <item>	KAB. KUBU RAYA	</item>
+        <item>	KOTA PONTIANAK	</item>
+        <item>	KOTA SINGKAWANG	</item>
+    </string-array>
+
+    <string-array name="KALIMANTAN_TENGAH">
+        <item>	KAB. BARITO SELATAN	</item>
+        <item>	KAB. BARITO UTARA	</item>
+        <item>	KAB. KAPUAS	</item>
+        <item>	KAB. KOTAWARINGIN BARAT	</item>
+        <item>	KAB. KOTAWARINGIN TIMUR	</item>
+        <item>	KAB. BARITO TIMUR	</item>
+        <item>	KAB. GUNUNG MAS	</item>
+        <item>	KAB. KATINGAN	</item>
+        <item>	KAB. LAMANDAU	</item>
+        <item>	KAB. MURUNG RAYA	</item>
+        <item>	KAB. PULANG PISAU	</item>
+        <item>	KAB. SUKAMARA	</item>
+        <item>	KAB. SERUYAN	</item>
+        <item>	KOTA PALANGKARAYA	</item>
+    </string-array>
+
+    <string-array name="KALIMANTAN_SELATAN">
+        <item>	KAB. BANJAR BARU	</item>
+        <item>	KAB. BARITO KUALA	</item>
+        <item>	KAB. HULU SUNGAI SELATAN	</item>
+        <item>	KAB. HULU SUNGAI TENGAH	</item>
+        <item>	KAB. HULU SUNGAI UTARA	</item>
+        <item>	KAB. KOTABARU	</item>
+        <item>	KAB. TANAH LAUT	</item>
+        <item>	KAB. TABALOG	</item>
+        <item>	KAB. TAPIN	</item>
+        <item>	KAB. TANAH BUMBU 	</item>
+        <item>	KAB. BALANGAN	</item>
+        <item>	KAB. BANJARMASIN	</item>
+        <item>	KOTA BANJAR BARU	</item>
+    </string-array>
+
+    <string-array name="KALIMANTAN_TIMUR">
+        <item>	KAB. BERAU	</item>
+        <item>	KAB. KUTAI KARTANEGARA	</item>
+        <item>	KAB. PASER	</item>
+        <item>	KAB. KUTAI BARAT	</item>
+        <item>	KAB. KUTAI TIMUR	</item>
+        <item>	KAB. PENAJAM PASER UTARA	</item>
+        <item>	KAB. MAHAKAM ULU	</item>
+        <item>	KOTA BALIKPAPAN	</item>
+        <item>	KOTA SAMARINDA	</item>
+        <item>	KOTA BONTANG	</item>
+    </string-array>
+    <string-array name="KALIMANTAN_UTARA">
+        <item>	KAB. BULUNGAN	</item>
+        <item>	KAB. MALINAU	</item>
+        <item>	KAB. NUNUKAN	</item>
+        <item>	KAB. TANA TIDUNG	</item>
+        <item>	KOTA TARAKAN	</item>
+    </string-array>
+    <string-array name="SULAWESI_UTARA">
+        <item>	KAB. BOLAANG MONGONDOW	</item>
+        <item>	KAB KEPULAUAN SANGIHE	</item>
+        <item>	KAB. MINAHASA	</item>
+        <item>	KAB. KEPULAUAN TALAUD	</item>
+        <item>	KAB. MINAHASA SELATAN	</item>
+        <item>	KAB. MINAHASA UTARA	</item>
+        <item>	KAB. MINAHASA TENGGARA	</item>
+        <item>	KAB. KEPULAUAN SIAU TAGULANDANG BIARO	</item>
+        <item>	KAB. BOLAANG MONGONDOW UTARA	</item>
+        <item>	KAB. BOLAANG MONGONDOW TIMUR	</item>
+        <item>	KAB. BOLAANG MONGONDOW SELATAN	</item>
+        <item>	KOTA MANADO	</item>
+        <item>	KOTA BITUNG	</item>
+        <item>	KOTA TOMOHON	</item>
+        <item>	KOTA KOTAMOBAGU	</item>
+    </string-array>
+    <string-array name="SULAWESI_TENGAH">
+        <item>	KAB. BANGGAI	</item>
+        <item>	KAB. DONGGALA	</item>
+        <item>	KAB. POSO	</item>
+        <item>	KAB. TOLI-TOLI	</item>
+        <item>	KAB. BANGGAI KEPULAUAN	</item>
+        <item>	KAB. BUOL	</item>
+        <item>	KAB. MOROWALI	</item>
+        <item>	KAB. PARIGI MOUTONG	</item>
+        <item>	KAB. TOJO UNA-UNA	</item>
+        <item>	KAB. SIGI	</item>
+        <item>	KAB. BANGGAI LAUT	</item>
+        <item>	KAB. MOROWALI UTARA	</item>
+        <item>	KOTA PALU	</item>
+    </string-array>
+    <string-array name="SULAWESI_SELATAN">
+        <item>	KAB. BANTAENG	</item>
+        <item>	KAB. BARRU	</item>
+        <item>	KAB. BONE	</item>
+        <item>	KAB. BULUKUMBA	</item>
+        <item>	KAB. ENREKANG	</item>
+        <item>	KAB. GOWA	</item>
+        <item>	KAB.JENEPONTO	</item>
+        <item>	KAB. LUWU	</item>
+        <item>	KAB. MAROS	</item>
+        <item>	KAB. PANGKAJENE KEPULAUAN	</item>
+        <item>	KAB. PINRANG	</item>
+        <item>	KAB. KEPULAUAN SELAYAR	</item>
+        <item>	KAB. SINJAI	</item>
+        <item>	KAB. SIDENRENG RAPPANG	</item>
+        <item>	KAB. SOPPENG	</item>
+        <item>	KAB. TAKALAR	</item>
+        <item>	KAB. TANA TORAJA	</item>
+        <item>	KAB. WAJO	</item>
+        <item>	KAB. LUWU UTARA	</item>
+        <item>	KAB. LUWU TIMUR	</item>
+        <item>	KAB. TORAJA UTARA	</item>
+        <item>	KOTA MAKASSAR	</item>
+        <item>	KOTA PARE-PARE	</item>
+        <item>	KOTA PALOPO	</item>
+    </string-array>
+    <string-array name="SULAWESI_TENGGARA">
+        <item>	KAB. BOMBANA	</item>
+        <item>	KAB. BUTON	</item>
+        <item>	KAB. KOLAKA	</item>
+        <item>	KAB. KONAWE	</item>
+        <item>	KAB. MUNA	</item>
+        <item>	KAB. WAKATOBI	</item>
+        <item>	KAB. KOLAKA UTARA	</item>
+        <item>	KAB. KONAWE SELATAN	</item>
+        <item>	KAB. KONAWE UTARA	</item>
+        <item>	KAB. BUTON UTARA	</item>
+        <item>	KAB. KOLAKA TIMUR	</item>
+        <item>	KAB. KONAWE KEPULAUAN	</item>
+        <item>	KAB. MUNA BARAT	</item>
+        <item>	KAB. BUTON TENGAH	</item>
+        <item>	KAB. BUTON SELATAN	</item>
+        <item>	KOTA KENDARI	</item>
+        <item>	KOTA BAU-BAU	</item>
+    </string-array>
+    <string-array name="GORONTALO">
+        <item>	KAB. GORONTALO	</item>
+        <item>	KAB. BOALEMO	</item>
+        <item>	KAB. BONE BOLANGO	</item>
+        <item>	KAB. POHUWATO	</item>
+        <item>	KAB. GORONTALO UTARA	</item>
+        <item>	KOTA GORONTALO	</item>
+    </string-array>
+    <string-array name="SULAWESI_BARAT">
+        <item>	KAB. MAJENE	</item>
+        <item>	KAB. MAMUJU	</item>
+        <item>	KAB. POLEWALI MANDAR	</item>
+        <item>	KAB. MAMASA	</item>
+        <item>	KAB. MAMUJU UTARA	</item>
+        <item>	KAB. MAMUJU TENGAH	</item>
+    </string-array>
+    <string-array name="MALUKU">
+        <item>	KAB. MALUKU TENGAH	</item>
+        <item>	KAB. MALUKU TENGGARA	</item>
+        <item>	KAB. BURU	</item>
+        <item>	KAB. MALUKU TENGGARA BARAT	</item>
+        <item>	KAB. SERAM BAGIAN BARAT	</item>
+        <item>	KAB. SERAM BAGIAN TIMUR	</item>
+        <item>	KAB. KEPULAUAN ARU	</item>
+        <item>	KAB. MALUKU BARAT DAYA	</item>
+        <item>	KAB. BURU SELATAN	</item>
+        <item>	KOTA AMBON	</item>
+        <item>	KOTA TUAL	</item>
+    </string-array>
+    <string-array name="MALUKU_UTARA">
+        <item>	KAB. HALMAHERA BARAT	</item>
+        <item>	KAB. HALMAHERA TENGAH	</item>
+        <item>	KAB. HALMAHERA SELATAN	</item>
+        <item>	KAB. HALMAHERA TIMUR	</item>
+        <item>	KAB. HALMAHERA UTARA	</item>
+        <item>	KAB. KEPULAUAN SULA	</item>
+        <item>	KAB. PULAU MOROTAI 	</item>
+        <item>	KAB. PULAU TALIABU	</item>
+        <item>	KOTA TERNATE	</item>
+        <item>	KOTA TIDORE	</item>
+    </string-array>
+    <string-array name="PAPUA">
+        <item>	KAB. BLAK NUMFOR	</item>
+        <item>	KAB. JAYAPURA	</item>
+        <item>	KAB. JAYAWIJAYA	</item>
+        <item>	KAB. MERAUKE	</item>
+        <item>	KAB. NABIRE	</item>
+        <item>	KAB. KEPULAUAN YAPEN	</item>
+        <item>	KAB. MIMIKA	</item>
+        <item>	KAB. PANIAI	</item>
+        <item>	KAB. PUNCAK JAYA	</item>
+        <item>	KAB. ASMAT	</item>
+        <item>	KAB. BOVEN DIGOEL	</item>
+        <item>	KAB. KEEROM	</item>
+        <item>	KAB. SARMI	</item>
+        <item>	KAB. MAPPI	</item>
+        <item>	KAB. PEGUNUNGAN BINTANG	</item>
+        <item>	KAB. TOLIKARA	</item>
+        <item>	KAB. WAROPEN	</item>
+        <item>	KAB. YAHUKIMO	</item>
+        <item>	KAB. SUPIORI	</item>
+        <item>	KAB. MAMBERAMO RAYA	</item>
+        <item>	KAB. MAMBERAMO TENGAH	</item>
+        <item>	KAB. YALIMO	</item>
+        <item>	KAB. LANNY JAYA	</item>
+        <item>	KAB. NDUGA	</item>
+        <item>	KAB. PUNCAK	</item>
+        <item>	KAB. DOGIYAI	</item>
+        <item>	KAB. INTAN JAYA	</item>
+        <item>	KAB. DEIYAI	</item>
+        <item>	KOTA JAYAPURA	</item>
+    </string-array>
+    <string-array name="PAPUA_BARAT">
+        <item>	KAB. FAK-FAK	</item>
+        <item>	KAB. MANOKWARI	</item>
+        <item>	KAB. SORONG	</item>
+        <item>	KAB. TELUK WANDAMA	</item>
+        <item>	KAB. KAIMANA	</item>
+        <item>	KAB. RAJA AMPAT	</item>
+        <item>	KAB. SORONG SELATAN	</item>
+        <item>	KAB. TELUK BINTUNI	</item>
+        <item>	KAB. TAMBRAUW	</item>
+        <item>	KAB. MAYBRAT	</item>
+        <item>	KAB. MANOKWARI SELATAN	</item>
+        <item>	KAB. PEGUNUNGAN ARFAK	</item>
+        <item>	KOTA SORONG	</item>
+    </string-array>
+
+
     <string name="title_activity_landing_page">Landing_page</string>
     <string name="title_activity_register">Register</string>
-    <string name="URL_GET_BISNIS">http://genprodev.lavenderprograms.com/apigw/bisnis_info/getbisnis_info</string>
-    <string name="toolbar_title">Contacts</string>
-    <string name="action_search">Search</string>
-    <string name="search_hint">Type name…</string>
+    <string name="title_activity_profile">Profile</string>
+    <string name="title_activity_business">Business</string>
+
 </resources>
 

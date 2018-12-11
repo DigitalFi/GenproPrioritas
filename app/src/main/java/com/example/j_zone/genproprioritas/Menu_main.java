@@ -19,6 +19,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
@@ -43,12 +45,15 @@ public class Menu_main extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private SharedPreferences user;
+    private SharedPreferences updt;
     private RecyclerView mList;
 
     private LinearLayoutManager linearLayoutManager;
     private DividerItemDecoration dividerItemDecoration;
     private List<Bisnis> bisnisList;
     private RecyclerView.Adapter adapter;
+
+    private WebView view; //ini variabel supaya bisa diakses method
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,8 +75,23 @@ public class Menu_main extends AppCompatActivity
         final String nama = user.getString("user_name", "");
         final String email = user.getString("email", "");
 
+        updt = getSharedPreferences("data_update", Context.MODE_PRIVATE);
+        final String nomor = updt.getString("no_anggota", "");
+        final String pic = updt.getString("picture", "");
+        final String link = updt.getString("url", "");
 
         View headerView = navigationView.getHeaderView(0);
+
+        view = (WebView) headerView.findViewById(R.id.Profile);
+        view.getSettings().setJavaScriptEnabled(true);
+        view.setWebViewClient(new profile());
+        //ini manggil url web dari webview-nya
+
+        String url=link+pic;
+
+        //Toast.makeText(getApplicationContext(), "url="+link+pic, Toast.LENGTH_SHORT).show();
+
+        view.loadUrl(url);
 
         TextView n = (TextView) headerView.findViewById(R.id.nama_user);
         TextView r = (TextView) headerView.findViewById(R.id.nomor_anggota);
@@ -80,18 +100,12 @@ public class Menu_main extends AppCompatActivity
         TextView kolom_nama = (TextView) findViewById(R.id.profil_nama);
         TextView kolom_email = (TextView) findViewById(R.id.profil_email);
 
-
-
         n.setText(nama);
-        r.setText(email);
+        r.setText(nomor);
 
         depan.setText(nama);
-        kolom_email.setText("Email : " +email);
-        kolom_nama.setText("Nama : " +nama);
-
-        user = getSharedPreferences("data_user", Context.MODE_PRIVATE);
-        final String userid = user.getString("user_id","");
-
+        kolom_email.setText("Email : "+email);
+        kolom_nama.setText("Nama : "+nama);
 
         mList = findViewById(R.id.main_list);
         bisnisList = new ArrayList<>();
@@ -107,7 +121,6 @@ public class Menu_main extends AppCompatActivity
         mList.addItemDecoration(dividerItemDecoration);
         getBisnis();
 
-
     }
 
     private void getBisnis() {
@@ -115,7 +128,7 @@ public class Menu_main extends AppCompatActivity
         progressDialog.setMessage("Loading...");
         progressDialog.show();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, getResources().getString(R.string.URL_GET_BISNIS), new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.URL_LIST_USAHA, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
@@ -124,7 +137,7 @@ public class Menu_main extends AppCompatActivity
                     for (int i = 0; i<jsonArray.length(); i++){
                         JSONObject object2 = jsonArray.getJSONObject(i);
                         Bisnis bisnis2 = new Bisnis();
-                        bisnis2.setNmbisnislain(object2.getString("nm_bisnis_lain"));
+                        bisnis2.setNmbisnislain(object2.getString("merk"));
                         bisnis2.setNmusaha(object2.getString("nm_usaha"));
                         bisnis2.setTglTerdaftar(object2.getString("tgl_terdaftar"));
 
@@ -217,12 +230,11 @@ public class Menu_main extends AppCompatActivity
             Intent intent = new Intent(Menu_main.this, Search.class);
             startActivity(intent);
         } else if (id == R.id.nav_manage_usaha) {
-            Intent intent = new Intent(Menu_main.this, Add_Usaha.class);
+            Intent intent = new Intent(Menu_main.this, Business.class);
             startActivity(intent);
         } else if (id == R.id.nav_manage_profile) {
-            Intent intent = new Intent(Menu_main.this, Edit_Profile.class);
+            Intent intent = new Intent(Menu_main.this, Profile.class);
             startActivity(intent);
-
         } else if (id == R.id.nav_gmb_genpro) {
             Intent intent = new Intent(Menu_main.this, GMB_genpro.class);
             startActivity(intent);
@@ -274,5 +286,13 @@ public class Menu_main extends AppCompatActivity
         // Intent intent = new Intent(MainKecamatan.this, Login.class);
         //startActivity(intent);
         //finish();
+    }
+
+    private class profile extends WebViewClient {
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            view.loadUrl(url);
+            return true;
+        }
     }
 }

@@ -1,5 +1,9 @@
 package com.example.j_zone.genproprioritas;
 
+/**
+ * Created by Muhammad on 12/9/2018.
+ */
+
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
