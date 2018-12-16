@@ -83,8 +83,17 @@ public class Edit_Profile extends AppCompatActivity {
         Sp2 = (Spinner)findViewById(R.id.SpSecond);
 
         //String test = "ini isi";
+        updt = getSharedPreferences("data_update", Context.MODE_PRIVATE);
+        final String hint_nama = updt.getString("nama_depan", "");
+        final String hint_namapanjang = updt.getString("nama_belakang", "");
+        final String hint_phone = updt.getString("phone", "");
+        final String hint_alamat = updt.getString("alamat", "");
 
-        //nama.setHint(test);
+
+        nama.setText(hint_nama);
+        namaPanjang.setText(hint_namapanjang);
+        phone.setText(hint_phone);
+        alamat.setText(hint_alamat);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

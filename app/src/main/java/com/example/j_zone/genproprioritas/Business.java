@@ -47,6 +47,7 @@ public class Business extends AppCompatActivity {
         setContentView(R.layout.activity_business);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mList = findViewById(R.id.main_list);
         bisnisList = new ArrayList<>();

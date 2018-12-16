@@ -15,7 +15,7 @@
         <item
             android:id="@+id/nav_manage_usaha"
             android:icon="@drawable/baseline_business_center_black_18dp"
-            android:title="Bussiness" />
+            android:title="Business" />
         <item
             android:id="@+id/nav_gmb_genpro"
             android:icon="@drawable/genpro_ic"
