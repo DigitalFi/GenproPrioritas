@@ -12,6 +12,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,12 +23,17 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkError;
 import com.android.volley.NetworkResponse;
+import com.android.volley.NoConnectionError;
 import com.android.volley.Request;
 import com.android.volley.Response;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.j_zone.genproprioritas.helper.AppConfig;
+import com.example.j_zone.genproprioritas.helper.AppController;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,6 +53,7 @@ public class Edit_Profile extends AppCompatActivity {
     private EditText nama, namaPanjang, phone, alamat ;
     private SharedPreferences user;
     private SharedPreferences updt;
+    private SharedPreferences user_edit;
 
     static final int REQUEST_TAKE_PHOTO = 1;
 
@@ -62,6 +69,7 @@ public class Edit_Profile extends AppCompatActivity {
 
         user = getSharedPreferences("data_user", MODE_PRIVATE);
         updt = getSharedPreferences("data_update", MODE_PRIVATE);
+        user_edit = getSharedPreferences("data_edit", MODE_PRIVATE);
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
                 == PackageManager.PERMISSION_DENIED){
@@ -70,6 +78,20 @@ public class Edit_Profile extends AppCompatActivity {
 
         } else {
 
+        }
+
+        user = getSharedPreferences("data_user", Context.MODE_PRIVATE);
+        final String userid = user.getString("user_id", "");
+
+        if (!userid.isEmpty()) {
+            // login user
+            getdata(userid);
+
+        } else {
+            // jika inputan kosong tampilkan pesan
+            Toast.makeText(getApplicationContext(),
+                    "Some Error , please contact developer", Toast.LENGTH_LONG)
+                    .show();
         }
 
         btnImage = (Button)findViewById(R.id.btn_picture);
@@ -83,11 +105,24 @@ public class Edit_Profile extends AppCompatActivity {
         Sp2 = (Spinner)findViewById(R.id.SpSecond);
 
         //String test = "ini isi";
-        updt = getSharedPreferences("data_update", Context.MODE_PRIVATE);
-        final String hint_nama = updt.getString("nama_depan", "");
-        final String hint_namapanjang = updt.getString("nama_belakang", "");
-        final String hint_phone = updt.getString("phone", "");
-        final String hint_alamat = updt.getString("alamat", "");
+        user_edit = getSharedPreferences("data_edit", Context.MODE_PRIVATE);
+        final String hint_nama = user_edit.getString("namadepan", "");
+        final String hint_namapanjang = user_edit.getString("namabelakang", "");
+        final String hint_phone = user_edit.getString("phone", "");
+        final String hint_alamat = user_edit.getString("alamat", "");
+        final String compareValuesp1 = user_edit.getString("provinsi", "");
+        final String compareValuesp2 = user_edit.getString("kabupaten", "");
+
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.Provinsi, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Sp1.setAdapter(adapter);
+
+        if (compareValuesp1 != null) {
+            int spinnerPosition = adapter.getPosition(compareValuesp1);
+            Sp1.setSelection(spinnerPosition);
+        }
+
 
 
         nama.setText(hint_nama);
@@ -113,8 +148,17 @@ public class Edit_Profile extends AppCompatActivity {
                 int idSpinner = getResources().getIdentifier(name, "array", Edit_Profile.this.getPackageName());
 
                 ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(Edit_Profile.this, android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(idSpinner));
+                //spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 Sp2.setAdapter(spinnerArrayAdapter);
+
+                if (compareValuesp2 != null) {
+                    int spinnerPosition = spinnerArrayAdapter.getPosition(compareValuesp2);
+                    Sp2.setSelection(spinnerPosition);
+                }
+
             }
+
+
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -154,6 +198,85 @@ public class Edit_Profile extends AppCompatActivity {
 
     }
 
+    private void getdata(final String userid) {
+
+        // Tag biasanya digunakan ketika ingin membatalkan request volley
+        String tag_string_req = "req_data";
+
+        StringRequest strReq = new StringRequest(Request.Method.POST,
+                AppConfig.URL_GET_EDIT_PROFILE, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, "LOADING: " + response.toString());
+
+                try
+                {
+                    JSONObject jObj = new JSONObject(response);
+                    boolean error = jObj.getBoolean("error");
+                    // ngecek node error dari api
+                    if (!error) {
+                        JSONObject obj = jObj.getJSONObject("data");
+                        String id = obj.getString("user_id");
+                        String email = obj.getString("email");
+                        String username = obj.getString("user_name");
+                        String namadepan = obj.getString("nama_depan");
+                        String namabelakang = obj.getString("nama_belakang");
+                        String phone = obj.getString("phone");
+                        String alamat = obj.getString("alamat");
+                        String provinsi = obj.getString("provinsi");
+                        String kabupaten = obj.getString("kabupaten");
+
+                        SharedPreferences.Editor editor = user_edit.edit();
+                        editor.putString("userid",id);
+                        editor.putString("email", email);
+                        editor.putString("namadepan",namadepan);
+                        editor.putString("namabelakang",namabelakang);
+                        editor.putString("phone", phone);
+                        editor.putString("alamat", alamat);
+                        editor.putString("provinsi", provinsi);
+                        editor.putString("kabupaten", kabupaten);
+                        editor.commit();
+
+                    } else {
+                        //terjadi error dan tampilkan pesan error dari API
+                        //String errorMsg = jObj.getString("message");
+                        Toast.makeText(getApplicationContext(),
+                                "Some Eror , Please Contact Developer", Toast.LENGTH_LONG).show();
+                    }
+                } catch (JSONException e) {
+                    // JSON error
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "Json error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, "Login Error: " + error.getMessage());
+                //cek error timeout, noconnection dan network error
+                if ( error instanceof TimeoutError || error instanceof NoConnectionError ||error instanceof NetworkError) {
+                    Toast.makeText(getApplicationContext(),
+                            "Please Check Your Connection" + error.getMessage(),
+                            Toast.LENGTH_SHORT).show();}
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                // kirim parameter ke server
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("user_id", userid);
+
+                return params;
+            }
+        };
+        // menggunakan fungsi volley adrequest yang kita taro di appcontroller
+        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+
+    }
+
+
     private void dispatchTakePictureIntent() {
 
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -186,13 +309,14 @@ public class Edit_Profile extends AppCompatActivity {
                     String kd_kab = Sp2.getSelectedItem().toString();
 
 
+
                     if (!namadepan.isEmpty() && !id.isEmpty() && !namabelakang.isEmpty() && !almt.isEmpty() && !telepon.isEmpty() && !kd_prov.isEmpty() && !kd_kab.isEmpty() ) {
                         // login user
                         uploadBitmap(bitmap, id, namadepan, namabelakang, almt, telepon, kd_prov, kd_kab);
 
-                        //Toast.makeText(getApplicationContext(),
-                                //"Debug :" + id + "," + kd_prov + "," + namadepan + "," + namabelakang + "," + almt + "," + telepon + "," + kd_kab, Toast.LENGTH_LONG)
-                               // .show();
+                        Toast.makeText(getApplicationContext(),
+                                "Debug :" + id + "," + kd_prov + "," + namadepan + "," + namabelakang + "," + almt + "," + telepon + "," + kd_kab, Toast.LENGTH_LONG)
+                                .show();
 
                     } else {
                         // jika inputan kosong tampilkan pesan
@@ -327,7 +451,6 @@ public class Edit_Profile extends AppCompatActivity {
         bitmap.compress(Bitmap.CompressFormat.JPEG, 80, byteArrayOutputStream);
         return byteArrayOutputStream.toByteArray();
     }
-
 
     /*Function untuk membuka image galery
     private void dispatchTakePictureIntent() {

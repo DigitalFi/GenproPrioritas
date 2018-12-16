@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -26,12 +28,15 @@ import com.example.j_zone.genproprioritas.helper.AppController;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class Add_Usaha extends AppCompatActivity {
 
-    private static final String TAG = Login.class.getSimpleName();
+    private static final String TAG = Add_Usaha.class.getSimpleName();
 
     private Button btnSubmit;
     private EditText inputBisnisLain;
@@ -71,6 +76,8 @@ public class Add_Usaha extends AppCompatActivity {
         inputInstagram = (EditText) findViewById(R.id.acc_instagram);
         btnSubmit = (Button) findViewById(R.id.btn_submit);
 
+        inputOmsetTahunan.addTextChangedListener(omset());
+
         // ketika login button di klik
         btnSubmit.setOnClickListener(new View.OnClickListener() {
 
@@ -102,6 +109,49 @@ public class Add_Usaha extends AppCompatActivity {
 
         });
 
+    }
+
+    //currency format
+    private TextWatcher omset() {
+        return new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                inputOmsetTahunan.removeTextChangedListener(this);
+
+                try {
+                    String originalString = s.toString();
+
+                    Long longval;
+                    if (originalString.contains(",")) {
+                        originalString = originalString.replaceAll(",", "");
+                    }
+                    longval = Long.parseLong(originalString);
+
+                    DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(Locale.US);
+                    formatter.applyPattern("#,###,###,###");
+                    String formattedString = formatter.format(longval);
+
+                    //setting text after format to EditText
+                    inputOmsetTahunan.setText(formattedString);
+                    inputOmsetTahunan.setSelection(inputOmsetTahunan.getText().length());
+
+                } catch (NumberFormatException nfe) {
+                    nfe.printStackTrace();
+                }
+
+                inputOmsetTahunan.addTextChangedListener(this);
+            }
+        };
     }
 
     private void checkSubmit(final String id, final String namabisnis, final String namausaha, final String merek, final String jml_karyawan, final String jml_cabang, final String omset_tahunan, final String no_tlp, final String facebook, final String instagram) {

@@ -13,6 +13,8 @@ public class AppConfig {
 
     public static String URL_EDIT_PROFILE= baseurl+"users/update_profile/";
 
+    public static String URL_GET_EDIT_PROFILE= baseurl+"users/get_registered_user/";
+
     public static String URL_ADD_USAHA= baseurl+"bisnis_info/insert_bisnis_info";
 
     public static String URL_LIST_USAHA= baseurl+"bisnis_info/getbisnis_info";
