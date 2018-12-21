@@ -42,6 +42,7 @@ public class Profile extends AppCompatActivity {
         TextView Telepon = (TextView) findViewById(R.id.Telepon);
         TextView Alamat = (TextView) findViewById(R.id.Alamat);
 
+
         Nama.setText("Nama : "+nama);
         Email.setText("Email : "+email);
         Nomor.setText("Nomor Anggota : "+nomor);

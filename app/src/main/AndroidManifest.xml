@@ -103,6 +103,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.j_zone.genproprioritas.Menu_main" />
         </activity>
+        <activity
+            android:name=".Detailbisnis"
+            android:label="Detail Bisnis"
+            android:parentActivityName=".Menu_main"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity android:name=".EditBisnis"
+            android:parentActivityName=".Menu_main"
+            android:label="Edit Bisnis"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

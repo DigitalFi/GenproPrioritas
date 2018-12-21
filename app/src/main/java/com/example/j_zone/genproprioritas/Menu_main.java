@@ -21,6 +21,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
@@ -52,13 +54,20 @@ public class Menu_main extends AppCompatActivity
     private DividerItemDecoration dividerItemDecoration;
     private List<Bisnis> bisnisList;
     private RecyclerView.Adapter adapter;
-
+    private LinearLayout linearprofiles;
     private WebView view; //ini variabel supaya bisa diakses method
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_main);
+        linearprofiles = (LinearLayout)findViewById(R.id.linearprofile);
+        linearprofiles.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent a = new Intent(Menu_main.this,Profile.class);
+                startActivity(a);
+            }
+        });
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -70,6 +79,8 @@ public class Menu_main extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
 
         user = getSharedPreferences("data_user", Context.MODE_PRIVATE);
         final String nama = user.getString("user_name", "");
@@ -137,9 +148,16 @@ public class Menu_main extends AppCompatActivity
                     for (int i = 0; i<jsonArray.length(); i++){
                         JSONObject object2 = jsonArray.getJSONObject(i);
                         Bisnis bisnis2 = new Bisnis();
-                        bisnis2.setNmbisnislain(object2.getString("merk"));
-                        bisnis2.setNmusaha(object2.getString("nm_usaha"));
+                        bisnis2.setNm_usaha(object2.getString("nm_usaha"));
+                        bisnis2.setMerk(object2.getString("merk"));
                         bisnis2.setTglTerdaftar(object2.getString("tgl_terdaftar"));
+                        bisnis2.setNmbisnislain(object2.getString("nm_bisnis_lain"));
+                        bisnis2.setJumlahkaryawan(object2.getString("jml_karyawan"));
+                        bisnis2.setJumlahcabang(object2.getString("jml_cabang"));
+                        bisnis2.setOmsettahunan(object2.getString("omset_tahunan"));
+                        bisnis2.setTelepon(object2.getString("no_tlp"));
+                        bisnis2.setFacebooks(object2.getString("facebook"));
+                        bisnis2.setInstagrams(object2.getString("instagram"));
 
                         bisnisList.add(bisnis2);
                     }
@@ -295,4 +313,5 @@ public class Menu_main extends AppCompatActivity
             return true;
         }
     }
+
 }

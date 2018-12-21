@@ -19,4 +19,6 @@ public class AppConfig {
 
     public static String URL_LIST_USAHA= baseurl+"bisnis_info/getbisnis_info";
 
+    public static String URL_GET_EDIT_BISNIS = baseurl+"bisnis_info/update_bisnis_info";
+
 }

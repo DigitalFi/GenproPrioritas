@@ -40,7 +40,7 @@ public class Add_Usaha extends AppCompatActivity {
 
     private Button btnSubmit;
     private EditText inputBisnisLain;
-    private EditText inputNamaUsaha;
+//    private EditText inputNamaUsaha;
     private EditText inputMerek;
     private EditText inputTgl_terdaftar;
     private EditText inputJml_karyawan;
@@ -49,8 +49,10 @@ public class Add_Usaha extends AppCompatActivity {
     private EditText inputNoTlp;
     private EditText inputFacebook;
     private EditText inputInstagram;
+    private EditText inputNamaUsaha;
     private ProgressDialog pDialog;
     private SharedPreferences user;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +67,10 @@ public class Add_Usaha extends AppCompatActivity {
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
 
+
         inputBisnisLain = (EditText) findViewById(R.id.jenis_usaha);
-        inputNamaUsaha = (EditText) findViewById(R.id.jenis_usaha_lain);
+//        inputNamaUsaha = (EditText) findViewById(R.id.jenis_usaha_lain);
+        inputNamaUsaha = (EditText)findViewById(R.id.nama_usaha) ;
         inputMerek = (EditText) findViewById(R.id.Merek);
         inputJml_karyawan = (EditText) findViewById(R.id.jumlah_karyawan);
         inputJml_cabang = (EditText) findViewById(R.id.jml_cabang);
@@ -75,16 +79,17 @@ public class Add_Usaha extends AppCompatActivity {
         inputFacebook = (EditText) findViewById(R.id.acc_facebook);
         inputInstagram = (EditText) findViewById(R.id.acc_instagram);
         btnSubmit = (Button) findViewById(R.id.btn_submit);
-
-        inputOmsetTahunan.addTextChangedListener(omset());
+//
+//        inputOmsetTahunan.addTextChangedListener(omset());
 
         // ketika login button di klik
         btnSubmit.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
                 String namabisnis = inputBisnisLain.getText().toString().trim();
-                String namausaha = inputNamaUsaha.getText().toString().trim();
+//                String namausaha = inputNamaUsaha.getText().toString().trim();
                 String merek = inputMerek.getText().toString().trim();
+                String namausaha = inputNamaUsaha.getText().toString().trim();
                 String jml_karyawan = inputJml_karyawan.getText().toString().trim();
                 String jml_cabang = inputJml_cabang.getText().toString().trim();
                 String omset_tahunan = inputOmsetTahunan.getText().toString().trim();
@@ -95,16 +100,28 @@ public class Add_Usaha extends AppCompatActivity {
                 user = getSharedPreferences("data_user", Context.MODE_PRIVATE);
                 final String id = user.getString("user_id", "");
 
-                // ngecek apakah inputannya kosong atau Tidak
-                if (!id.isEmpty() && !namabisnis.isEmpty() && !namausaha.isEmpty() && !merek.isEmpty() && !jml_karyawan.isEmpty() && !jml_cabang.isEmpty() && !omset_tahunan.isEmpty() && !no_tlp.isEmpty() && !facebook.isEmpty() && !instagram.isEmpty()) {
-                    // login user
-                    checkSubmit(id, namabisnis, namausaha, merek, jml_karyawan, jml_cabang, omset_tahunan, no_tlp, facebook, instagram);
-                } else {
-                    // jika inputan kosong tampilkan pesan
-                    Toast.makeText(getApplicationContext(),
-                            "Jangan kosongkan email dan password!", Toast.LENGTH_LONG)
-                            .show();
-                }
+               if (id.isEmpty()){
+                   Toast.makeText(Add_Usaha.this, "Wajib diisi semua !", Toast.LENGTH_SHORT).show();
+               }else if (namabisnis.isEmpty()){
+                   Toast.makeText(Add_Usaha.this, "Nama Bisnis Tidak Boleh Kosong !", Toast.LENGTH_SHORT).show();
+               }else if (namausaha.isEmpty()){
+                   Toast.makeText(Add_Usaha.this, "Nama Usaha Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
+               }else if (merek.isEmpty()){
+                   Toast.makeText(Add_Usaha.this, "Merk Tidak Boleh Kosong !", Toast.LENGTH_SHORT).show();
+               }else if (jml_karyawan.isEmpty()){
+                   Toast.makeText(Add_Usaha.this, "Jumlah Karyawan Tidak Boleh Kosong !", Toast.LENGTH_SHORT).show();
+               }else  if (jml_cabang.isEmpty()){
+                   Toast.makeText(Add_Usaha.this, "Jumlah Cabang Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
+               }else if (omset_tahunan.isEmpty()){
+                   Toast.makeText(Add_Usaha.this, "Omset Tahunan Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
+               }else if (no_tlp.isEmpty()){
+                   Toast.makeText(Add_Usaha.this, "Nomor Telepon Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
+               }else if (facebook.isEmpty()){
+                   Toast.makeText(Add_Usaha.this, "Facebook Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
+             }else if (instagram.isEmpty()){
+                   Toast.makeText(Add_Usaha.this, "Instagram Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
+               }else
+                  checkSubmit(id,namausaha, namabisnis, merek, jml_karyawan, jml_cabang, omset_tahunan, no_tlp, facebook, instagram);
             }
 
         });
@@ -112,53 +129,53 @@ public class Add_Usaha extends AppCompatActivity {
     }
 
     //currency format
-    private TextWatcher omset() {
-        return new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//        private TextWatcher omset() {
+//            return new TextWatcher() {
+//                @Override
+//                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//                }
+//
+//                @Override
+//                public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//                }
+//
+//                @Override
+//                public void afterTextChanged(Editable s) {
+//                    inputOmsetTahunan.removeTextChangedListener(this);
+//
+//                    try {
+//                        String originalString = s.toString();
+//
+//                        Long longval;
+//                        if (originalString.contains(",")) {
+//                            originalString = originalString.replaceAll(",", "");
+//                        }
+//                        longval = Long.parseLong(originalString);
+//
+//                        DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(Locale.US);
+//                        formatter.applyPattern("#,###,###,###");
+//                        String formattedString = formatter.format(longval);
+//
+//                        //setting text after format to EditText
+//                        inputOmsetTahunan.setText(formattedString);
+//                        inputOmsetTahunan.setSelection(inputOmsetTahunan.getText().length());
+//
+//                    } catch (NumberFormatException nfe) {
+//                        nfe.printStackTrace();
+//                    }
+//
+//                    inputOmsetTahunan.addTextChangedListener(this);
+//                }
+//            };
+//        }//
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                inputOmsetTahunan.removeTextChangedListener(this);
-
-                try {
-                    String originalString = s.toString();
-
-                    Long longval;
-                    if (originalString.contains(",")) {
-                        originalString = originalString.replaceAll(",", "");
-                    }
-                    longval = Long.parseLong(originalString);
-
-                    DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(Locale.US);
-                    formatter.applyPattern("#,###,###,###");
-                    String formattedString = formatter.format(longval);
-
-                    //setting text after format to EditText
-                    inputOmsetTahunan.setText(formattedString);
-                    inputOmsetTahunan.setSelection(inputOmsetTahunan.getText().length());
-
-                } catch (NumberFormatException nfe) {
-                    nfe.printStackTrace();
-                }
-
-                inputOmsetTahunan.addTextChangedListener(this);
-            }
-        };
-    }
-
-    private void checkSubmit(final String id, final String namabisnis, final String namausaha, final String merek, final String jml_karyawan, final String jml_cabang, final String omset_tahunan, final String no_tlp, final String facebook, final String instagram) {
+    private void checkSubmit(final String id,final String namausaha, final String namabisnis, final String merek, final String jml_karyawan, final String jml_cabang, final String omset_tahunan, final String no_tlp, final String facebook, final String instagram) {
 
         // Tag biasanya digunakan ketika ingin membatalkan request volley
         String tag_string_req = "req_login";
-        pDialog.setMessage("Logging in ...");
+        pDialog.setMessage("Sedang Menambahkan Bisnis");
         showDialog();
 
         StringRequest strReq = new StringRequest(Request.Method.POST,
@@ -179,14 +196,25 @@ public class Add_Usaha extends AppCompatActivity {
                         String user_id = jObj.getString("user_id");
                         String user_name = jObj.getString("user_name");
                         String email = jObj.getString("email");
-
-                        // buat session user yang sudah login yang menyimpan id,nama,full name, roles id, roles name
+                        JSO
+                        buat session user yang sudah login yang menyimpan id,nama,full name, roles id, roles name
                         SharedPreferences.Editor editor = user.edit();
                         editor.putString("user_id", user_id);
                         editor.putString("user_name", user_name);
                         editor.putString("email", email);
                         editor.putInt("login", 1);
                         editor.commit();*/
+//                        SharedPreferences.Editor editor = user.edit();
+//                        editor.putString("nm_bisnis_lain",namabisnis);
+//                        editor.putString("nm_usaha",namausaha);
+//                        editor.putString("merk",merek);
+//                        editor.putString("jml_karyawan",jml_karyawan);
+//                        editor.putString("jml_cabang",jml_cabang);
+//                        editor.putString("omset_tahunan",omset_tahunan);
+//                        editor.putString("no_tlp",no_tlp);
+//                        editor.putString("facebook",facebook);
+//                        editor.putString("instagram",instagram);
+//                        editor.commit();
 
                         //setelah mendapatkan value maka langsung lanjut pada activity selanjutnya
                         Intent intent = new Intent(Add_Usaha.this,
@@ -252,5 +280,10 @@ public class Add_Usaha extends AppCompatActivity {
     private void hideDialog() {
         if (pDialog.isShowing())
             pDialog.dismiss();
+    }
+    public String currencyFormatter(String num) {
+        double m = Double.parseDouble(num);
+        DecimalFormat formatter = new DecimalFormat("###,###,###");
+        return formatter.format(m);
     }
 }

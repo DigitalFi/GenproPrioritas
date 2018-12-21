@@ -123,8 +123,6 @@ public class Edit_Profile extends AppCompatActivity {
             Sp1.setSelection(spinnerPosition);
         }
 
-
-
         nama.setText(hint_nama);
         namaPanjang.setText(hint_namapanjang);
         phone.setText(hint_phone);
@@ -165,37 +163,6 @@ public class Edit_Profile extends AppCompatActivity {
 
             }
         });
-        /*btnImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                dispatchTakePictureIntent();
-
-            }
-        });*/
-
-        /*loadSpinnerData(URL);
-        Sp1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                provinsi kode_provinsi = (provinsi) adapterView.getSelectedItem();
-                String kode_prov = kode_provinsi.getKode();
-
-                final SharedPreferences provinsi = getApplicationContext().getSharedPreferences("provinsi", 0);// 0 - for private mode
-                final SharedPreferences.Editor editor = provinsi.edit();
-                editor.putString("kode", kode_prov);
-                editor.commit();
-
-            }*
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                // DO Nothing here
-            }
-        });*/
-
-
-
     }
 
     private void getdata(final String userid) {
@@ -315,7 +282,7 @@ public class Edit_Profile extends AppCompatActivity {
                         uploadBitmap(bitmap, id, namadepan, namabelakang, almt, telepon, kd_prov, kd_kab);
 
                         Toast.makeText(getApplicationContext(),
-                                "Debug :" + id + "," + kd_prov + "," + namadepan + "," + namabelakang + "," + almt + "," + telepon + "," + kd_kab, Toast.LENGTH_LONG)
+                                id + "," + kd_prov + "," + namadepan + "," + namabelakang + "," + almt + "," + telepon + "," + kd_kab, Toast.LENGTH_LONG)
                                 .show();
 
                     } else {

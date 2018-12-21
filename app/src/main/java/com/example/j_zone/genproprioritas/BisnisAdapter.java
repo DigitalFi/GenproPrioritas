@@ -5,12 +5,15 @@ package com.example.j_zone.genproprioritas;
  */
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -30,11 +33,45 @@ public class BisnisAdapter extends RecyclerView.Adapter<BisnisAdapter.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BisnisAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull BisnisAdapter.ViewHolder holder, final int position) {
         Bisnis bisnis = list.get(position);
-        holder.txtBisnis.setText(bisnis.getNmbisnislain());
-        holder.txtUsaha.setText(bisnis.getNmusaha());
+        holder.txtBisnis.setText(bisnis.getNm_usaha());
+        holder.txtUsaha.setText(bisnis.getMerk());
         holder.txtTgl.setText(bisnis.getTglTerdaftar());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent a = new Intent(context,Detailbisnis.class);
+                a.putExtra("position",position);
+                Toast.makeText(context, "position "+position, Toast.LENGTH_SHORT).show();
+                String name = list.get(position).getNmbisnislain();
+                String usaha = list.get(position).getNm_usaha();
+
+                String merek = list.get(position).getMerk();
+                String karyawan = list.get(position).getJumlahkaryawan();
+                String cabang = list.get(position).getJumlahcabang();
+                String omset = list.get(position).getOmsettahunan();
+                String telpon = list.get(position).getTelepon();
+                String fb = list.get(position).getFacebooks();
+                String ig = list.get(position).getInstagrams();
+
+
+
+                a.putExtra("nm_bisnis_lain",name);
+                a.putExtra("nm_usaha",usaha);
+                a.putExtra("merk",merek);
+                a.putExtra("jml_karyawan",karyawan);
+                a.putExtra("jml_cabang",cabang);
+                a.putExtra("omset_tahunan",omset);
+                a.putExtra("no_tlp",telpon);
+                a.putExtra("facebook",fb);
+                a.putExtra("instagram",ig);
+
+                context.startActivity(a);
+            }
+        });
+
     }
 
     @Override

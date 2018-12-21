@@ -250,6 +250,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="10dp"
+            android:id="@+id/linearprofile"
             android:background="#eee">
 
             <LinearLayout
@@ -373,7 +374,6 @@
                     android:textStyle="bold"
                     android:textSize="10dp"/>
             </LinearLayout>
-
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/main_list"
                 android:layout_width="match_parent"

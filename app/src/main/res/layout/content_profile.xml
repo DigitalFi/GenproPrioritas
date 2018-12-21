@@ -32,7 +32,9 @@
                 <WebView
                     android:id="@+id/profil_pic"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"></WebView>
+                    android:layout_height="wrap_content">
+
+                </WebView>
 
             </LinearLayout>
 

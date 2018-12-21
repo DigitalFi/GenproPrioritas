@@ -79,9 +79,16 @@ public class Business extends AppCompatActivity {
                     for (int i = 0; i<jsonArray.length(); i++){
                         JSONObject object2 = jsonArray.getJSONObject(i);
                         Bisnis bisnis2 = new Bisnis();
-                        bisnis2.setNmbisnislain(object2.getString("merk"));
-                        bisnis2.setNmusaha(object2.getString("nm_usaha"));
+                        bisnis2.setNm_usaha(object2.getString("nm_usaha"));
+                        bisnis2.setMerk(object2.getString("merk"));
                         bisnis2.setTglTerdaftar(object2.getString("tgl_terdaftar"));
+                        bisnis2.setNmbisnislain(object2.getString("nm_bisnis_lain"));
+                        bisnis2.setJumlahkaryawan(object2.getString("jml_karyawan"));
+                        bisnis2.setJumlahcabang(object2.getString("jml_cabang"));
+                        bisnis2.setOmsettahunan(object2.getString("omset_tahunan"));
+                        bisnis2.setTelepon(object2.getString("no_tlp"));
+                        bisnis2.setFacebooks(object2.getString("facebook"));
+                        bisnis2.setInstagrams(object2.getString("instagram"));
 
                         bisnisList.add(bisnis2);
                     }
