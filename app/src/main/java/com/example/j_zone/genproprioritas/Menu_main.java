@@ -21,7 +21,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -85,6 +84,7 @@ public class Menu_main extends AppCompatActivity
         user = getSharedPreferences("data_user", Context.MODE_PRIVATE);
         final String nama = user.getString("user_name", "");
         final String email = user.getString("email", "");
+        final String pic1 = user.getString("pic", "");
 
         updt = getSharedPreferences("data_update", Context.MODE_PRIVATE);
         final String nomor = updt.getString("no_anggota", "");
@@ -98,11 +98,27 @@ public class Menu_main extends AppCompatActivity
         view.setWebViewClient(new profile());
         //ini manggil url web dari webview-nya
 
-        String url=link+pic;
+        // ngecek apakah inputannya kosong atau Tidak
+        if (!pic.isEmpty()) {
+            // login user
+
+            String url=link+pic;
+
+            view.loadUrl(url);
+
+        } else {
+
+            String url=link+pic1;
+
+            view.loadUrl(url);
+
+        }
+
+
 
         //Toast.makeText(getApplicationContext(), "url="+link+pic, Toast.LENGTH_SHORT).show();
 
-        view.loadUrl(url);
+
 
         TextView n = (TextView) headerView.findViewById(R.id.nama_user);
         TextView r = (TextView) headerView.findViewById(R.id.nomor_anggota);

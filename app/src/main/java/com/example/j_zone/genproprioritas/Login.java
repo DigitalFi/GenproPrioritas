@@ -128,6 +128,7 @@ public class Login extends Activity {
                         editor.putString("user_id", user_id);
                         editor.putString("user_name", user_name);
                         editor.putString("email", email);
+                        editor.putString("pic", pic);
                         editor.putInt("login", 1);
                         editor.commit();
 
