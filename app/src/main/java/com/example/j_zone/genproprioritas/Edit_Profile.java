@@ -164,7 +164,7 @@ public class Edit_Profile extends AppCompatActivity {
             }
         });
     }
-
+	// untuk get data sebelum update
     private void getdata(final String userid) {
 
         // Tag biasanya digunakan ketika ingin membatalkan request volley
@@ -324,7 +324,7 @@ public class Edit_Profile extends AppCompatActivity {
                                 String picture = obj.getString("picture");
                                 String update = obj.getString("update_date");
 
-                                // buat session user yang sudah login yang menyimpan id,nama,full name, roles id, roles name
+                                // buat session user setelah update profile
                                 SharedPreferences.Editor editor = updt.edit();
                                 editor.putString("nama_depan",depan);
                                 editor.putString("nama_belakang", belakang);

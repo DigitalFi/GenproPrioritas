@@ -299,8 +299,14 @@ public class Menu_main extends AppCompatActivity
                 editor.putInt("login", 0);
                 editor.clear();
                 editor.commit();
-
-                Intent intent = new Intent(Menu_main.this, Login.class);
+				
+				SharedPreferences updt = getSharedPreferences("data_update", MODE_PRIVATE);
+				SharedPreferences.Editor editor = user.edit();
+				editor.clear();
+				editor.commit();
+				
+				SharedPreferences updt = getSharedPreferences("updt", MODE_PRIVATE);
+				Intent intent = new Intent(Menu_main.this, Login.class);
                 startActivity(intent);
                 finish();
 
