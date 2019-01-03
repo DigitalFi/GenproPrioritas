@@ -79,8 +79,6 @@ public class Menu_main extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
-
         user = getSharedPreferences("data_user", Context.MODE_PRIVATE);
         final String nama = user.getString("user_name", "");
         final String email = user.getString("email", "");
@@ -102,14 +100,29 @@ public class Menu_main extends AppCompatActivity
         if (!pic.isEmpty()) {
             // login user
 
-            String url=link+pic;
+			user = getSharedPreferences("data_user", Context.MODE_PRIVATE);
+				final String pic1 = user.getString("pic", "");
+			updt = getSharedPreferences("data_update", Context.MODE_PRIVATE);
+				final String nomor = updt.getString("no_anggota", "");
+				final String pic = updt.getString("picture", "");
+				final String link = updt.getString("url", "");
 
+            String url=link+pic;
+			Toast.makeText(getApplicationContext(), "url-if="+url, Toast.LENGTH_SHORT).show();
             view.loadUrl(url);
 
         } else {
+			
+			user = getSharedPreferences("data_user", Context.MODE_PRIVATE);
+				final String pic1 = user.getString("pic", "");
+			updt = getSharedPreferences("data_update", Context.MODE_PRIVATE);
+				final String nomor = updt.getString("no_anggota", "");
+				final String pic = updt.getString("picture", "");
+				final String link = updt.getString("url", "");
+
 
             String url=link+pic1;
-
+			Toast.makeText(getApplicationContext(), "url-else="+url, Toast.LENGTH_SHORT).show();
             view.loadUrl(url);
 
         }
