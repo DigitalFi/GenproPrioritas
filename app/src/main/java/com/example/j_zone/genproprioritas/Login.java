@@ -129,6 +129,8 @@ public class Login extends Activity {
                         editor.putString("user_name", user_name);
                         editor.putString("email", email);
                         editor.putString("pic", pic);
+                        editor.putString("link", pic);
+                        editor.putString("url", "http://genprodev.lavenderprograms.com/img/mobile_apps/");
                         editor.putInt("login", 1);
                         editor.commit();
 

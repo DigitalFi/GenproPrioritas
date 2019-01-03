@@ -10,6 +10,7 @@ import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Profile extends AppCompatActivity {
 
@@ -28,6 +29,8 @@ public class Profile extends AppCompatActivity {
         user = getSharedPreferences("data_user", Context.MODE_PRIVATE);
         final String nama = user.getString("user_name", "");
         final String email = user.getString("email", "");
+        final String pic1 = user.getString("pic", "");
+        final String urls = user.getString("url","");
 
         updt = getSharedPreferences("data_update", Context.MODE_PRIVATE);
         final String nomor = updt.getString("no_anggota", "");
@@ -52,11 +55,19 @@ public class Profile extends AppCompatActivity {
         view = (WebView) findViewById(R.id.profil_pic) ;
         view.getSettings().setJavaScriptEnabled(true);
         view.setWebViewClient(new profile_pic());
+
         //ini manggil url web dari webview-nya
 
-        String url=link+pic;
+        if (!pic.isEmpty()){
+            String url = link+pic;
 
-        view.loadUrl(url);
+            view.loadUrl(url);
+            Toast.makeText(this, "foto dlm kondisi if :"+pic, Toast.LENGTH_SHORT).show();
+        }else {
+            String urlss = urls+pic1;
+            Toast.makeText(this, "foto :"+pic1, Toast.LENGTH_SHORT).show();
+            view.loadUrl(urlss);
+        }
 
     }
 

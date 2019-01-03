@@ -154,7 +154,6 @@ public class Menu_main extends AppCompatActivity
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading...");
         progressDialog.show();
-
         StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.URL_LIST_USAHA, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
