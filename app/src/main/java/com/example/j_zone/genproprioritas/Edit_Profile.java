@@ -164,6 +164,7 @@ public class Edit_Profile extends AppCompatActivity {
             }
         });
     }
+<<<<<<< HEAD
 
 //    private void getdata(final String userid) {
 //
@@ -242,6 +243,86 @@ public class Edit_Profile extends AppCompatActivity {
 //        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
 //
 //    }
+=======
+	// untuk get data sebelum update
+    private void getdata(final String userid) {
+
+        // Tag biasanya digunakan ketika ingin membatalkan request volley
+        String tag_string_req = "req_data";
+
+        StringRequest strReq = new StringRequest(Request.Method.POST,
+                AppConfig.URL_GET_EDIT_PROFILE, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, "LOADING: " + response.toString());
+
+                try
+                {
+                    JSONObject jObj = new JSONObject(response);
+                    boolean error = jObj.getBoolean("error");
+                    // ngecek node error dari api
+                    if (!error) {
+                        JSONObject obj = jObj.getJSONObject("data");
+                        String id = obj.getString("user_id");
+                        String email = obj.getString("email");
+                        String username = obj.getString("user_name");
+                        String namadepan = obj.getString("nama_depan");
+                        String namabelakang = obj.getString("nama_belakang");
+                        String phone = obj.getString("phone");
+                        String alamat = obj.getString("alamat");
+                        String provinsi = obj.getString("provinsi");
+                        String kabupaten = obj.getString("kabupaten");
+
+                        SharedPreferences.Editor editor = user_edit.edit();
+                        editor.putString("userid",id);
+                        editor.putString("email", email);
+                        editor.putString("namadepan",namadepan);
+                        editor.putString("namabelakang",namabelakang);
+                        editor.putString("phone", phone);
+                        editor.putString("alamat", alamat);
+                        editor.putString("provinsi", provinsi);
+                        editor.putString("kabupaten", kabupaten);
+                        editor.commit();
+
+                    } else {
+                        //terjadi error dan tampilkan pesan error dari API
+                        //String errorMsg = jObj.getString("message");
+                        Toast.makeText(getApplicationContext(),
+                                "Some Eror , Please Contact Developer", Toast.LENGTH_LONG).show();
+                    }
+                } catch (JSONException e) {
+                    // JSON error
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "Json error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, "Login Error: " + error.getMessage());
+                //cek error timeout, noconnection dan network error
+                if ( error instanceof TimeoutError || error instanceof NoConnectionError ||error instanceof NetworkError) {
+                    Toast.makeText(getApplicationContext(),
+                            "Please Check Your Connection" + error.getMessage(),
+                            Toast.LENGTH_SHORT).show();}
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                // kirim parameter ke server
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("user_id", userid);
+
+                return params;
+            }
+        };
+        // menggunakan fungsi volley adrequest yang kita taro di appcontroller
+        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+
+    }
+>>>>>>> 90a8f02dce0c31d833230d393a9f044e2b75e4c3
 
 
     private void dispatchTakePictureIntent() {
@@ -324,7 +405,7 @@ public class Edit_Profile extends AppCompatActivity {
                                 String picture = obj.getString("picture");
                                 String update = obj.getString("update_date");
 
-                                // buat session user yang sudah login yang menyimpan id,nama,full name, roles id, roles name
+                                // buat session user setelah update profile
                                 SharedPreferences.Editor editor = updt.edit();
                                 editor.putString("nama_depan",depan);
                                 editor.putString("nama_belakang", belakang);
