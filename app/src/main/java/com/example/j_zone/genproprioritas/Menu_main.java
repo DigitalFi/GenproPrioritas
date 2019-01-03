@@ -167,7 +167,6 @@ public class Menu_main extends AppCompatActivity
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading...");
         progressDialog.show();
-
         StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.URL_LIST_USAHA, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -312,14 +311,8 @@ public class Menu_main extends AppCompatActivity
                 editor.putInt("login", 0);
                 editor.clear();
                 editor.commit();
-				
-				SharedPreferences updt = getSharedPreferences("data_update", MODE_PRIVATE);
-				SharedPreferences.Editor editor = user.edit();
-				editor.clear();
-				editor.commit();
-				
-				SharedPreferences updt = getSharedPreferences("updt", MODE_PRIVATE);
-				Intent intent = new Intent(Menu_main.this, Login.class);
+
+                Intent intent = new Intent(Menu_main.this, Login.class);
                 startActivity(intent);
                 finish();
 

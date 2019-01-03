@@ -67,6 +67,7 @@ public class EditBisnis extends AppCompatActivity {
 
         user = getSharedPreferences("data_user", Context.MODE_PRIVATE);
         final String userid = user.getString("user_id", "");
+        final String idbisnis = user.getString("id_bisnis_info", "");
 
         inputBisnisLain = (EditText) findViewById(R.id.jenis_usaha);
         inputNamaUsaha = (EditText) findViewById(R.id.nama_usaha);
@@ -102,7 +103,7 @@ public class EditBisnis extends AppCompatActivity {
 
         if (!userid.isEmpty()) {
             // login user
-            getdata(userid);
+            getdata(userid,idbisnis);
 
         } else {
             // jika inputan kosong tampilkan pesan
@@ -129,9 +130,9 @@ public class EditBisnis extends AppCompatActivity {
                 String fbs = inputFacebook.getText().toString().trim();
                 String igs = inputInstagram.getText().toString().trim();
 
-                if (bisnislain.isEmpty()&&namausaha.isEmpty() && merk.isEmpty() && karyawan.isEmpty() && cabang.isEmpty() && omset.isEmpty() && telpon.isEmpty() && fbs.isEmpty() && igs.isEmpty()) {
+                if (namausaha.isEmpty() && merk.isEmpty() && karyawan.isEmpty() && cabang.isEmpty() && omset.isEmpty() && telpon.isEmpty() && fbs.isEmpty() && igs.isEmpty()) {
                     Toast.makeText(getApplicationContext(),id+" ,"+" ,"+namausaha+", "+merk+" ,"+karyawan+" ,"+cabang+" ,"+omset+" ,"+telpon+","+fbs+" ,"+igs,Toast.LENGTH_LONG).show();
-                    update(id,bisnislain, namausaha, merk, karyawan, cabang, omset, telpon, fbs, igs);
+                    update(id, namausaha, merk, karyawan, cabang, omset, telpon, fbs, igs);
                 } else {
                     // jika inputan kosong tampilkan pesan
                     Toast.makeText(getApplicationContext(),id+" ,"+" ,"+namausaha+", "+merk+" ,"+karyawan+" ,"+cabang+" ,"+omset+" ,"+telpon+","+fbs+" ,"+igs,Toast.LENGTH_LONG).show();
@@ -143,10 +144,10 @@ public class EditBisnis extends AppCompatActivity {
     }
 
 
-    private void getdata(final String userid) {
+    private void getdata(final String userid, final String idbisnis) {
         String tag_string_req = "req_data";
         StringRequest strReq = new StringRequest(Request.Method.POST,
-                AppConfig.URL_GET_EDIT_BISNIS, new Response.Listener<String>() {
+                AppConfig.URL_LIST_USAHA, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
@@ -159,6 +160,7 @@ public class EditBisnis extends AppCompatActivity {
                     if (error) {
                         JSONObject obj = jObj.getJSONObject("data");
                         String id = obj.getString("user_id");
+                        String idbisnis= obj.getString("id_bisnis_info");
                         String nmusaha = obj.getString("nm_usaha");
                         String merk = obj.getString("merk");
                         String jml_karyawan = obj.getString("jml_karyawan");
@@ -170,6 +172,7 @@ public class EditBisnis extends AppCompatActivity {
 
                         SharedPreferences.Editor editor = user_edit.edit();
                         editor.putString("userid", id);
+                        editor.putString("id_bisnis_info", idbisnis);
                         editor.putString("nm_usaha", nmusaha);
                         editor.putString("merk", merk);
                         editor.putString("jml_karyawan", jml_karyawan);
@@ -182,7 +185,7 @@ public class EditBisnis extends AppCompatActivity {
 
 
                     } else {
-                        Toast.makeText(getApplicationContext(), "Gagal", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Data Tidak Ditemukan", Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -208,6 +211,7 @@ public class EditBisnis extends AppCompatActivity {
                 // kirim parameter ke server
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("user_id", userid);
+                params.put("id_bisnis_info", idbisnis);
 
                 return params;
             }
@@ -228,7 +232,7 @@ public class EditBisnis extends AppCompatActivity {
     }
 
 
-    private void update(final String id,final String bisnislain, final String namausaha, final String merk, final String karyawan, final String cabang, final String omset, final String telpon, final String fbs, final String igs) {
+    private void update(final String id, final String namausaha, final String merk, final String karyawan, final String cabang, final String omset, final String telpon, final String fbs, final String igs) {
         final VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, AppConfig.URL_GET_EDIT_BISNIS,
                 new Response.Listener<NetworkResponse>() {
                     @Override
@@ -242,7 +246,6 @@ public class EditBisnis extends AppCompatActivity {
                                 JSONObject obj = jObj.getJSONObject("data");
                                 String id = obj.getString("user_id");
                                 Log.d("id","anda"+id);
-                                String bisnislain = obj.getString("nm_bisnis_lain");
                                 String nmusaha = obj.getString("nm_usaha");
                                 String merk = obj.getString("merk");
                                 String jml_karyawan = obj.getString("jml_karyawan");
@@ -304,7 +307,6 @@ public class EditBisnis extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("user_id", id);
-                params.put("nm_bisnis_lain",bisnislain);
                 params.put("nm_usaha",namausaha);
                 params.put("merk", merk);
                 params.put("jml_karyawan", karyawan);

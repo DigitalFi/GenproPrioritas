@@ -168,7 +168,26 @@
             tools:ignore="OnClick" />
 
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/buttonedit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_hapus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorMain"
+            android:onClick="hapus_bisnis"
+            android:padding="17dp"
+            android:text="Hapus Bisnis"
+            android:textColor="#000"
+            tools:ignore="OnClick" />
+
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="2dp"
