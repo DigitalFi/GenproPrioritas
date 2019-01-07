@@ -23,6 +23,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -42,8 +43,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Menu_main extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class Menu_main extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private SharedPreferences user;
     private SharedPreferences updt;
@@ -97,34 +97,16 @@ public class Menu_main extends AppCompatActivity
         //ini manggil url web dari webview-nya
 
         // ngecek apakah inputannya kosong atau Tidak
-        if (!pic.isEmpty()) {
-            // login user
-
-			user = getSharedPreferences("data_user", Context.MODE_PRIVATE);
-				final String pic1 = user.getString("pic", "");
-			updt = getSharedPreferences("data_update", Context.MODE_PRIVATE);
-				final String nomor = updt.getString("no_anggota", "");
-				final String pic = updt.getString("picture", "");
-				final String link = updt.getString("url", "");
-
-            String url=link+pic;
-			Toast.makeText(getApplicationContext(), "url-if="+url, Toast.LENGTH_SHORT).show();
+        if (!pic.isEmpty()){
+            String url = "http://genprodev.lavenderprograms.com/img/mobile_apps/"+pic;
             view.loadUrl(url);
-
-        } else {
-			
-			user = getSharedPreferences("data_user", Context.MODE_PRIVATE);
-				final String pic1 = user.getString("pic", "");
-			updt = getSharedPreferences("data_update", Context.MODE_PRIVATE);
-				final String nomor = updt.getString("no_anggota", "");
-				final String pic = updt.getString("picture", "");
-				final String link = updt.getString("url", "");
-
-
-            String url=link+pic1;
-			Toast.makeText(getApplicationContext(), "url-else="+url, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "url-updated="+url, Toast.LENGTH_SHORT).show();
+        }else if (!pic1.isEmpty()){
+            String url = "http://genprodev.lavenderprograms.com/img/mobile_apps/"+pic1;
             view.loadUrl(url);
-
+            Toast.makeText(getApplicationContext(), "url-no-updated="+url, Toast.LENGTH_SHORT).show();
+        }else {
+            view.setVisibility(View.GONE);
         }
 
 
@@ -306,11 +288,13 @@ public class Menu_main extends AppCompatActivity
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //jika user klik yes harusnya ke halaman login
-                SharedPreferences user = getSharedPreferences("data_user", MODE_PRIVATE);
                 SharedPreferences.Editor editor = user.edit();
+                SharedPreferences.Editor editor2 = updt.edit();
                 editor.putInt("login", 0);
                 editor.clear();
+                editor2.clear();
                 editor.commit();
+                editor2.commit();
 
                 Intent intent = new Intent(Menu_main.this, Login.class);
                 startActivity(intent);

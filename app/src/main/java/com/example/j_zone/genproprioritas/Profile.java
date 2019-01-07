@@ -59,14 +59,15 @@ public class Profile extends AppCompatActivity {
         //ini manggil url web dari webview-nya
 
         if (!pic.isEmpty()){
-            String url = link+pic;
-
+            String url = "http://genprodev.lavenderprograms.com/img/mobile_apps/"+pic;
             view.loadUrl(url);
             Toast.makeText(this, "foto dlm kondisi if :"+pic, Toast.LENGTH_SHORT).show();
+        }else if (!pic1.isEmpty()){
+            String url = "http://genprodev.lavenderprograms.com/img/mobile_apps/"+pic1;
+            view.loadUrl(url);
+            Toast.makeText(this, "foto dlm kondisi if :"+pic1, Toast.LENGTH_SHORT).show();
         }else {
-            String urlss = urls+pic1;
-            Toast.makeText(this, "foto :"+pic1, Toast.LENGTH_SHORT).show();
-            view.loadUrl(urlss);
+            view.setVisibility(View.GONE);
         }
 
     }

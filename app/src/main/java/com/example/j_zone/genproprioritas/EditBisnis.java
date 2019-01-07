@@ -65,9 +65,9 @@ public class EditBisnis extends AppCompatActivity {
         updt = getSharedPreferences("data_update", MODE_PRIVATE);
         user = getSharedPreferences("data_user", MODE_PRIVATE);
 
-        user = getSharedPreferences("data_user", Context.MODE_PRIVATE);
-        final String userid = user.getString("user_id", "");
-        final String idbisnis = user.getString("id_bisnis_info", "");
+//        user = getSharedPreferences("data_user", Context.MODE_PRIVATE);
+//        final String userid = user.getString("user_id", "");
+//        final String idbisnis = user.getString("id_bisnis_info", "");
 
         inputBisnisLain = (EditText) findViewById(R.id.jenis_usaha);
         inputNamaUsaha = (EditText) findViewById(R.id.nama_usaha);
@@ -101,18 +101,16 @@ public class EditBisnis extends AppCompatActivity {
         inputFacebook.setText(fbs);
         inputInstagram.setText(igs);
 
-        if (!userid.isEmpty()) {
-            // login user
-            getdata(userid,idbisnis);
-
-        } else {
-            // jika inputan kosong tampilkan pesan
-            Toast.makeText(getApplicationContext(),
-                    userid+"Tidak ditemukan", Toast.LENGTH_LONG)
-                    .show();
-        }
-
-
+//        if (!userid.isEmpty()) {
+//            // login user
+//            getdata(userid,idbisnis);
+//
+//        } else {
+//            // jika inputan kosong tampilkan pesan
+//            Toast.makeText(getApplicationContext(),
+//                    userid+"Tidak ditemukan", Toast.LENGTH_LONG)
+//                    .show();
+//        }
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,143 +128,149 @@ public class EditBisnis extends AppCompatActivity {
                 String fbs = inputFacebook.getText().toString().trim();
                 String igs = inputInstagram.getText().toString().trim();
 
-                if (namausaha.isEmpty() && merk.isEmpty() && karyawan.isEmpty() && cabang.isEmpty() && omset.isEmpty() && telpon.isEmpty() && fbs.isEmpty() && igs.isEmpty()) {
-                    Toast.makeText(getApplicationContext(),id+" ,"+" ,"+namausaha+", "+merk+" ,"+karyawan+" ,"+cabang+" ,"+omset+" ,"+telpon+","+fbs+" ,"+igs,Toast.LENGTH_LONG).show();
-                    update(id, namausaha, merk, karyawan, cabang, omset, telpon, fbs, igs);
-                } else {
-                    // jika inputan kosong tampilkan pesan
-                    Toast.makeText(getApplicationContext(),id+" ,"+" ,"+namausaha+", "+merk+" ,"+karyawan+" ,"+cabang+" ,"+omset+" ,"+telpon+","+fbs+" ,"+igs,Toast.LENGTH_LONG).show();
-                }
+                if (id.isEmpty()){
+                    Toast.makeText(EditBisnis.this, "Wajib diisi semua !", Toast.LENGTH_SHORT).show();
+                }else if (namausaha.isEmpty()){
+                    Toast.makeText(EditBisnis.this, "Nama Usaha Tidak Boleh Kosong !", Toast.LENGTH_SHORT).show();
+                }else if (bisnislain.isEmpty()){
+                    Toast.makeText(EditBisnis.this, "Nama Bisnis Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
+                }else if (merk.isEmpty()){
+                    Toast.makeText(EditBisnis.this, "Merk Tidak Boleh Kosong !", Toast.LENGTH_SHORT).show();
+                }else if (karyawan.isEmpty()){
+                    Toast.makeText(EditBisnis.this, "Jumlah Karyawan Tidak Boleh Kosong !", Toast.LENGTH_SHORT).show();
+                }else  if (cabang.isEmpty()){
+                    Toast.makeText(EditBisnis.this, "Jumlah Cabang Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
+                }else if (omset.isEmpty()){
+                    Toast.makeText(EditBisnis.this, "Omset Tahunan Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
+                }else if (telpon.isEmpty()){
+                    Toast.makeText(EditBisnis.this, "Nomor Telepon Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
+                }else if (fbs.isEmpty()){
+                    Toast.makeText(EditBisnis.this, "Facebook Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
+                }else if (igs.isEmpty()){
+                    Toast.makeText(EditBisnis.this, "Instagram Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
+                }else
+                    update(id,namausaha, merk,karyawan,cabang, omset, telpon, fbs, igs);
             }
+
         });
-
-
     }
 
-
-    private void getdata(final String userid, final String idbisnis) {
-        String tag_string_req = "req_data";
-        StringRequest strReq = new StringRequest(Request.Method.POST,
-                AppConfig.URL_LIST_USAHA, new Response.Listener<String>() {
-
-            @Override
-            public void onResponse(String response) {
-                Log.d(TAG, "LOADING: " + response.toString());
-
-                try {
-                    JSONObject jObj = new JSONObject(response);
-                    boolean error = jObj.getBoolean("error");
-
-                    if (error) {
-                        JSONObject obj = jObj.getJSONObject("data");
-                        String id = obj.getString("user_id");
-                        String idbisnis= obj.getString("id_bisnis_info");
-                        String nmusaha = obj.getString("nm_usaha");
-                        String merk = obj.getString("merk");
-                        String jml_karyawan = obj.getString("jml_karyawan");
-                        String jml_cabang = obj.getString("jml_cabang");
-                        String omset_tahunan = obj.getString("omset_tahunan");
-                        String no_tlp = obj.getString("no_tlp");
-                        String facebook = obj.getString("facebook");
-                        String instagram = obj.getString("instagram");
-
-                        SharedPreferences.Editor editor = user_edit.edit();
-                        editor.putString("userid", id);
-                        editor.putString("id_bisnis_info", idbisnis);
-                        editor.putString("nm_usaha", nmusaha);
-                        editor.putString("merk", merk);
-                        editor.putString("jml_karyawan", jml_karyawan);
-                        editor.putString("jml_cabang", jml_cabang);
-                        editor.putString("omset_tahunan", omset_tahunan);
-                        editor.putString("no_tlp", no_tlp);
-                        editor.putString("facebook", facebook);
-                        editor.putString("instagram", instagram);
-                        editor.commit();
-
-
-                    } else {
-                        Toast.makeText(getApplicationContext(),"Data Tidak Ditemukan", Toast.LENGTH_SHORT).show();
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), "Json error: " + e.getMessage(), Toast.LENGTH_LONG).show();
-                }
-
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e(TAG, "Login Error: " + error.getMessage());
-                //cek error timeout, noconnection dan network error
-                if (error instanceof TimeoutError || error instanceof NoConnectionError || error instanceof NetworkError) {
-                    Toast.makeText(getApplicationContext(),
-                            "Please Check Your Connection" + error.getMessage(),
-                            Toast.LENGTH_SHORT).show();
-                }
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() {
-                // kirim parameter ke server
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("user_id", userid);
-                params.put("id_bisnis_info", idbisnis);
-
-                return params;
-            }
-        };
-        // menggunakan fungsi volley adrequest yang kita taro di appcontroller
-        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
-
-    }
-
-    private void showDialog() {
-        if (!pDialog.isShowing())
-            pDialog.show();
-    }
-
-    private void hideDialog() {
-        if (pDialog.isShowing())
-            pDialog.dismiss();
-    }
+//    private void getdata(final String userid, final String idbisnis) {
+//        String tag_string_req = "req_data";
+//        StringRequest strReq = new StringRequest(Request.Method.POST,
+//                AppConfig.URL_LIST_USAHA, new Response.Listener<String>() {
+//
+//            @Override
+//            public void onResponse(String response) {
+//                Log.d(TAG, "LOADING: " + response.toString());
+//
+//                try {
+//                    JSONObject jObj = new JSONObject(response);
+//                    boolean error = jObj.getBoolean("error");
+//
+//                    if (error) {
+//                        JSONObject obj = jObj.getJSONObject("data");
+//                        String id = obj.getString("user_id");
+//                        String idbisnis= obj.getString("id_bisnis_info");
+//                        String nmusaha = obj.getString("nm_usaha");
+//                        String merk = obj.getString("merk");
+//                        String jml_karyawan = obj.getString("jml_karyawan");
+//                        String jml_cabang = obj.getString("jml_cabang");
+//                        String omset_tahunan = obj.getString("omset_tahunan");
+//                        String no_tlp = obj.getString("no_tlp");
+//                        String facebook = obj.getString("facebook");
+//                        String instagram = obj.getString("instagram");
+//
+//                        SharedPreferences.Editor editor = user_edit.edit();
+//                        editor.putString("userid", id);
+//                        editor.putString("id_bisnis_info", idbisnis);
+//                        editor.putString("nm_usaha", nmusaha);
+//                        editor.putString("merk", merk);
+//                        editor.putString("jml_karyawan", jml_karyawan);
+//                        editor.putString("jml_cabang", jml_cabang);
+//                        editor.putString("omset_tahunan", omset_tahunan);
+//                        editor.putString("no_tlp", no_tlp);
+//                        editor.putString("facebook", facebook);
+//                        editor.putString("instagram", instagram);
+//                        editor.commit();
+//
+//
+//                    } else {
+//                        Toast.makeText(getApplicationContext(),"Data Tidak Ditemukan", Toast.LENGTH_SHORT).show();
+//                    }
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                    Toast.makeText(getApplicationContext(), "Json error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+//                }
+//
+//
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                Log.e(TAG, "Login Error: " + error.getMessage());
+//                //cek error timeout, noconnection dan network error
+//                if (error instanceof TimeoutError || error instanceof NoConnectionError || error instanceof NetworkError) {
+//                    Toast.makeText(getApplicationContext(),
+//                            "Please Check Your Connection" + error.getMessage(),
+//                            Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        }) {
+//            @Override
+//            protected Map<String, String> getParams() {
+//                // kirim parameter ke server
+//                Map<String, String> params = new HashMap<String, String>();
+//                params.put("user_id", userid);
+//                params.put("id_bisnis_info", idbisnis);
+//
+//                return params;
+//            }
+//        };
+//        // menggunakan fungsi volley adrequest yang kita taro di appcontroller
+//        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+//
+//    }
 
 
     private void update(final String id, final String namausaha, final String merk, final String karyawan, final String cabang, final String omset, final String telpon, final String fbs, final String igs) {
+        pDialog.setMessage("Sedang Update Bisnis");
+        showDialog();
         final VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, AppConfig.URL_GET_EDIT_BISNIS,
                 new Response.Listener<NetworkResponse>() {
                     @Override
                     public void onResponse(NetworkResponse response) {
-
+                        Log.d(TAG, "Login Response: " + response.toString());
+                        hideDialog();
                         try {
                             JSONObject jObj = new JSONObject(new String(response.data));
                             boolean error = jObj.getBoolean("error");
 
                             if (!error) {
-                                JSONObject obj = jObj.getJSONObject("data");
-                                String id = obj.getString("user_id");
-                                Log.d("id","anda"+id);
-                                String nmusaha = obj.getString("nm_usaha");
-                                String merk = obj.getString("merk");
-                                String jml_karyawan = obj.getString("jml_karyawan");
-                                String jml_cabang = obj.getString("jml_cabang");
-                                String omset_tahunan = obj.getString("omset_tahunan");
-                                String no_tlp = obj.getString("no_tlp");
-                                String facebook = obj.getString("facebook");
-                                String instagram = obj.getString("instagram");
-
-                                // buat session user yang sudah login yang menyimpan id,nama,full name, roles id, roles name
-                                SharedPreferences.Editor editor = updt.edit();
-                                editor.putString("userid", id);
-                                editor.putString("nm_usaha", nmusaha);
-                                editor.putString("merk", merk);
-                                editor.putString("jml_karyawan", jml_karyawan);
-                                editor.putString("jml_cabang", jml_cabang);
-                                editor.putString("omset_tahunan", omset_tahunan);
-                                editor.putString("no_tlp", no_tlp);
-                                editor.putString("facebook", facebook);
-                                editor.putString("instagram", instagram);
-                                editor.commit();
+//                                JSONObject obj = jObj.getJSONObject("data");
+//                                String id = obj.getString("user_id");
+//                                Log.d("id","anda"+id);
+//                                String nmusaha = obj.getString("nm_usaha");
+//                                String merk = obj.getString("merk");
+//                                String jml_karyawan = obj.getString("jml_karyawan");
+//                                String jml_cabang = obj.getString("jml_cabang");
+//                                String omset_tahunan = obj.getString("omset_tahunan");
+//                                String no_tlp = obj.getString("no_tlp");
+//                                String facebook = obj.getString("facebook");
+//                                String instagram = obj.getString("instagram");
+//
+//                                // buat session user yang sudah login yang menyimpan id,nama,full name, roles id, roles name
+//                                SharedPreferences.Editor editor = updt.edit();
+//                                editor.putString("userid", id);
+//                                editor.putString("nm_usaha", nmusaha);
+//                                editor.putString("merk", merk);
+//                                editor.putString("jml_karyawan", jml_karyawan);
+//                                editor.putString("jml_cabang", jml_cabang);
+//                                editor.putString("omset_tahunan", omset_tahunan);
+//                                editor.putString("no_tlp", no_tlp);
+//                                editor.putString("facebook", facebook);
+//                                editor.putString("instagram", instagram);
+//                                editor.commit();
 
                                 Intent intent = new Intent(EditBisnis.this,
                                         Menu_main.class);
@@ -282,7 +286,7 @@ public class EditBisnis extends AppCompatActivity {
                                 //terjadi error dan tampilkan pesan error dari API
                                 //String errorMsg = jObj.getString("message");
                                 Toast.makeText(getApplicationContext(),
-                                        "Username atau password yang anda masukan salah", Toast.LENGTH_LONG).show();
+                                        "Error Submited , Please Try Again", Toast.LENGTH_LONG).show();
                             }
 
                             //JSONObject obj = new JSONObject(new String(response.data));
@@ -292,6 +296,7 @@ public class EditBisnis extends AppCompatActivity {
 
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), "Json error: " + e.getMessage(), Toast.LENGTH_LONG).show();
                         }
 
 
@@ -300,7 +305,12 @@ public class EditBisnis extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                        Log.e(TAG, "Login Error: " + error.getMessage());
+                        if ( error instanceof TimeoutError || error instanceof NoConnectionError ||error instanceof NetworkError) {
+                            Toast.makeText(getApplicationContext(),
+                                    "Please Check Your Connection" + error.getMessage(),
+                                    Toast.LENGTH_SHORT).show();}
+                        hideDialog();
                     }
                 }) {
             @Override
@@ -319,5 +329,15 @@ public class EditBisnis extends AppCompatActivity {
             }
         };
         Volley.newRequestQueue(this).add(volleyMultipartRequest);
+    }
+
+    private void showDialog() {
+        if (!pDialog.isShowing())
+            pDialog.show();
+    }
+
+    private void hideDialog() {
+        if (pDialog.isShowing())
+            pDialog.dismiss();
     }
 }

@@ -312,6 +312,8 @@ public class Edit_Profile extends AppCompatActivity {
                             boolean error = jObj.getBoolean("error");
 
                             if (!error) {
+                                SharedPreferences.Editor editor1 = user.edit();
+                                editor1.clear();
                                 JSONObject obj = jObj.getJSONObject("data");
                                 String id = obj.getString("user_id");
                                 String depan = obj.getString("nama_depan");
@@ -334,6 +336,9 @@ public class Edit_Profile extends AppCompatActivity {
                                 editor.putString("picture", picture);
                                 editor.putString("url", "http://genprodev.lavenderprograms.com/img/mobile_apps/");
                                 editor.commit();
+
+
+
 
                                 Intent intent = new Intent(Edit_Profile.this,
                                         Menu_main.class);

@@ -54,6 +54,9 @@ public class Login extends Activity {
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
 
+        //Toast
+        Toast.makeText(this, "cek :"+user.getString("url","")+user.getString("pic", "")+user.getString("picture", ""), Toast.LENGTH_SHORT).show();
+
         // ketika login button di klik
         btnLogin.setOnClickListener(new View.OnClickListener() {
 

@@ -1,6 +1,7 @@
 package com.example.j_zone.genproprioritas;
 
 import android.content.Intent;
+import android.nfc.Tag;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -8,7 +9,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -18,19 +21,30 @@ import com.android.volley.toolbox.Volley;
 import com.example.j_zone.genproprioritas.helper.AppConfig;
 import com.example.j_zone.genproprioritas.helper.AppController;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.DecimalFormat;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class Detailbisnis extends AppCompatActivity {
     TextView nmbisnislain,nmusaha,merek,jumlah_karyawan,jml_cabang,omset_tahunan,no_tlp,facebook,instagram;
-    Button btnedit;
+    Button btnedit,btn_apus;
+    private static final String TAG = Detailbisnis.class.getSimpleName();
+    private  static final String TAG_SUCCESS = "error";
+    private  static final String TAG_MESSAGE = "msg";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailbisnis);
 
+
+
         nmbisnislain = findViewById(R.id.nmbisnislain);
         nmusaha = findViewById(R.id.nmusaha);
+        btn_apus = findViewById(R.id.btn_hapus);
         merek = findViewById(R.id.merek);
         jumlah_karyawan = findViewById(R.id.jumlah_karyawan);
         jml_cabang = findViewById(R.id.jml_cabang);
@@ -70,22 +84,52 @@ public class Detailbisnis extends AppCompatActivity {
 
 
 
+
     }
-    public void hapus_bisnis(View view) {
-        StringRequest delete = new StringRequest(Request.Method.DELETE, AppConfig.URL_LIST_USAHA, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.d("Response", response);
+    public void hapus(final String userid) {
+            StringRequest delete = new StringRequest(Request.Method.POST, AppConfig.URL_LIST_USAHA, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    Log.d(TAG,"Response "+ response.toString());
+                    try{
+                        JSONObject jobj = new JSONObject(response);
+                        boolean error = jobj.getBoolean("error");
+                        if (!error){
+                            Log.d("delete",jobj.toString());
+                            Toast.makeText(Detailbisnis.this,jobj.getString(TAG_MESSAGE), Toast.LENGTH_SHORT).show();
+                            Intent a = new Intent(Detailbisnis.this,Menu_main.class);
+                            startActivity(a);
+                        }else {
+                            Toast.makeText(Detailbisnis.this, "gagal menghapus", Toast.LENGTH_SHORT).show();
+                        }
+                    }catch (JSONException e){
+                        e.printStackTrace();
+                        Toast.makeText(Detailbisnis.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.d("Error.response",error.toString());
+                    Toast.makeText(Detailbisnis.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("Error.response",error.toString());
-            }
+            ){
+                @Override
+                protected Map<String, String> getParams(){
+                    Map<String,String>params = new HashMap<String, String>();
+                    params.put("idbisnis_info",userid);
+                    return params;
+                }
+            };
+            AppController.getInstance().addToRequestQueue(delete);
         }
-        );
-        AppController.getInstance().addToRequestQueue(delete);
+
+    public void hapus_bisnis(View view){
+        hapus("iddbisnis_info");
+
     }
+
     public void edit_bisnis(View view) {
 
         Intent h= new Intent(Detailbisnis.this,EditBisnis.class);
