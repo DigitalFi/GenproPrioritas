@@ -31,6 +31,8 @@ public class Profile extends AppCompatActivity {
         final String email = user.getString("email", "");
         final String pic1 = user.getString("pic", "");
         final String urls = user.getString("url","");
+        final String almt1 = user.getString("alamat", "");
+        final String tlp1 = user.getString("tlp","");
 
         updt = getSharedPreferences("data_update", Context.MODE_PRIVATE);
         final String nomor = updt.getString("no_anggota", "");
@@ -45,13 +47,20 @@ public class Profile extends AppCompatActivity {
         TextView Telepon = (TextView) findViewById(R.id.Telepon);
         TextView Alamat = (TextView) findViewById(R.id.Alamat);
 
-
-        Nama.setText("Nama : "+nama);
-        Email.setText("Email : "+email);
-        Nomor.setText("Nomor Anggota : "+nomor);
-        Alamat.setText("Alamat : "+almt);
-        Telepon.setText("Nomor Telephone : "+tlp);
-
+		// ngecek apakah inputannya kosong atau Tidak
+        if (!almt1.isEmpty()){
+			Nama.setText("Nama : "+nama);
+			Email.setText("Email : "+email);
+			Nomor.setText("Nomor Anggota : "+nomor);
+			Alamat.setText("Alamat : "+almt);
+			Telepon.setText("Nomor Telephone : "+tlp);
+		}else{
+			Nama.setText("Nama : "+nama);
+			Email.setText("Email : "+email);
+			Nomor.setText("Nomor Anggota : "+nomor);
+			Alamat.setText("Alamat : "+almt1);
+			Telepon.setText("Nomor Telephone : "+tlp1);
+		}
         view = (WebView) findViewById(R.id.profil_pic) ;
         view.getSettings().setJavaScriptEnabled(true);
         view.setWebViewClient(new profile_pic());

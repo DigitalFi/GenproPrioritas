@@ -125,12 +125,17 @@ public class Login extends Activity {
                         String email = jObj.getString("email");
                         String n_anggota = jObj.getString("no_anggota");
                         String pic = jObj.getString("picture");
+						String alamat = jObj.getString("alamat");
+                        String tlp = jObj.getString("phone");
+						
 
                         // buat session user yang sudah login yang menyimpan id,nama,full name, roles id, roles name
                         SharedPreferences.Editor editor = user.edit();
                         editor.putString("user_id", user_id);
                         editor.putString("user_name", user_name);
                         editor.putString("email", email);
+                        editor.putString("alamat", alamat);
+                        editor.putString("tlp", tlp);
                         editor.putString("pic", pic);
                         editor.putString("link", pic);
                         editor.putString("url", "http://genprodev.lavenderprograms.com/img/mobile_apps/");
