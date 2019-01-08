@@ -128,7 +128,10 @@ public class Login extends Activity {
 						String alamat = jObj.getString("alamat");
                         String tlp = jObj.getString("phone");
 						
-
+						Toast.makeText(getApplicationContext(),
+                            "Debug :"+alamat+tlp,
+                            Toast.LENGTH_SHORT).show();}
+						
                         // buat session user yang sudah login yang menyimpan id,nama,full name, roles id, roles name
                         SharedPreferences.Editor editor = user.edit();
                         editor.putString("user_id", user_id);

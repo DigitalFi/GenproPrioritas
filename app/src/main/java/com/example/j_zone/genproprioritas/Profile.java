@@ -48,19 +48,22 @@ public class Profile extends AppCompatActivity {
         TextView Alamat = (TextView) findViewById(R.id.Alamat);
 
 		// ngecek apakah inputannya kosong atau Tidak
-        if (!almt1.isEmpty()){
-			Nama.setText("Nama : "+nama);
-			Email.setText("Email : "+email);
-			Nomor.setText("Nomor Anggota : "+nomor);
-			Alamat.setText("Alamat : "+almt);
-			Telepon.setText("Nomor Telephone : "+tlp);
-		}else{
+        if (!almt.isEmpty()){
 			Nama.setText("Nama : "+nama);
 			Email.setText("Email : "+email);
 			Nomor.setText("Nomor Anggota : "+nomor);
 			Alamat.setText("Alamat : "+almt1);
 			Telepon.setText("Nomor Telephone : "+tlp1);
+			    Toast.makeText(this, "kondisi if :"+almt+tlp, Toast.LENGTH_SHORT).show();       
+		}else{
+			Nama.setText("Nama : "+nama);
+			Email.setText("Email : "+email);
+			Nomor.setText("Nomor Anggota : "+nomor);
+			Alamat.setText("Alamat : "+almt);
+			Telepon.setText("Nomor Telephone : "+tlp);
+				Toast.makeText(this, "kondisi else :"+almt+tlp, Toast.LENGTH_SHORT).show();
 		}
+		
         view = (WebView) findViewById(R.id.profil_pic) ;
         view.getSettings().setJavaScriptEnabled(true);
         view.setWebViewClient(new profile_pic());
