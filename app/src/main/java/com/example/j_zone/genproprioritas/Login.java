@@ -130,14 +130,15 @@ public class Login extends Activity {
 						
 						Toast.makeText(getApplicationContext(),
                             "Debug :"+alamat+tlp,
-                            Toast.LENGTH_SHORT).show();}
-						
-                        // buat session user yang sudah login yang menyimpan id,nama,full name, roles id, roles name
+                            Toast.LENGTH_SHORT).show();
+						//bang btw atas ini kan toast ya , nah di toastnya itu alamat sama nope keambil cuman ga nampi//tronjal tronkwkwkw
+                        // buat session user yang sudah login yang menyimpan id,nama,full name, roles id, roles name laman tempat setextnya mana activiy
                         SharedPreferences.Editor editor = user.edit();
                         editor.putString("user_id", user_id);
                         editor.putString("user_name", user_name);
                         editor.putString("email", email);
                         editor.putString("alamat", alamat);
+                        editor.putString("no_anggota", n_anggota);
                         editor.putString("tlp", tlp);
                         editor.putString("pic", pic);
                         editor.putString("link", pic);

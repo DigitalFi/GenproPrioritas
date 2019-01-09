@@ -33,6 +33,8 @@ public class Profile extends AppCompatActivity {
         final String urls = user.getString("url","");
         final String almt1 = user.getString("alamat", "");
         final String tlp1 = user.getString("tlp","");
+        final String nomor1 = user.getString("no_anggota", "");
+
 
         updt = getSharedPreferences("data_update", Context.MODE_PRIVATE);
         final String nomor = updt.getString("no_anggota", "");
@@ -52,16 +54,22 @@ public class Profile extends AppCompatActivity {
 			Nama.setText("Nama : "+nama);
 			Email.setText("Email : "+email);
 			Nomor.setText("Nomor Anggota : "+nomor);
-			Alamat.setText("Alamat : "+almt1);
-			Telepon.setText("Nomor Telephone : "+tlp1);
-			    Toast.makeText(this, "kondisi if :"+almt+tlp, Toast.LENGTH_SHORT).show();       
+			Alamat.setText("Alamat : "+almt);
+			Telepon.setText("Nomor Telephone : "+tlp);
+			Toast.makeText(this, "kondisi if :"+almt1+tlp, Toast.LENGTH_SHORT).show();
 		}else{
 			Nama.setText("Nama : "+nama);
 			Email.setText("Email : "+email);
-			Nomor.setText("Nomor Anggota : "+nomor);
-			Alamat.setText("Alamat : "+almt);
-			Telepon.setText("Nomor Telephone : "+tlp);
-				Toast.makeText(this, "kondisi else :"+almt+tlp, Toast.LENGTH_SHORT).show();
+			Nomor.setText("Nomor Anggota : "+nomor1);
+			Alamat.setText("Alamat : "+almt1);
+			Telepon.setText("Nomor Telephone : "+tlp1);
+			Toast.makeText(this, "kondisi else :"+almt1+tlp1, Toast.LENGTH_SHORT).show();
+			/*
+			* mau ngapain ini kmarin
+			* pas abis edit profile kan masukin no tlp sama alamat tuh , udh keambil
+			* abis itu gua logout , login lagi make user yg sama
+			* tapi ga muncul alamat sama nomor telponnya
+			* */
 		}
 		
         view = (WebView) findViewById(R.id.profil_pic) ;
