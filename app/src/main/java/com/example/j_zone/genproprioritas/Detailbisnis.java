@@ -86,8 +86,8 @@ public class Detailbisnis extends AppCompatActivity {
 
 
     }
-    public void hapus(final String userid) {
-            StringRequest delete = new StringRequest(Request.Method.POST, AppConfig.URL_LIST_USAHA, new Response.Listener<String>() {
+    public void hapus(final String userid,final String idbisnis) {
+            StringRequest delete = new StringRequest(Request.Method.POST, AppConfig.URL_DELETE_BISNIS, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     Log.d(TAG,"Response "+ response.toString());
@@ -118,7 +118,8 @@ public class Detailbisnis extends AppCompatActivity {
                 @Override
                 protected Map<String, String> getParams(){
                     Map<String,String>params = new HashMap<String, String>();
-                    params.put("idbisnis_info",userid);
+                    params.put("id_bisnis_info",idbisnis);
+                    params.put("user_id",userid);
                     return params;
                 }
             };
@@ -126,7 +127,7 @@ public class Detailbisnis extends AppCompatActivity {
         }
 
     public void hapus_bisnis(View view){
-        hapus("iddbisnis_info");
+        hapus("id_bisnis_info","user_id");
 
     }
 
