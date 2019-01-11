@@ -33,7 +33,6 @@ public class Detailbisnis extends AppCompatActivity {
     TextView nmbisnislain,nmusaha,merek,jumlah_karyawan,jml_cabang,omset_tahunan,no_tlp,facebook,instagram;
     Button btnedit,btn_apus;
     private static final String TAG = Detailbisnis.class.getSimpleName();
-    private  static final String TAG_SUCCESS = "error";
     private  static final String TAG_MESSAGE = "msg";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,48 +85,38 @@ public class Detailbisnis extends AppCompatActivity {
 
 
     }
-    public void hapus(final String userid,final String idbisnis) {
-            StringRequest delete = new StringRequest(Request.Method.POST, AppConfig.URL_DELETE_BISNIS, new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    Log.d(TAG,"Response "+ response.toString());
-                    try{
-                        JSONObject jobj = new JSONObject(response);
-                        boolean error = jobj.getBoolean("error");
-                        if (!error){
-                            Log.d("delete",jobj.toString());
-                            Toast.makeText(Detailbisnis.this,jobj.getString(TAG_MESSAGE), Toast.LENGTH_SHORT).show();
-                            Intent a = new Intent(Detailbisnis.this,Menu_main.class);
-                            startActivity(a);
-                        }else {
-                            Toast.makeText(Detailbisnis.this, "gagal menghapus", Toast.LENGTH_SHORT).show();
-                        }
-                    }catch (JSONException e){
-                        e.printStackTrace();
-                        Toast.makeText(Detailbisnis.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Log.d("Error.response",error.toString());
-                    Toast.makeText(Detailbisnis.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-            ){
-                @Override
-                protected Map<String, String> getParams(){
-                    Map<String,String>params = new HashMap<String, String>();
-                    params.put("id_bisnis_info",idbisnis);
-                    params.put("user_id",userid);
-                    return params;
-                }
-            };
-            AppController.getInstance().addToRequestQueue(delete);
-        }
+
 
     public void hapus_bisnis(View view){
-        hapus("id_bisnis_info","user_id");
+        StringRequest delete = new StringRequest(Request.Method.POST, AppConfig.URL_DELETE_BISNIS, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                Log.d(TAG,"Response "+ response.toString());
+
+                Toast.makeText(Detailbisnis.this, "Berhasil Menghapus", Toast.LENGTH_SHORT).show();
+                Intent a = new Intent(Detailbisnis.this,Menu_main.class);
+                startActivity(a);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("Error.response",error.toString());
+
+                Toast.makeText(Detailbisnis.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }
+        ){
+            @Override
+            protected Map<String, String> getParams(){
+                Map<String,String>params = new HashMap<String, String>();
+                params.put("id_bisnis_info","");
+                params.put("user_id","");
+                return params;
+            }
+        };
+        RequestQueue queue = Volley.newRequestQueue(this);
+        queue.add(delete);
 
     }
 
