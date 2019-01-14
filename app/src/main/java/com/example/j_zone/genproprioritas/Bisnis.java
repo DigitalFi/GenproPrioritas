@@ -5,6 +5,7 @@ package com.example.j_zone.genproprioritas;
  */
 
 public class Bisnis {
+    private String id_bisnis_info;
     private String nmbisnislain;
     private String nmusaha;
     private String tglTerdaftar;
@@ -20,7 +21,8 @@ public class Bisnis {
     public Bisnis(){
 
     }
-    public Bisnis(String nmbisnislain, String nmusaha, String tglTerdaftar,String merk,String nm_usaha,String jml_karyawan,String jml_cabang,String omset_tahunan,String no_tlp,String facebook,String instagram){
+    public Bisnis(String id_bisnis_info, String nmbisnislain, String nmusaha, String tglTerdaftar,String merk,String nm_usaha,String jml_karyawan,String jml_cabang,String omset_tahunan,String no_tlp,String facebook,String instagram){
+        this.id_bisnis_info = id_bisnis_info;
         this.nmbisnislain = nmbisnislain;
         this.nmusaha = nmusaha;
         this.merk = merk;
@@ -32,6 +34,14 @@ public class Bisnis {
         this.telepon = no_tlp;
         this.facebooks = facebook;
         this.instagrams = instagram;
+    }
+
+    public String getId_bisnis_info() {
+        return id_bisnis_info;
+    }
+
+    public void setId_bisnis_info(String id_bisnis_info) {
+        this.id_bisnis_info = id_bisnis_info;
     }
 
     public String getNm_usaha() {

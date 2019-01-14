@@ -18,6 +18,7 @@ import com.android.volley.NetworkError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.NoConnectionError;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
@@ -69,7 +70,7 @@ public class EditBisnis extends AppCompatActivity {
 //        final String userid = user.getString("user_id", "");
 //        final String idbisnis = user.getString("id_bisnis_info", "");
 
-        inputBisnisLain = (EditText) findViewById(R.id.jenis_usaha);
+//        inputBisnisLain = (EditText) findViewById(R.id.jenis_usaha);
         inputNamaUsaha = (EditText) findViewById(R.id.nama_usaha);
         inputMerek = (EditText) findViewById(R.id.Merek);
         inputJml_karyawan = (EditText) findViewById(R.id.jumlah_karyawan);
@@ -92,14 +93,24 @@ public class EditBisnis extends AppCompatActivity {
         final String fbs = user_edit.getString("facebook", "");
         final String igs = user_edit.getString("instagram", "");
 
-        inputNamaUsaha.setText(namausaha);
-        inputMerek.setText(merk);
-        inputJml_karyawan.setText(karyawan);
-        inputJml_cabang.setText(cabang);
-        inputOmsetTahunan.setText(omset);
-        inputNoTlp.setText(telpom);
-        inputFacebook.setText(fbs);
-        inputInstagram.setText(igs);
+        Intent a = getIntent();
+        String usaha = a.getStringExtra("nm_usaha");
+        String merekss = a.getStringExtra("merk");
+        String karyawans = a.getStringExtra("jml_karyawan");
+        String cabangs = a.getStringExtra("jml_cabang");
+        String omsed = a.getStringExtra("omset_tahunan");
+        String nope = a.getStringExtra("no_tlp");
+        String faceboo = a.getStringExtra("facebook");
+        String insta = a.getStringExtra("instagram");
+
+//        inputNamaUsaha.setText(usaha);
+//        inputMerek.setText(merekss);
+//        inputJml_karyawan.setText(karyawans);
+//        inputJml_cabang.setText(cabangs);
+//        inputOmsetTahunan.setText(omsed);
+//        inputNoTlp.setText(nope);
+//        inputFacebook.setText(faceboo);
+//        inputInstagram.setText(insta);
 
 //        if (!userid.isEmpty()) {
 //            // login user
@@ -118,7 +129,6 @@ public class EditBisnis extends AppCompatActivity {
                 user = getSharedPreferences("data_user", Context.MODE_PRIVATE);
                 final String id = user.getString("user_id", "");
 
-                String bisnislain = inputBisnisLain.getText().toString().trim();
                 String namausaha = inputNamaUsaha.getText().toString().trim();
                 String merk = inputMerek.getText().toString().trim();
                 String karyawan = inputJml_karyawan.getText().toString().trim();
@@ -132,8 +142,6 @@ public class EditBisnis extends AppCompatActivity {
                     Toast.makeText(EditBisnis.this, "Wajib diisi semua !", Toast.LENGTH_SHORT).show();
                 }else if (namausaha.isEmpty()){
                     Toast.makeText(EditBisnis.this, "Nama Usaha Tidak Boleh Kosong !", Toast.LENGTH_SHORT).show();
-                }else if (bisnislain.isEmpty()){
-                    Toast.makeText(EditBisnis.this, "Nama Bisnis Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
                 }else if (merk.isEmpty()){
                     Toast.makeText(EditBisnis.this, "Merk Tidak Boleh Kosong !", Toast.LENGTH_SHORT).show();
                 }else if (karyawan.isEmpty()){
@@ -149,7 +157,8 @@ public class EditBisnis extends AppCompatActivity {
                 }else if (igs.isEmpty()){
                     Toast.makeText(EditBisnis.this, "Instagram Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
                 }else
-                    update(id,namausaha, merk,karyawan,cabang, omset, telpon, fbs, igs);
+//                    update(namausaha, merk,karyawan,cabang, omset, telpon, fbs, igs);
+                edit_bisnis(namausaha,merk,karyawan,cabang,omset,telpon,fbs,igs);
             }
 
         });
@@ -231,92 +240,58 @@ public class EditBisnis extends AppCompatActivity {
 //        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
 //
 //    }
-
-
-    private void update(final String id, final String namausaha, final String merk, final String karyawan, final String cabang, final String omset, final String telpon, final String fbs, final String igs) {
+    private void edit_bisnis(final String namausaha,final String merk,final String karyawan,final String cabang, final String omset, final String telpon, final String fbs, final String igs ){
         pDialog.setMessage("Sedang Update Bisnis");
         showDialog();
-        final VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, AppConfig.URL_GET_EDIT_BISNIS,
-                new Response.Listener<NetworkResponse>() {
-                    @Override
-                    public void onResponse(NetworkResponse response) {
-                        Log.d(TAG, "Login Response: " + response.toString());
-                        hideDialog();
-                        try {
-                            JSONObject jObj = new JSONObject(new String(response.data));
-                            boolean error = jObj.getBoolean("error");
 
-                            if (!error) {
-//                                JSONObject obj = jObj.getJSONObject("data");
-//                                String id = obj.getString("user_id");
-//                                Log.d("id","anda"+id);
-//                                String nmusaha = obj.getString("nm_usaha");
-//                                String merk = obj.getString("merk");
-//                                String jml_karyawan = obj.getString("jml_karyawan");
-//                                String jml_cabang = obj.getString("jml_cabang");
-//                                String omset_tahunan = obj.getString("omset_tahunan");
-//                                String no_tlp = obj.getString("no_tlp");
-//                                String facebook = obj.getString("facebook");
-//                                String instagram = obj.getString("instagram");
-//
-//                                // buat session user yang sudah login yang menyimpan id,nama,full name, roles id, roles name
-//                                SharedPreferences.Editor editor = updt.edit();
-//                                editor.putString("userid", id);
-//                                editor.putString("nm_usaha", nmusaha);
-//                                editor.putString("merk", merk);
-//                                editor.putString("jml_karyawan", jml_karyawan);
-//                                editor.putString("jml_cabang", jml_cabang);
-//                                editor.putString("omset_tahunan", omset_tahunan);
-//                                editor.putString("no_tlp", no_tlp);
-//                                editor.putString("facebook", facebook);
-//                                editor.putString("instagram", instagram);
-//                                editor.commit();
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.URL_GET_EDIT_BISNIS, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject object = new JSONObject(response);
+                    boolean error = object.getBoolean("error");
+                    if (!error) {
+                        Intent intent = new Intent(EditBisnis.this,
+                                Menu_main.class);
+                        startActivity(intent);
+                        finish();
 
-                                Intent intent = new Intent(EditBisnis.this,
-                                        Menu_main.class);
-                                startActivity(intent);
-                                finish();
-
-                                //Toast.makeText(getApplicationContext(),"Success Updated !"+depan+","+belakang+","+nomor_anggota+","+propinsi+","+kabupaten+","+alamat+","+phone+","+picture+","+update, Toast.LENGTH_SHORT).show();
-
-                                Toast.makeText(getApplicationContext(), "Success Updated !", Toast.LENGTH_SHORT).show();
-
-
-                            } else {
-                                //terjadi error dan tampilkan pesan error dari API
-                                //String errorMsg = jObj.getString("message");
-                                Toast.makeText(getApplicationContext(),
-                                        "Error Submited , Please Try Again", Toast.LENGTH_LONG).show();
-                            }
-
-                            //JSONObject obj = new JSONObject(new String(response.data));
-                            //Toast.makeText(getApplicationContext(), obj.getString("msg"), Toast.LENGTH_SHORT).show();
-                            //String NomorAnggota = obj.getString("no_anggota");
-                            //save id kelembagaan
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            Toast.makeText(getApplicationContext(), "Json error: " + e.getMessage(), Toast.LENGTH_LONG).show();
-                        }
-
-
+                        Toast.makeText(getApplicationContext(), "Success Updated !", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(),
+                                "Error Submited , Please Try Again", Toast.LENGTH_LONG).show();
                     }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.e(TAG, "Login Error: " + error.getMessage());
-                        if ( error instanceof TimeoutError || error instanceof NoConnectionError ||error instanceof NetworkError) {
-                            Toast.makeText(getApplicationContext(),
-                                    "Please Check Your Connection" + error.getMessage(),
-                                    Toast.LENGTH_SHORT).show();}
-                        hideDialog();
-                    }
-                }) {
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, "Login Error: " + error.getMessage());
+                if ( error instanceof TimeoutError || error instanceof NoConnectionError ||error instanceof NetworkError) {
+                    Toast.makeText(getApplicationContext(),
+                            "Please Check Your Connection" + error.getMessage(),
+                            Toast.LENGTH_SHORT).show();}
+                hideDialog();
+            }
+        }){
+            @Override
+            public String getBodyContentType() {
+                return "application/x-www-form-urlencoded; charset=UTF-8";
+            }
+
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("user_id", id);
+                user = getSharedPreferences("data_user", Context.MODE_PRIVATE);
+                final String user_id = user.getString("user_id","");
+
+                Intent i = getIntent();
+                String idbisnis = i.getStringExtra("id_bisnis_info");
+
+                params.put("user_id", user_id);
+                params.put("id_bisnis_info", idbisnis);
                 params.put("nm_usaha",namausaha);
                 params.put("merk", merk);
                 params.put("jml_karyawan", karyawan);
@@ -328,7 +303,8 @@ public class EditBisnis extends AppCompatActivity {
                 return params;
             }
         };
-        Volley.newRequestQueue(this).add(volleyMultipartRequest);
+        RequestQueue queue = Volley.newRequestQueue(this);
+        queue.add(stringRequest);
     }
 
     private void showDialog() {

@@ -1,6 +1,8 @@
 package com.example.j_zone.genproprioritas;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.nfc.Tag;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,6 +23,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.j_zone.genproprioritas.helper.AppConfig;
 import com.example.j_zone.genproprioritas.helper.AppController;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -34,12 +37,12 @@ public class Detailbisnis extends AppCompatActivity {
     Button btnedit,btn_apus;
     private static final String TAG = Detailbisnis.class.getSimpleName();
     private  static final String TAG_MESSAGE = "msg";
+    private SharedPreferences bisnis,user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailbisnis);
-
-
 
         nmbisnislain = findViewById(R.id.nmbisnislain);
         nmusaha = findViewById(R.id.nmusaha);
@@ -52,6 +55,13 @@ public class Detailbisnis extends AppCompatActivity {
         facebook = findViewById(R.id.facebook);
         instagram = findViewById(R.id.instagram);
         btnedit = findViewById(R.id.btn_edit);
+
+        btn_apus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                hapus_bisnis();
+            }
+        });
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -71,6 +81,8 @@ public class Detailbisnis extends AppCompatActivity {
 
 
 
+
+
         nmbisnislain.setText("Bisnis Lain :"+namas);
         nmusaha.setText("Nama Usaha : "+usaha);
         merek.setText("Merk : "+merekss);
@@ -87,7 +99,7 @@ public class Detailbisnis extends AppCompatActivity {
     }
 
 
-    public void hapus_bisnis(View view){
+    public void hapus_bisnis(){
         StringRequest delete = new StringRequest(Request.Method.POST, AppConfig.URL_DELETE_BISNIS, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -108,10 +120,20 @@ public class Detailbisnis extends AppCompatActivity {
         }
         ){
             @Override
-            protected Map<String, String> getParams(){
+            public String getBodyContentType() {
+                return "application/x-www-form-urlencoded; charset=UTF-8";
+            }
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String>params = new HashMap<String, String>();
-                params.put("id_bisnis_info","");
-                params.put("user_id","");
+                user = getSharedPreferences("data_user", Context.MODE_PRIVATE);
+                final String user_id = user.getString("user_id","");
+
+                Intent s = getIntent();
+                String id_bisnis = s.getStringExtra("id_bisnis_info");
+                params.put("id_bisnis_info",id_bisnis);
+                params.put("user_id",user_id);
                 return params;
             }
         };
@@ -121,8 +143,11 @@ public class Detailbisnis extends AppCompatActivity {
     }
 
     public void edit_bisnis(View view) {
+        Intent s = getIntent();
+        String id_bisnis = s.getStringExtra("id_bisnis_info");
 
         Intent h= new Intent(Detailbisnis.this,EditBisnis.class);
+        h.putExtra("id_bisnis_info",id_bisnis);
         startActivity(h);
 
     }

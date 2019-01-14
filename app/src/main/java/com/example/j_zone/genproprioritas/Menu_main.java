@@ -158,6 +158,7 @@ public class Menu_main extends AppCompatActivity implements NavigationView.OnNav
                     for (int i = 0; i<jsonArray.length(); i++){
                         JSONObject object2 = jsonArray.getJSONObject(i);
                         Bisnis bisnis2 = new Bisnis();
+                        bisnis2.setId_bisnis_info(object2.getString("id_bisnis_info"));
                         bisnis2.setNm_usaha(object2.getString("nm_usaha"));
                         bisnis2.setMerk(object2.getString("merk"));
                         bisnis2.setTglTerdaftar(object2.getString("tgl_terdaftar"));

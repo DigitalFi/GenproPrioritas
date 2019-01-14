@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -76,6 +77,8 @@ public class Business extends AppCompatActivity {
                 try {
                     JSONObject object = new JSONObject(response);
                     JSONArray jsonArray = object.getJSONArray("data");
+                    boolean error = object.getBoolean("error");
+
                     for (int i = 0; i<jsonArray.length(); i++){
                         JSONObject object2 = jsonArray.getJSONObject(i);
                         Bisnis bisnis2 = new Bisnis();

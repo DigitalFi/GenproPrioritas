@@ -43,8 +43,9 @@ public class BisnisAdapter extends RecyclerView.Adapter<BisnisAdapter.ViewHolder
             @Override
             public void onClick(View view) {
                 Intent a = new Intent(context,Detailbisnis.class);
+
                 a.putExtra("position",position);
-                Toast.makeText(context, "position "+position, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "position "+position, Toast.LENGTH_SHORT).show();
                 String name = list.get(position).getNmbisnislain();
                 String usaha = list.get(position).getNm_usaha();
 
@@ -56,8 +57,11 @@ public class BisnisAdapter extends RecyclerView.Adapter<BisnisAdapter.ViewHolder
                 String fb = list.get(position).getFacebooks();
                 String ig = list.get(position).getInstagrams();
 
+                String idbisnis = list.get(position).getId_bisnis_info();
 
+                Toast.makeText(context, "bisnis id "+idbisnis, Toast.LENGTH_SHORT).show();
 
+                a.putExtra("id_bisnis_info",idbisnis);
                 a.putExtra("nm_bisnis_lain",name);
                 a.putExtra("nm_usaha",usaha);
                 a.putExtra("merk",merek);
