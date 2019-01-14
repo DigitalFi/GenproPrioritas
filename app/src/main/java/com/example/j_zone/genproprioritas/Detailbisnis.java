@@ -145,9 +145,25 @@ public class Detailbisnis extends AppCompatActivity {
     public void edit_bisnis(View view) {
         Intent s = getIntent();
         String id_bisnis = s.getStringExtra("id_bisnis_info");
+        String usaha = s.getStringExtra("nm_usaha");
+        String merekss = s.getStringExtra("merk");
+        String karyawans = s.getStringExtra("jml_karyawan");
+        String cabangs = s.getStringExtra("jml_cabang");
+        String omsed = s.getStringExtra("omset_tahunan");
+        String nope = s.getStringExtra("no_tlp");
+        String faceboo = s.getStringExtra("facebook");
+        String insta = s.getStringExtra("instagram");
 
         Intent h= new Intent(Detailbisnis.this,EditBisnis.class);
         h.putExtra("id_bisnis_info",id_bisnis);
+        h.putExtra("nm_usaha",usaha);
+        h.putExtra("merk",merekss);
+        h.putExtra("jml_karyawan",karyawans);
+        h.putExtra("jml_cabang",cabangs);
+        h.putExtra("omset_tahunan",omsed);
+        h.putExtra("no_tlp",nope);
+        h.putExtra("facebook",faceboo);
+        h.putExtra("instagram",insta);
         startActivity(h);
 
     }

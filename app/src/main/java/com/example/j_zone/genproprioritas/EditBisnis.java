@@ -103,14 +103,14 @@ public class EditBisnis extends AppCompatActivity {
         String faceboo = a.getStringExtra("facebook");
         String insta = a.getStringExtra("instagram");
 
-//        inputNamaUsaha.setText(usaha);
-//        inputMerek.setText(merekss);
-//        inputJml_karyawan.setText(karyawans);
-//        inputJml_cabang.setText(cabangs);
-//        inputOmsetTahunan.setText(omsed);
-//        inputNoTlp.setText(nope);
-//        inputFacebook.setText(faceboo);
-//        inputInstagram.setText(insta);
+        inputNamaUsaha.setText(usaha);
+        inputMerek.setText(merekss);
+        inputJml_karyawan.setText(karyawans);
+        inputJml_cabang.setText(cabangs);
+        inputOmsetTahunan.setText(omsed);
+        inputNoTlp.setText(nope);
+        inputFacebook.setText(faceboo);
+        inputInstagram.setText(insta);
 
 //        if (!userid.isEmpty()) {
 //            // login user
