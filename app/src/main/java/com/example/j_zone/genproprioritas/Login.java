@@ -122,6 +122,8 @@ public class Login extends Activity {
                         //user berhasil login
                         String user_id = jObj.getString("user_id");
                         String user_name = jObj.getString("user_name");
+                        String nama_depan = jObj.getString("nama_depan");
+                        String nama_belakang = jObj.getString("nama_belakang");
                         String email = jObj.getString("email");
                         String n_anggota = jObj.getString("no_anggota");
                         String pic = jObj.getString("picture");
@@ -136,6 +138,8 @@ public class Login extends Activity {
                         SharedPreferences.Editor editor = user.edit();
                         editor.putString("user_id", user_id);
                         editor.putString("user_name", user_name);
+                        editor.putString("nama_depan", nama_depan);
+                        editor.putString("nama_belakang", nama_belakang);
                         editor.putString("email", email);
                         editor.putString("alamat", alamat);
                         editor.putString("no_anggota", n_anggota);

@@ -123,10 +123,18 @@ public class Edit_Profile extends AppCompatActivity {
             Sp1.setSelection(spinnerPosition);
         }
 
-        nama.setText(hint_nama);
-        namaPanjang.setText(hint_namapanjang);
-        phone.setText(hint_phone);
-        alamat.setText(hint_alamat);
+        user = getSharedPreferences("data_user", Context.MODE_PRIVATE);
+        final String nm_depan = user.getString("nama_depan","");
+        final String nm_belakang = user.getString("nama_belakang","");
+        final String phones = user.getString("tlp","");
+        final String alamats = user.getString("alamat","");
+
+
+        nama.setText(nm_depan);
+        namaPanjang.setText(nm_belakang);
+        phone.setText(phones);
+        alamat.setText(alamats);
+
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
