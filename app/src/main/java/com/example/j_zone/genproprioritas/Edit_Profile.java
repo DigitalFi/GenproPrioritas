@@ -287,9 +287,9 @@ public class Edit_Profile extends AppCompatActivity {
                         // login user
                         uploadBitmap(bitmap, id, namadepan, namabelakang, almt, telepon, kd_prov, kd_kab);
 
-                        Toast.makeText(getApplicationContext(),
-                                id + "," + kd_prov + "," + namadepan + "," + namabelakang + "," + almt + "," + telepon + "," + kd_kab, Toast.LENGTH_LONG)
-                                .show();
+//                        Toast.makeText(getApplicationContext(),
+//                                id + "," + kd_prov + "," + namadepan + "," + namabelakang + "," + almt + "," + telepon + "," + kd_kab, Toast.LENGTH_LONG)
+//                                .show();
 
                     } else {
                         // jika inputan kosong tampilkan pesan

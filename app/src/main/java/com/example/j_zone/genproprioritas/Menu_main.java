@@ -100,11 +100,11 @@ public class Menu_main extends AppCompatActivity implements NavigationView.OnNav
         if (!pic.isEmpty()){
             String url = "http://genprodev.lavenderprograms.com/img/mobile_apps/"+pic;
             view.loadUrl(url);
-            Toast.makeText(getApplicationContext(), "url-updated="+url, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getApplicationContext(), "url-updated="+url, Toast.LENGTH_SHORT).show();
         }else if (!pic1.isEmpty()){
             String url = "http://genprodev.lavenderprograms.com/img/mobile_apps/"+pic1;
             view.loadUrl(url);
-            Toast.makeText(getApplicationContext(), "url-no-updated="+url, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getApplicationContext(), "url-no-updated="+url, Toast.LENGTH_SHORT).show();
         }else {
             view.setVisibility(View.GONE);
         }

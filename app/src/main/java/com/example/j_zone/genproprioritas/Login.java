@@ -54,9 +54,6 @@ public class Login extends Activity {
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
 
-        //Toast
-        Toast.makeText(this, "cek :"+user.getString("url","")+user.getString("pic", "")+user.getString("picture", ""), Toast.LENGTH_SHORT).show();
-
         // ketika login button di klik
         btnLogin.setOnClickListener(new View.OnClickListener() {
 
@@ -130,11 +127,6 @@ public class Login extends Activity {
 						String alamat = jObj.getString("alamat");
                         String tlp = jObj.getString("phone");
 						
-						Toast.makeText(getApplicationContext(),
-                            "Debug :"+alamat+tlp,
-                            Toast.LENGTH_SHORT).show();
-						//bang btw atas ini kan toast ya , nah di toastnya itu alamat sama nope keambil cuman ga nampi//tronjal tronkwkwkw
-                        // buat session user yang sudah login yang menyimpan id,nama,full name, roles id, roles name laman tempat setextnya mana activiy
                         SharedPreferences.Editor editor = user.edit();
                         editor.putString("user_id", user_id);
                         editor.putString("user_name", user_name);

@@ -56,14 +56,12 @@ public class Profile extends AppCompatActivity {
 			Nomor.setText("Nomor Anggota : "+nomor);
 			Alamat.setText("Alamat : "+almt);
 			Telepon.setText("Nomor Telephone : "+tlp);
-			Toast.makeText(this, "kondisi if :"+almt1+tlp, Toast.LENGTH_SHORT).show();
 		}else{
 			Nama.setText("Nama : "+nama);
 			Email.setText("Email : "+email);
 			Nomor.setText("Nomor Anggota : "+nomor1);
 			Alamat.setText("Alamat : "+almt1);
 			Telepon.setText("Nomor Telephone : "+tlp1);
-			Toast.makeText(this, "kondisi else :"+almt1+tlp1, Toast.LENGTH_SHORT).show();
 			/*
 			* mau ngapain ini kmarin
 			* pas abis edit profile kan masukin no tlp sama alamat tuh , udh keambil
@@ -81,11 +79,9 @@ public class Profile extends AppCompatActivity {
         if (!pic.isEmpty()){
             String url = "http://genprodev.lavenderprograms.com/img/mobile_apps/"+pic;
             view.loadUrl(url);
-            Toast.makeText(this, "foto dlm kondisi if :"+pic, Toast.LENGTH_SHORT).show();
         }else if (!pic1.isEmpty()){
             String url = "http://genprodev.lavenderprograms.com/img/mobile_apps/"+pic1;
             view.loadUrl(url);
-            Toast.makeText(this, "foto dlm kondisi if :"+pic1, Toast.LENGTH_SHORT).show();
         }else {
             view.setVisibility(View.GONE);
         }
