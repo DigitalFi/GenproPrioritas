@@ -59,7 +59,7 @@ public class BisnisAdapter extends RecyclerView.Adapter<BisnisAdapter.ViewHolder
 
                 String idbisnis = list.get(position).getId_bisnis_info();
 
-                Toast.makeText(context, "bisnis id "+idbisnis, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "bisnis id "+idbisnis, Toast.LENGTH_SHORT).show();
 
                 a.putExtra("id_bisnis_info",idbisnis);
                 a.putExtra("nm_bisnis_lain",name);
