@@ -110,11 +110,6 @@ public class Menu_main extends AppCompatActivity implements NavigationView.OnNav
         }
 
 
-
-        //Toast.makeText(getApplicationContext(), "url="+link+pic, Toast.LENGTH_SHORT).show();
-
-
-
         TextView n = (TextView) headerView.findViewById(R.id.nama_user);
         TextView r = (TextView) headerView.findViewById(R.id.nomor_anggota);
 
@@ -267,6 +262,21 @@ public class Menu_main extends AppCompatActivity implements NavigationView.OnNav
         } else if (id == R.id.nav_gmb_genpro) {
             Intent intent = new Intent(Menu_main.this, GMB_genpro.class);
             startActivity(intent);
+        } else if (id == R.id.nav_ask){
+            Intent z = new Intent(Menu_main.this,AskBOD.class);
+            startActivity(z);
+        } else if (id == R.id.nav_kegiatan){
+            Intent c = new Intent(Menu_main.this,Kegiatan.class);
+            startActivity(c);
+        }else if (id == R.id.nav_visi_misi){
+            Intent a = new Intent(Menu_main.this,VisiMisi.class);
+            startActivity(a);
+        }else if (id == R.id.nav_sejarah){
+            Intent s = new Intent(Menu_main.this,Sejarah.class);
+            startActivity(s);
+        }else if (id == R.id.nav_member){
+            Intent b = new Intent(Menu_main.this,Membership.class);
+            startActivity(b);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -11,8 +11,11 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.NetworkError;
@@ -52,6 +55,7 @@ public class Add_Usaha extends AppCompatActivity {
     private EditText inputNamaUsaha;
     private ProgressDialog pDialog;
     private SharedPreferences user;
+    private Spinner sp,sp1;
 
 
     @Override
@@ -67,14 +71,13 @@ public class Add_Usaha extends AppCompatActivity {
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
 
-
-        inputBisnisLain = (EditText) findViewById(R.id.jenis_usaha);
+        sp = findViewById(R.id.omst_tahunan);
+        sp1 = findViewById(R.id.jenis_usaha);
 //        inputNamaUsaha = (EditText) findViewById(R.id.jenis_usaha_lain);
         inputNamaUsaha = (EditText)findViewById(R.id.nama_usaha) ;
         inputMerek = (EditText) findViewById(R.id.Merek);
         inputJml_karyawan = (EditText) findViewById(R.id.jumlah_karyawan);
         inputJml_cabang = (EditText) findViewById(R.id.jml_cabang);
-        inputOmsetTahunan = (EditText) findViewById(R.id.omst_tahunan);
         inputNoTlp = (EditText) findViewById(R.id.tlp);
         inputFacebook = (EditText) findViewById(R.id.acc_facebook);
         inputInstagram = (EditText) findViewById(R.id.acc_instagram);
@@ -82,17 +85,55 @@ public class Add_Usaha extends AppCompatActivity {
 //
 //        inputOmsetTahunan.addTextChangedListener(omset());
 
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.omset, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sp.setAdapter(adapter);
+
+        ArrayAdapter<CharSequence> adapters = ArrayAdapter.createFromResource(this, R.array.bisnis, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sp1.setAdapter(adapters);
+
+        sp1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String names = sp1.getSelectedItem().toString();
+//                int idSpinner = getResources().getIdentifier(names, "array", Add_Usaha.this.getPackageName());
+//
+//                ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(Add_Usaha.this, android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(idSpinner));
+//                //spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//                sp1.setAdapter(spinnerArrayAdapter);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String name = sp.getSelectedItem().toString();
+//                int idSpinner = getResources().getIdentifier(name, "array", Add_Usaha.this.getPackageName());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
         // ketika login button di klik
         btnSubmit.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
-                String namabisnis = inputBisnisLain.getText().toString().trim();
+                String namabisnis = sp1.getSelectedItem().toString();
 //                String namausaha = inputNamaUsaha.getText().toString().trim();
                 String merek = inputMerek.getText().toString().trim();
                 String namausaha = inputNamaUsaha.getText().toString().trim();
                 String jml_karyawan = inputJml_karyawan.getText().toString().trim();
                 String jml_cabang = inputJml_cabang.getText().toString().trim();
-                String omset_tahunan = inputOmsetTahunan.getText().toString().trim();
+                String omset_tahunan = sp.getSelectedItem().toString();
                 String no_tlp = inputNoTlp.getText().toString().trim();
                 String facebook = inputFacebook.getText().toString().trim();
                 String instagram = inputInstagram.getText().toString().trim();
@@ -281,9 +322,9 @@ public class Add_Usaha extends AppCompatActivity {
         if (pDialog.isShowing())
             pDialog.dismiss();
     }
-    public String currencyFormatter(String num) {
-        double m = Double.parseDouble(num);
-        DecimalFormat formatter = new DecimalFormat("###,###,###");
-        return formatter.format(m);
-    }
+//    public String currencyFormatter(String num) {
+//        double m = Double.parseDouble(num);
+//        DecimalFormat formatter = new DecimalFormat("###,###,###");
+//        return formatter.format(m);
+//    }
 }

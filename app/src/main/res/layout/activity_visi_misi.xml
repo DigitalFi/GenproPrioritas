@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="#eee"
+    android:layout_height="match_parent"
+    tools:context=".VisiMisi">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="32sp"
+        android:text="Visi &amp; Misi Genpro SME"
+        android:textColor="#302e2e"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"/>
+    <LinearLayout
+        android:id="@+id/list1"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#000"
+        android:orientation="vertical">
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/list2"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#000"
+        android:orientation="vertical">
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#000"
+        android:orientation="vertical">
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="#eee"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:text="• Visi"
+        android:layout_margin="6dp"
+        android:textColor="#3d3838"/>
+
+    <TextView
+        android:textColor="#3d3838"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_margin="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/visi"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="#eee"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:text="• Misi"
+        android:layout_margin="6dp"
+        android:textColor="#3d3838"/>
+
+    <TextView
+        android:textColor="#3d3838"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_margin="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/misi"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:background="#eee"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="• Nilai :"
+        android:id="@+id/nilai"
+        android:textSize="20sp"
+        android:textColor="#3d3838"
+        android:layout_margin="8dp"
+        android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/nilai"
+            android:text="Profesional,Efektif,Uptodate"
+            android:textSize="20sp"
+            android:textColor="#3d3838"
+            android:layout_margin="9dp"
+            android:textStyle="bold"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -88,7 +88,7 @@ public class Detailbisnis extends AppCompatActivity {
         merek.setText("Merk : "+merekss);
         jumlah_karyawan.setText("Jumlah Karyawan :"+karyawans);
         jml_cabang.setText("Jumlah Cabang :"+cabangs);
-        omset_tahunan.setText("Omset Tahunan :"+currencyFormatter(omsed));
+        omset_tahunan.setText("Omset Tahunan :"+omsed);
         no_tlp.setText("Nomor Telepon :"+nope);
         facebook.setText("Facebook :"+faceboo);
         instagram.setText("Instagram :"+insta);
@@ -167,9 +167,10 @@ public class Detailbisnis extends AppCompatActivity {
         startActivity(h);
 
     }
-    public String currencyFormatter(String num) {
-        double m = Double.parseDouble(num);
-        DecimalFormat formatter = new DecimalFormat("###,###,###");
-        return formatter.format(m);
-    }
+
+//    public String currencyFormatter(String num) {
+//        double m = Double.parseDouble(num);
+//        DecimalFormat formatter = new DecimalFormat("###,###,###");
+//        return formatter.format(m);
+//    }
 }

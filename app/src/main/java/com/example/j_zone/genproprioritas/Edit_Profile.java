@@ -50,7 +50,7 @@ public class Edit_Profile extends AppCompatActivity {
     private Button btnImage;
     private Button btnSubmit;
     private ImageView imageView;
-    private EditText nama, namaPanjang, phone, alamat ;
+    private EditText nama, namaPanjang, phone, alamat,alamatdomisili,noktp ;
     private SharedPreferences user;
     private SharedPreferences updt;
     private SharedPreferences user_edit;
@@ -58,7 +58,6 @@ public class Edit_Profile extends AppCompatActivity {
     static final int REQUEST_TAKE_PHOTO = 1;
 
     String URL="http://genprodev.lavenderprograms.com/apigw/reff/get_propinsi";
-    //String URL1="http://genprodev.lavenderprograms.com/apigw/reff/get_propinsi";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,8 +79,6 @@ public class Edit_Profile extends AppCompatActivity {
 
         }
 
-        user = getSharedPreferences("data_user", Context.MODE_PRIVATE);
-        final String userid = user.getString("user_id", "");
 
 //        if (!userid.isEmpty()) {
 //            // login user
@@ -94,6 +91,8 @@ public class Edit_Profile extends AppCompatActivity {
 //                    .show();
 //        }
 
+        alamatdomisili = (EditText) findViewById(R.id.alamat_domisili);
+        noktp = (EditText) findViewById(R.id.nomor_ktp);
         btnImage = (Button)findViewById(R.id.btn_picture);
         btnSubmit = (Button)findViewById(R.id.btn_submit);
         imageView = (ImageView)findViewById(R.id.imageView);
@@ -128,12 +127,16 @@ public class Edit_Profile extends AppCompatActivity {
         final String nm_belakang = user.getString("nama_belakang","");
         final String phones = user.getString("tlp","");
         final String alamats = user.getString("alamat","");
+        final String alamatdomisil = user.getString("alamat_domisili","");
+        final String no_ktp = user.getString("no_ktp","");
 
 
         nama.setText(nm_depan);
         namaPanjang.setText(nm_belakang);
         phone.setText(phones);
         alamat.setText(alamats);
+        alamatdomisili.setText(alamatdomisil);
+        noktp.setText(no_ktp);
 
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -278,23 +281,20 @@ public class Edit_Profile extends AppCompatActivity {
                     String namabelakang = namaPanjang.getText().toString().trim();
                     String almt = alamat.getText().toString().trim();
                     String telepon = phone.getText().toString().trim();
+                    String domisili = alamatdomisili.getText().toString().trim();
+                    String ktp = noktp.getText().toString().trim();
                     String kd_prov = Sp1.getSelectedItem().toString();
                     String kd_kab = Sp2.getSelectedItem().toString();
 
-
-
-                    if (!namadepan.isEmpty() && !id.isEmpty() && !namabelakang.isEmpty() && !almt.isEmpty() && !telepon.isEmpty() && !kd_prov.isEmpty() && !kd_kab.isEmpty() ) {
+                    if (!namadepan.isEmpty() && !id.isEmpty() && !namabelakang.isEmpty() && !almt.isEmpty() && !telepon.isEmpty() && !domisili.isEmpty() && !ktp.isEmpty() && !kd_prov.isEmpty() && !kd_kab.isEmpty() ) {
                         // login user
-                        uploadBitmap(bitmap, id, namadepan, namabelakang, almt, telepon, kd_prov, kd_kab);
+                        uploadBitmap(bitmap, id, namadepan, namabelakang, almt, telepon,domisili,ktp, kd_prov, kd_kab);
 
-//                        Toast.makeText(getApplicationContext(),
-//                                id + "," + kd_prov + "," + namadepan + "," + namabelakang + "," + almt + "," + telepon + "," + kd_kab, Toast.LENGTH_LONG)
-//                                .show();
 
                     } else {
                         // jika inputan kosong tampilkan pesan
                         Toast.makeText(getApplicationContext(),
-                                "Jangan kosongkan email dan password!" + id, Toast.LENGTH_LONG)
+                                "Ada yang kurang" + "ID NYA :"+id + "Nama Depan"+namadepan+ "Nama Belakang "+namabelakang+ "Alamat nya "+almt+ "Domisili "+domisili+ "Nomor KTP "+ktp+ "No Telepon "+telepon+ kd_kab+ kd_prov, Toast.LENGTH_LONG)
                                 .show();
                     }
 
@@ -307,7 +307,7 @@ public class Edit_Profile extends AppCompatActivity {
         }
     }
 
-    private void uploadBitmap(final Bitmap bitmap, final String id, final String namadepan, final String namabelakang, final String almt, final String telepon, final String kd_prov, final String kd_kab) {
+    private void uploadBitmap(final Bitmap bitmap, final String id, final String namadepan, final String namabelakang, final String almt, final String telepon,final String domisili,final String ktp, final String kd_prov, final String kd_kab) {
         //our custom volley request
         VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, AppConfig.URL_EDIT_PROFILE,
                 new Response.Listener<NetworkResponse>() {
@@ -326,18 +326,21 @@ public class Edit_Profile extends AppCompatActivity {
                                 String belakang = obj.getString("nama_belakang");
                                 String nomor_anggota = obj.getString("no_anggota");
                                 String propinsi = obj.getString("id_propinsi");
+                                String domis = obj.getString("alamat_domisili");
+                                String ktps = obj.getString("no_ktp");
                                 String kabupaten = obj.getString("id_kabupaten");
                                 String alamat = obj.getString("alamat");
                                 String phone = obj.getString("phone");
                                 String picture = obj.getString("picture");
                                 String update = obj.getString("update_date");
-
                                 // buat session user yang sudah login yang menyimpan id,nama,full name, roles id, roles name
                                 SharedPreferences.Editor editor = updt.edit();
                                 editor.putString("nama_depan",depan);
                                 editor.putString("nama_belakang", belakang);
                                 editor.putString("alamat",alamat);
                                 editor.putString("phone",phone);
+                                editor.putString("alamat_domisili",domis);
+                                editor.putString("no_ktp",ktps);
                                 editor.putString("no_anggota", nomor_anggota);
                                 editor.putString("picture", picture);
                                 editor.putString("url", "http://genprodev.lavenderprograms.com/img/mobile_apps/");
@@ -362,11 +365,6 @@ public class Edit_Profile extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(),
                                         "Username atau password yang anda masukan salah", Toast.LENGTH_LONG).show();
                             }
-
-                            //JSONObject obj = new JSONObject(new String(response.data));
-                            //Toast.makeText(getApplicationContext(), obj.getString("msg"), Toast.LENGTH_SHORT).show();
-                            //String NomorAnggota = obj.getString("no_anggota");
-                            //save id kelembagaan
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -395,6 +393,8 @@ public class Edit_Profile extends AppCompatActivity {
                 params.put("id_propinsi", kd_prov);
                 params.put("id_kabupaten", kd_kab);
                 params.put("alamat", almt);
+                params.put("alamat_domisili", domisili);
+                params.put("no_ktp", ktp);
                 params.put("phone", telepon);
                 return params;
             }

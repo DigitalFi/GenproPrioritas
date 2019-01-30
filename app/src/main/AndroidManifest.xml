@@ -108,11 +108,30 @@
             android:label="Detail Bisnis"
             android:parentActivityName=".Menu_main"
             android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity android:name=".EditBisnis"
-            android:parentActivityName=".Menu_main"
+        <activity
+            android:name=".EditBisnis"
             android:label="Edit Bisnis"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:parentActivityName=".Menu_main"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".VisiMisi"
+            android:label="Visi dan Misi"
+            android:parentActivityName=".Menu_main" />
+        <activity
+            android:name=".Sejarah"
+            android:label="Sejarah Genpro"
+            android:parentActivityName=".Menu_main" />
+        <activity
+            android:name=".Kegiatan"
+            android:label="Kegiatan Genpro"
+            android:parentActivityName=".Menu_main" />
+        <activity
+            android:name=".AskBOD"
+            android:label="Pengurus Genpro"
+            android:parentActivityName=".Menu_main" />
+        <activity android:name=".Membership"
+            android:label="Membership"
+            android:parentActivityName=".Menu_main"/>
     </application>
 
 </manifest>

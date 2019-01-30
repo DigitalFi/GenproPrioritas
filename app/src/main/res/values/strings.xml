@@ -13,6 +13,9 @@
     <string name="title_activity_login">Login</string>
     <string name="title_activity_gmb_menu">GMB_menu</string>
     <string name="title_activity_gmb_genpro">GMB_genpro</string>
+    <string name="visi">Menjadi wadah upgrading Bisnis yang terpercaya dibidang incubator bisnis,pengembangan UMKM, dan Pengabdian kepada masyarakat untuk Mewujudkan Peradaban yang Tinggi.</string>
+    <string name="misi">Kami wadah upgrading bisnis, Berbasis Karakter yang menyelenggarakan pembelajaran,pendampingan dan pengabdian masyarakat melalui keseimbangan spiritualitas,Kreativitas dan intelektualitas.</string>
+    <string name="lorem"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus id tortor luctus, faucibus diam eu, malesuada felis. Nam tempus, metus in tincidunt ullamcorper, nisi metus porttitor nibh, a mollis ligula sapien ut libero. Nunc efficitur tristique turpis a blandit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec sit amet dictum metus. Cras cursus, est quis blandit varius, nulla dui gravida velit, eu malesuada mauris felis ac dui. Praesent sit amet mauris vel libero accumsan feugiat. Proin pulvinar efficitur lorem. Proin tellus metus, ultrices id ipsum id, aliquam laoreet ligula. Integer lobortis sem a ante porttitor, in finibus eros porttitor. Etiam mattis turpis sit amet vestibulum sagittis. Curabitur nisi augue, bibendum id turpis a, mollis faucibus arcu. Mauris mattis commodo sem, sit amet venenatis lacus hendrerit sed. Vivamus lacinia mollis orci ac rhoncus.</string>
 
     <string-array name="Provinsi">
         <item>SELECT</item>
@@ -54,6 +57,32 @@
 
     <string-array name="SELECT">
         <item>SELECT</item>
+    </string-array>
+
+    <string-array name="omset">
+        <item>SELECT</item>
+        <item>0 - 50 Jt</item>
+        <item>50 Jt - 300 Jt</item>
+        <item>300 Jt - 2,5 M</item>
+        <item>2,5 M - 50 M</item>
+        <item> > 50 M </item>
+    </string-array>
+
+
+    <string-array name="bisnis">
+        <item>SELECT</item>
+        <item>Perternakan</item>
+        <item>Fashion</item>
+        <item>Travel</item>
+        <item>Kesehatan</item>
+        <item>IT</item>
+        <item>Catering, Kuliner dan WO</item>
+        <item>EPC</item>
+        <item>Agribisnis</item>
+        <item>Ekspedisi</item>
+        <item>Property</item>
+        <item>Advertising, Printing dan Percetakan</item>
+        <item>Other</item>
     </string-array>
 
     <string-array name="ACEH">

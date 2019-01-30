@@ -29,18 +29,22 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bisnis Type Usaha"/>
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp">
 
-                <EditText
+                <Spinner
+                    android:entries="@array/bisnis"
                     android:id="@+id/jenis_usaha"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Bisnis Type Usaha"
-                    android:inputType="text" />
+                    android:layout_height="wrap_content"/>
             </android.support.design.widget.TextInputLayout>
 
             <!--<android.support.design.widget.TextInputLayout-->
@@ -113,18 +117,22 @@
                     android:inputType="number" />
             </android.support.design.widget.TextInputLayout>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Omset Tahunan"/>
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp">
 
-                <EditText
+                <Spinner
                     android:id="@+id/omst_tahunan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Omset Tahunan"
-                    android:inputType="number" />
+                    android:entries="@array/omset"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout

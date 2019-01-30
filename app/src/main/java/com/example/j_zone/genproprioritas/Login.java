@@ -125,6 +125,8 @@ public class Login extends Activity {
                         String n_anggota = jObj.getString("no_anggota");
                         String pic = jObj.getString("picture");
 						String alamat = jObj.getString("alamat");
+						String domisili = jObj.getString("alamat_domisili");
+						String ktp = jObj.getString("no_ktp");
                         String tlp = jObj.getString("phone");
 						
                         SharedPreferences.Editor editor = user.edit();
@@ -134,6 +136,8 @@ public class Login extends Activity {
                         editor.putString("nama_belakang", nama_belakang);
                         editor.putString("email", email);
                         editor.putString("alamat", alamat);
+                        editor.putString("alamat_domisili", domisili);
+                        editor.putString("no_ktp", ktp);
                         editor.putString("no_anggota", n_anggota);
                         editor.putString("tlp", tlp);
                         editor.putString("pic", pic);

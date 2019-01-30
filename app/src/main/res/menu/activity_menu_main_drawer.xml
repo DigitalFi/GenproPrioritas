@@ -20,6 +20,31 @@
             android:id="@+id/nav_gmb_genpro"
             android:icon="@drawable/genpro_ic"
             android:title="GMB Genpro" />
+
+        <item
+            android:id="@+id/nav_member"
+            android:icon="@drawable/member"
+            android:title="Membership" />
+
+        <item
+            android:id="@+id/nav_ask"
+            android:icon="@drawable/ask"
+            android:title="Ask BOD" />
+
+        <item
+            android:id="@+id/nav_kegiatan"
+            android:icon="@drawable/kegiatan"
+            android:title="Kegiatan" />
+
+        <item
+            android:id="@+id/nav_visi_misi"
+            android:icon="@drawable/visi"
+            android:title="Visi Misi dan Nilai" />
+
+        <item
+            android:id="@+id/nav_sejarah"
+            android:icon="@drawable/sejarah"
+            android:title="Sejarah dan Profile Pendiri" />
     </group>
 
     <item android:title="Version">
