@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fillViewport="true">
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".Add_Usaha"
-    tools:showIn="@layout/activity_add__usaha">
+    tools:context=".KtpFragment">
+
+    <!-- TODO: Update blank fragment layout -->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,16 +29,71 @@
 
         </LinearLayout>
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp">
+
+                <EditText
+                    android:id="@+id/noktp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="No KTP"
+                    android:inputType="text" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp">
+
+                <EditText
+                    android:id="@+id/namaktp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nama Sesuai KTP"
+                    android:inputType="text" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp">
+
+                <EditText
+                    android:id="@+id/tempatlahir"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Tempat Lahir"
+                    android:inputType="text" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp">
+
+                <EditText
+                    android:id="@+id/Tanggallahir"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Tanggal Lahir"
+                    android:inputType="text" />
+            </android.support.design.widget.TextInputLayout>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Bisnis Type Usaha"/>
+                android:text="Agama"/>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -41,100 +102,19 @@
                 android:layout_marginTop="8dp">
 
                 <Spinner
-                    android:entries="@array/bisnis"
-                    android:id="@+id/jenis_usaha"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-            </android.support.design.widget.TextInputLayout>
-
-            <!--<android.support.design.widget.TextInputLayout-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginBottom="8dp"-->
-                <!--android:layout_marginTop="8dp">-->
-
-                <!--<EditText-->
-                    <!--android:id="@+id/jenis_usaha_lain"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:hint="Jenis Usaha Lain-Lain (Optional)"-->
-                    <!--android:inputType="text" />-->
-            <!--</android.support.design.widget.TextInputLayout>-->
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp">
-
-                <EditText
-                    android:id="@+id/nama_usaha"
+                    android:id="@+id/SpAgama"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Nama Usaha"
-                    android:inputType="text" />
+                    android:entries="@array/agama"
+                    />
+
             </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp">
-
-                <EditText
-                    android:id="@+id/nama_lain"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Nama Lain"
-                    android:inputType="text" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp">
-
-                <EditText
-                    android:id="@+id/Merek"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Merek"
-                    android:inputType="text" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp">
-
-                <EditText
-                    android:id="@+id/jumlah_karyawan"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Jumlah Karyawan"
-                    android:inputType="number" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp">
-
-                <EditText
-                    android:id="@+id/jml_cabang"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Jumlah Cabang"
-                    android:inputType="number" />
-            </android.support.design.widget.TextInputLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Omset Tahunan"/>
+                android:text="Golongan Darah"/>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -143,11 +123,51 @@
                 android:layout_marginTop="8dp">
 
                 <Spinner
-                    android:id="@+id/omst_tahunan"
+                    android:id="@+id/SpGoldar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:entries="@array/omset"/>
+                    android:entries="@array/goldar"
+                    />
             </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Jenis Kelamin"/>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp">
+
+                <Spinner
+                    android:id="@+id/SpJeniskelamin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/jeniskelamin"
+                    />
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Status Pernikahan"/>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp">
+
+                <Spinner
+                    android:id="@+id/SpStatusNikah"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/statusnikah"
+                    />
+            </android.support.design.widget.TextInputLayout>
+
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -156,24 +176,10 @@
                 android:layout_marginTop="8dp">
 
                 <EditText
-                    android:id="@+id/tlp"
+                    android:id="@+id/alamat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Nomor Telepon"
-                    android:inputType="number" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp">
-
-                <EditText
-                    android:id="@+id/Tentang"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Tentang Perusahaan"
+                    android:hint="Alamat"
                     android:inputType="text" />
             </android.support.design.widget.TextInputLayout>
 
@@ -184,10 +190,10 @@
                 android:layout_marginTop="8dp">
 
                 <EditText
-                    android:id="@+id/acc_facebook"
+                    android:id="@+id/rtrw"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Facebook"
+                    android:hint="RT/RW"
                     android:inputType="text" />
             </android.support.design.widget.TextInputLayout>
 
@@ -198,11 +204,63 @@
                 android:layout_marginTop="8dp">
 
                 <EditText
-                    android:id="@+id/acc_instagram"
+                    android:id="@+id/kelurahan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Instagram"
+                    android:hint="Kelurahan"
                     android:inputType="text" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp">
+
+                <EditText
+                    android:id="@+id/kecamatan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Kecamatan"
+                    android:inputType="text" />
+            </android.support.design.widget.TextInputLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Provinsi"/>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp">
+
+            <Spinner
+                android:id="@+id/SpProvinsi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/Provinsi"
+                />
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Kabupaten"/>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp">
+
+                <Spinner
+                    android:id="@+id/Spkabupaten"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.v7.widget.AppCompatButton
@@ -227,7 +285,8 @@
 
 
         </LinearLayout>
-
     </LinearLayout>
 
-</android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>
+</ScrollView>

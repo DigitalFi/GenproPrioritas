@@ -257,7 +257,7 @@ public class Menu_main extends AppCompatActivity implements NavigationView.OnNav
             Intent intent = new Intent(Menu_main.this, Business.class);
             startActivity(intent);
         } else if (id == R.id.nav_manage_profile) {
-            Intent intent = new Intent(Menu_main.this, Profile.class);
+            Intent intent = new Intent(Menu_main.this, EditProfileActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_gmb_genpro) {
             Intent intent = new Intent(Menu_main.this, GMB_genpro.class);
@@ -286,7 +286,7 @@ public class Menu_main extends AppCompatActivity implements NavigationView.OnNav
 
     public void edit(View view) {
 
-        Intent h= new Intent(Menu_main.this,Edit_Profile.class);
+        Intent h= new Intent(Menu_main.this,EditProfileActivity.class);
         startActivity(h);
 
     }

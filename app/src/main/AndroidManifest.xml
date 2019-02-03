@@ -23,7 +23,7 @@
         android:name=".helper.AppController"
         android:allowBackup="true"
         android:icon="@mipmap/ic_genpro"
-        android:label="Genpro Priotitas"
+        android:label="Genpro Prioritas"
         android:roundIcon="@mipmap/ic_genpro_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -129,9 +129,15 @@
             android:name=".AskBOD"
             android:label="Pengurus Genpro"
             android:parentActivityName=".Menu_main" />
-        <activity android:name=".Membership"
+        <activity
+            android:name=".Membership"
             android:label="Membership"
-            android:parentActivityName=".Menu_main"/>
+            android:parentActivityName=".Menu_main" />
+        <activity android:name=".EditProfileActivity"
+            android:label="Edit Profile"
+            android:parentActivityName=".Menu_main">
+
+        </activity>
     </application>
 
 </manifest>

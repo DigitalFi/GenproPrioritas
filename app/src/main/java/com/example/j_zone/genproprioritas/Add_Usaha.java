@@ -53,6 +53,8 @@ public class Add_Usaha extends AppCompatActivity {
     private EditText inputFacebook;
     private EditText inputInstagram;
     private EditText inputNamaUsaha;
+    private EditText inputNamaLain;
+    private EditText inputTentang;
     private ProgressDialog pDialog;
     private SharedPreferences user;
     private Spinner sp,sp1;
@@ -75,7 +77,9 @@ public class Add_Usaha extends AppCompatActivity {
         sp1 = findViewById(R.id.jenis_usaha);
 //        inputNamaUsaha = (EditText) findViewById(R.id.jenis_usaha_lain);
         inputNamaUsaha = (EditText)findViewById(R.id.nama_usaha) ;
+        inputTentang = findViewById(R.id.Tentang);
         inputMerek = (EditText) findViewById(R.id.Merek);
+        inputNamaLain = (EditText) findViewById(R.id.nama_lain);
         inputJml_karyawan = (EditText) findViewById(R.id.jumlah_karyawan);
         inputJml_cabang = (EditText) findViewById(R.id.jml_cabang);
         inputNoTlp = (EditText) findViewById(R.id.tlp);
@@ -131,6 +135,8 @@ public class Add_Usaha extends AppCompatActivity {
 //                String namausaha = inputNamaUsaha.getText().toString().trim();
                 String merek = inputMerek.getText().toString().trim();
                 String namausaha = inputNamaUsaha.getText().toString().trim();
+                String namausahalain = inputNamaLain.getText().toString().trim();
+                String tentangperusahaan = inputTentang.getText().toString().trim();
                 String jml_karyawan = inputJml_karyawan.getText().toString().trim();
                 String jml_cabang = inputJml_cabang.getText().toString().trim();
                 String omset_tahunan = sp.getSelectedItem().toString();
@@ -161,8 +167,14 @@ public class Add_Usaha extends AppCompatActivity {
                    Toast.makeText(Add_Usaha.this, "Facebook Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
              }else if (instagram.isEmpty()){
                    Toast.makeText(Add_Usaha.this, "Instagram Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
-               }else
-                  checkSubmit(id,namausaha, namabisnis, merek, jml_karyawan, jml_cabang, omset_tahunan, no_tlp, facebook, instagram);
+               }else if (namausahalain.isEmpty()){
+                   Toast.makeText(Add_Usaha.this, "Nama Usaha Lain Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
+               }else if (tentangperusahaan.isEmpty()){
+                   Toast.makeText(Add_Usaha.this, "Tentang Perusahaan Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
+               }else {
+                   checkSubmit(id,namausaha,namausahalain,tentangperusahaan, namabisnis, merek, jml_karyawan, jml_cabang, omset_tahunan, no_tlp, facebook, instagram);
+               }
+
             }
 
         });
@@ -212,7 +224,7 @@ public class Add_Usaha extends AppCompatActivity {
 //            };
 //        }//
 
-    private void checkSubmit(final String id,final String namausaha, final String namabisnis, final String merek, final String jml_karyawan, final String jml_cabang, final String omset_tahunan, final String no_tlp, final String facebook, final String instagram) {
+    private void checkSubmit(final String id,final String namausaha,final String tentang,final String namausahalain, final String namabisnis, final String merek, final String jml_karyawan, final String jml_cabang, final String omset_tahunan, final String no_tlp, final String facebook, final String instagram) {
 
         // Tag biasanya digunakan ketika ingin membatalkan request volley
         String tag_string_req = "req_login";
@@ -229,8 +241,8 @@ public class Add_Usaha extends AppCompatActivity {
 
                 try
                 {
-                    JSONObject jObj = new JSONObject(response);
-                    boolean error = jObj.getBoolean("error");
+                        JSONObject jObj = new JSONObject(response);
+                        boolean error = jObj.getBoolean("error");
                     // ngecek node error dari api
                     if (!error) {
                         /*user berhasil login
@@ -297,11 +309,13 @@ public class Add_Usaha extends AppCompatActivity {
                 params.put("user_id", id);
                 params.put("nm_bisnis_lain", namabisnis);
                 params.put("nm_usaha", namausaha);
+                params.put("nm_usaha_lain", namausahalain);
                 params.put("merk", merek);
                 params.put("jml_karyawan", jml_karyawan);
                 params.put("jml_cabang", jml_cabang);
                 params.put("omset_tahunan", omset_tahunan);
                 params.put("no_tlp", no_tlp);
+                params.put("tentang_usaha", tentang);
                 params.put("facebook", facebook);
                 params.put("instagram", instagram);
 
