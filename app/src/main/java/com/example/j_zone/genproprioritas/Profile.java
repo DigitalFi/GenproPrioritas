@@ -62,19 +62,13 @@ public class Profile extends AppCompatActivity {
 			Nomor.setText("Nomor Anggota : "+nomor1);
 			Alamat.setText("Alamat : "+almt1);
 			Telepon.setText("Nomor Telephone : "+tlp1);
-			/*
-			* mau ngapain ini kmarin
-			* pas abis edit profile kan masukin no tlp sama alamat tuh , udh keambil
-			* abis itu gua logout , login lagi make user yg sama
-			* tapi ga muncul alamat sama nomor telponnya
-			* */
+
 		}
 		
         view = (WebView) findViewById(R.id.profil_pic) ;
         view.getSettings().setJavaScriptEnabled(true);
         view.setWebViewClient(new profile_pic());
 
-        //ini manggil url web dari webview-nya
 
         if (!pic.isEmpty()){
             String url = "http://genprodev.lavenderprograms.com/img/mobile_apps/"+pic;

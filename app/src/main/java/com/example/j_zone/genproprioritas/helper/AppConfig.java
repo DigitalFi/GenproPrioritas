@@ -27,4 +27,6 @@ public class AppConfig {
 
     public static String URL_DELETE_BISNIS = baseurl+"bisnis_info/delete_bisnis";
 
+    public static String URL_UMUM = baseurl+"users/update_profile_umum";
+
 }

@@ -156,6 +156,8 @@ public class Menu_main extends AppCompatActivity implements NavigationView.OnNav
                         bisnis2.setId_bisnis_info(object2.getString("id_bisnis_info"));
                         bisnis2.setNm_usaha(object2.getString("nm_usaha"));
                         bisnis2.setMerk(object2.getString("merk"));
+                        bisnis2.setTentang(object2.getString("tentang_usaha"));
+                        bisnis2.setNamalain(object2.getString("nm_usaha_lain"));
                         bisnis2.setTglTerdaftar(object2.getString("tgl_terdaftar"));
                         bisnis2.setNmbisnislain(object2.getString("nm_bisnis_lain"));
                         bisnis2.setJumlahkaryawan(object2.getString("jml_karyawan"));

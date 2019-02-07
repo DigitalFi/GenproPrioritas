@@ -33,7 +33,7 @@ import java.util.Map;
 
 
 public class Detailbisnis extends AppCompatActivity {
-    TextView nmbisnislain,nmusaha,merek,jumlah_karyawan,jml_cabang,omset_tahunan,no_tlp,facebook,instagram;
+    TextView nmbisnislain,nmusaha,merek,jumlah_karyawan,jml_cabang,omset_tahunan,no_tlp,facebook,instagram,tentags,lains;
     Button btnedit,btn_apus;
     private static final String TAG = Detailbisnis.class.getSimpleName();
     private  static final String TAG_MESSAGE = "msg";
@@ -55,6 +55,8 @@ public class Detailbisnis extends AppCompatActivity {
         facebook = findViewById(R.id.facebook);
         instagram = findViewById(R.id.instagram);
         btnedit = findViewById(R.id.btn_edit);
+        tentags = findViewById(R.id.tentang);
+        lains = findViewById(R.id.nmlain);
 
         btn_apus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +73,8 @@ public class Detailbisnis extends AppCompatActivity {
         Intent a = getIntent();
         String namas = a.getStringExtra("nm_bisnis_lain");
         String usaha = a.getStringExtra("nm_usaha");
+        String ttg = a.getStringExtra("tentang_usaha");
+        String lain = a.getStringExtra("nm_usaha_lain");
         String merekss = a.getStringExtra("merk");
         String karyawans = a.getStringExtra("jml_karyawan");
         String cabangs = a.getStringExtra("jml_cabang");
@@ -82,7 +86,8 @@ public class Detailbisnis extends AppCompatActivity {
 
 
 
-
+        tentags.setText("Tentang Usaha Anda : "+ttg);
+        lains.setText("Nama Lain Usaha : "+lain);
         nmbisnislain.setText("Bisnis Lain :"+namas);
         nmusaha.setText("Nama Usaha : "+usaha);
         merek.setText("Merk : "+merekss);
@@ -148,6 +153,8 @@ public class Detailbisnis extends AppCompatActivity {
         String usaha = s.getStringExtra("nm_usaha");
         String merekss = s.getStringExtra("merk");
         String karyawans = s.getStringExtra("jml_karyawan");
+        String usahalain = s.getStringExtra("nm_usaha_lain");
+        String tentang = s.getStringExtra("tentang_usaha");
         String cabangs = s.getStringExtra("jml_cabang");
         String omsed = s.getStringExtra("omset_tahunan");
         String nope = s.getStringExtra("no_tlp");
@@ -158,6 +165,8 @@ public class Detailbisnis extends AppCompatActivity {
         h.putExtra("id_bisnis_info",id_bisnis);
         h.putExtra("nm_usaha",usaha);
         h.putExtra("merk",merekss);
+        h.putExtra("tentang_usaha",tentang);
+        h.putExtra("nm_usaha_lain",usahalain);
         h.putExtra("jml_karyawan",karyawans);
         h.putExtra("jml_cabang",cabangs);
         h.putExtra("omset_tahunan",omsed);

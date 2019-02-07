@@ -190,7 +190,7 @@ class VolleyMultipartRequest extends Request<NetworkResponse> {
         dataOutputStream.writeBytes(lineEnd);
     }
 
-    class DataPart {
+    static class DataPart {
         private String fileName;
         private byte[] content;
         private String type;

@@ -22,9 +22,9 @@
     <application
         android:name=".helper.AppController"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_genpro"
+        android:icon="@drawable/loogo"
         android:label="Genpro Prioritas"
-        android:roundIcon="@mipmap/ic_genpro_round"
+        android:roundIcon="@drawable/logok"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity

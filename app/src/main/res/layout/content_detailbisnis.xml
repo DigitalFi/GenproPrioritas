@@ -70,12 +70,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
-                        <!--<TextView-->
-                            <!--android:id="@+id/username"-->
-                            <!--android:layout_width="match_parent"-->
-                            <!--android:layout_height="match_parent"-->
-                            <!--android:text=" nama bisnis lain"-->
-                            <!--android:padding="2dp"/>-->
+
                         <TextView
                             android:id="@+id/nmbisnislain"
                             android:layout_width="match_parent"
@@ -84,6 +79,12 @@
                             android:padding="2dp"/>
                         <TextView
                             android:id="@+id/nmusaha"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text=" - "
+                            android:padding="2dp"/>
+                        <TextView
+                            android:id="@+id/nmlain"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:text=" - "
@@ -118,6 +119,12 @@
                             android:layout_height="match_parent"
                             android:text="-"
                             android:id="@+id/no_tlp"
+                            android:padding="2dp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="-"
+                            android:id="@+id/tentang"
                             android:padding="2dp"/>
                         <TextView
                             android:layout_width="match_parent"

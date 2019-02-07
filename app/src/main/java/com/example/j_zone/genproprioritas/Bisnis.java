@@ -17,11 +17,13 @@ public class Bisnis {
     private String telepon;
     private String facebooks;
     private String instagrams;
+    private String tentang;
+    private String namalain;
 
     public Bisnis(){
 
     }
-    public Bisnis(String id_bisnis_info, String nmbisnislain, String nmusaha, String tglTerdaftar,String merk,String nm_usaha,String jml_karyawan,String jml_cabang,String omset_tahunan,String no_tlp,String facebook,String instagram){
+    public Bisnis(String id_bisnis_info, String nmbisnislain, String nmusaha, String tglTerdaftar,String merk,String nm_usaha,String jml_karyawan,String jml_cabang,String omset_tahunan,String no_tlp,String facebook,String instagram,String nm_usaha_lain,String tentang_usaha){
         this.id_bisnis_info = id_bisnis_info;
         this.nmbisnislain = nmbisnislain;
         this.nmusaha = nmusaha;
@@ -34,6 +36,25 @@ public class Bisnis {
         this.telepon = no_tlp;
         this.facebooks = facebook;
         this.instagrams = instagram;
+        this.tentang = tentang_usaha;
+        this.namalain = nm_usaha_lain;
+
+    }
+
+    public String getTentang() {
+        return tentang;
+    }
+
+    public void setTentang(String tentang) {
+        this.tentang = tentang;
+    }
+
+    public String getNamalain() {
+        return namalain;
+    }
+
+    public void setNamalain(String namalain) {
+        this.namalain = namalain;
     }
 
     public String getId_bisnis_info() {

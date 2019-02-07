@@ -39,6 +39,7 @@ public class BisnisAdapter extends RecyclerView.Adapter<BisnisAdapter.ViewHolder
         holder.txtUsaha.setText(bisnis.getMerk());
         holder.txtTgl.setText(bisnis.getTglTerdaftar());
 
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -48,7 +49,8 @@ public class BisnisAdapter extends RecyclerView.Adapter<BisnisAdapter.ViewHolder
 //                Toast.makeText(context, "position "+position, Toast.LENGTH_SHORT).show();
                 String name = list.get(position).getNmbisnislain();
                 String usaha = list.get(position).getNm_usaha();
-
+                String ttg = list.get(position).getTentang();
+                String lain = list.get(position).getNamalain();
                 String merek = list.get(position).getMerk();
                 String karyawan = list.get(position).getJumlahkaryawan();
                 String cabang = list.get(position).getJumlahcabang();
@@ -64,6 +66,8 @@ public class BisnisAdapter extends RecyclerView.Adapter<BisnisAdapter.ViewHolder
                 a.putExtra("id_bisnis_info",idbisnis);
                 a.putExtra("nm_bisnis_lain",name);
                 a.putExtra("nm_usaha",usaha);
+                a.putExtra("tentang_usaha",ttg);
+                a.putExtra("nm_usaha_lain",lain);
                 a.putExtra("merk",merek);
                 a.putExtra("jml_karyawan",karyawan);
                 a.putExtra("jml_cabang",cabang);
