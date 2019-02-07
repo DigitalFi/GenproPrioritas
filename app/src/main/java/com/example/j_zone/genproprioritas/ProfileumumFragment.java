@@ -160,15 +160,13 @@ public class ProfileumumFragment extends Fragment {
 
     private void UploadBitmap(final Bitmap bitmap, final String spbank, final String id, final String emails, final String namadepans, final String namabelakangs, final String hp, final String pesbuk, final String insta, final String twit) {
         String tag_string_req = "req_login";
-        StringRequest strReq = new StringRequest(Request.Method.POST,
-                AppConfig.URL_UMUM, new Response.Listener<String>() {
+        VolleyMultipartRequest strReq = new VolleyMultipartRequest(Request.Method.POST, AppConfig.URL_UMUM, new Response.Listener<NetworkResponse>() {
             @Override
-            public void onResponse(String response) {
+            public void onResponse(NetworkResponse response) {
                 try {
-                    JSONObject jObj = new JSONObject(response);
+                    JSONObject jObj = new JSONObject(new String(response.data));
                     boolean error = jObj.getBoolean("error");
                     if (!error) {
-
 
                         Intent intent = new Intent(getActivity(),
                                 Menu_main.class);
@@ -199,7 +197,7 @@ public class ProfileumumFragment extends Fragment {
             @Override
             protected Map<String, String> getParams() {
                 // kirim parameter ke server
-                Map<String, String> params = new HashMap<String, String>();
+                Map<String, String> params = new HashMap<>();
                 params.put("user_id", id);
                 params.put("email_umum", emails);
                 params.put("nama_depan", namadepans);
@@ -210,16 +208,24 @@ public class ProfileumumFragment extends Fragment {
                 params.put("instagram", insta);
                 params.put("twitter", twit);
 
-
                 return params;
 
             }
-            protected Map<String, VolleyMultipartRequest.DataPart> getByteData() {
-                Map<String, VolleyMultipartRequest.DataPart> params = new HashMap<>();
+
+            @Override
+            protected Map<String, DataPart> getByteData() {
+                Map<String, DataPart> params = new HashMap<>();
                 long imagename = System.currentTimeMillis();
-                params.put("pic", new VolleyMultipartRequest.DataPart(imagename + ".jpg", getFileDataFromDrawable(bitmap)));
+                params.put("pic", new DataPart(imagename + ".jpg", getFileDataFromDrawable(bitmap)));
                 return params;
             }
+
+//            protected Map<String, VolleyMultipartRequest.DataPart> getByteData() {
+//                Map<String, VolleyMultipartRequest.DataPart> params = new HashMap<>();
+//                long imagename = System.currentTimeMillis();
+//                params.put("pic", new VolleyMultipartRequest.DataPart(imagename + ".jpg", getFileDataFromDrawable(bitmap)));
+//                return params;
+//            }
         };
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
