@@ -161,7 +161,7 @@ public class ProfileumumFragment extends Fragment {
     private void UploadBitmap(final Bitmap bitmap, final String spbank, final String id, final String emails, final String namadepans, final String namabelakangs, final String hp, final String pesbuk, final String insta, final String twit) {
         String tag_string_req = "req_login";
         StringRequest strReq = new StringRequest(Request.Method.POST,
-                AppConfig.URL_DOMISILI, new Response.Listener<String>() {
+                AppConfig.URL_UMUM, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
@@ -179,7 +179,7 @@ public class ProfileumumFragment extends Fragment {
                         Toast.makeText(getActivity(), "Success Updated !", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(getActivity(),
-                                "Error Submited , Please Try Again", Toast.LENGTH_LONG).show();
+                                "Error Submited , Please Try Again"+error+bitmap + spbank + emails + namadepans + namabelakangs + hp + pesbuk + insta + twit, Toast.LENGTH_LONG).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -195,6 +195,7 @@ public class ProfileumumFragment extends Fragment {
                             Toast.LENGTH_SHORT).show();}
             }
             }){
+
             @Override
             protected Map<String, String> getParams() {
                 // kirim parameter ke server
@@ -220,7 +221,6 @@ public class ProfileumumFragment extends Fragment {
                 return params;
             }
         };
-
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 
