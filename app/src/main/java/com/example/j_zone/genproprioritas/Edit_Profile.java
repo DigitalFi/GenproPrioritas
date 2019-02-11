@@ -91,6 +91,8 @@ public class Edit_Profile extends AppCompatActivity {
 //                    .show();
 //        }
 
+        //ngikutin ini aja ya iy urlnya pake yang registered tadi
+
         alamatdomisili = (EditText) findViewById(R.id.alamat_domisili);
         noktp = (EditText) findViewById(R.id.nomor_ktp);
         btnImage = (Button)findViewById(R.id.btn_picture);

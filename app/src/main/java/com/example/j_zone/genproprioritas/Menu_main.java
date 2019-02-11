@@ -94,9 +94,8 @@ public class Menu_main extends AppCompatActivity implements NavigationView.OnNav
         view = (WebView) headerView.findViewById(R.id.Profile);
         view.getSettings().setJavaScriptEnabled(true);
         view.setWebViewClient(new profile());
-        //ini manggil url web dari webview-nya
 
-        // ngecek apakah inputannya kosong atau Tidak
+
         if (!pic.isEmpty()){
             String url = "http://genprodev.lavenderprograms.com/img/mobile_apps/"+pic;
             view.loadUrl(url);

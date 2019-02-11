@@ -1,5 +1,8 @@
 package com.example.j_zone.genproprioritas;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
@@ -190,7 +193,7 @@ class VolleyMultipartRequest extends Request<NetworkResponse> {
         dataOutputStream.writeBytes(lineEnd);
     }
 
-    static class DataPart {
+    static class DataPart implements Parcelable{
         private String fileName;
         private byte[] content;
         private String type;
@@ -202,6 +205,24 @@ class VolleyMultipartRequest extends Request<NetworkResponse> {
             fileName = name;
             content = data;
         }
+
+        protected DataPart(Parcel in) {
+            fileName = in.readString();
+            content = in.createByteArray();
+            type = in.readString();
+        }
+
+        public static final Creator<DataPart> CREATOR = new Creator<DataPart>() {
+            @Override
+            public DataPart createFromParcel(Parcel in) {
+                return new DataPart(in);
+            }
+
+            @Override
+            public DataPart[] newArray(int size) {
+                return new DataPart[size];
+            }
+        };
 
         String getFileName() {
             return fileName;
@@ -215,5 +236,17 @@ class VolleyMultipartRequest extends Request<NetworkResponse> {
             return type;
         }
 
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel parcel, int i) {
+            parcel.writeString(fileName);
+            parcel.writeByteArray(content);
+            parcel.writeString(type);
+        }
     }
 }

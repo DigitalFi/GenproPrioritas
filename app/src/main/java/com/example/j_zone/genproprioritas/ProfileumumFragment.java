@@ -174,6 +174,7 @@ public class ProfileumumFragment extends Fragment {
 
                         getActivity().finish();
 
+
                         Toast.makeText(getActivity(), "Success Updated !", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(getActivity(),
