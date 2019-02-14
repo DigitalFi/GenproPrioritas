@@ -94,20 +94,7 @@ public class Menu_main extends AppCompatActivity implements NavigationView.OnNav
         view = (WebView) headerView.findViewById(R.id.Profile);
         view.getSettings().setJavaScriptEnabled(true);
         view.setWebViewClient(new profile());
-
-
-        if (!pic.isEmpty()){
-            String url = "http://genprodev.lavenderprograms.com/img/mobile_apps/"+pic;
-            view.loadUrl(url);
-//            Toast.makeText(getApplicationContext(), "url-updated="+url, Toast.LENGTH_SHORT).show();
-        }else if (!pic1.isEmpty()){
-            String url = "http://genprodev.lavenderprograms.com/img/mobile_apps/"+pic1;
-            view.loadUrl(url);
-//            Toast.makeText(getApplicationContext(), "url-no-updated="+url, Toast.LENGTH_SHORT).show();
-        }else {
-            view.setVisibility(View.GONE);
-        }
-
+        getFoto();
 
         TextView n = (TextView) headerView.findViewById(R.id.nama_user);
         TextView r = (TextView) headerView.findViewById(R.id.nomor_anggota);
@@ -137,6 +124,52 @@ public class Menu_main extends AppCompatActivity implements NavigationView.OnNav
         mList.addItemDecoration(dividerItemDecoration);
         getBisnis();
 
+    }
+
+    private void getFoto() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.URL_GET_EDIT_PROFILE, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject object = new JSONObject(response);
+                    JSONObject data = object.getJSONObject("data").getJSONObject("umum");
+                    String urlfoto = data.getString("picture");
+
+                    if (!urlfoto.isEmpty()){
+                        String url = urlfoto;
+                        view.loadUrl(url);
+                    }else if (!urlfoto.isEmpty()){
+                        String url = urlfoto;
+                        view.loadUrl(url);
+                    }else {
+                        view.setVisibility(View.GONE);
+                    }
+
+                }catch (JSONException e){
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d("volley", "Error: " + error.getMessage());
+                error.printStackTrace();
+            }
+        }){
+            @Override
+            public String getBodyContentType() {
+                return "application/x-www-form-urlencoded; charset=UTF-8";
+            }
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                final String userid = user.getString("user_id","");
+                params.put("user_id",userid);
+                return params;
+            }
+        };
+        AppController.getInstance().addToRequestQueue(stringRequest);
     }
 
     private void getBisnis() {

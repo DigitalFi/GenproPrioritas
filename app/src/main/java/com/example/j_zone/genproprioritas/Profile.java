@@ -12,6 +12,21 @@ import android.webkit.WebViewClient;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.StringRequest;
+import com.example.j_zone.genproprioritas.helper.AppConfig;
+import com.example.j_zone.genproprioritas.helper.AppController;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class Profile extends AppCompatActivity {
 
     private SharedPreferences user;
@@ -68,18 +83,53 @@ public class Profile extends AppCompatActivity {
         view = (WebView) findViewById(R.id.profil_pic) ;
         view.getSettings().setJavaScriptEnabled(true);
         view.setWebViewClient(new profile_pic());
+        getFoto();
 
+    }
+    private void getFoto() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.URL_GET_EDIT_PROFILE, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject object = new JSONObject(response);
+                    JSONObject data = object.getJSONObject("data").getJSONObject("umum");
+                    String urlfoto = data.getString("picture");
 
-        if (!pic.isEmpty()){
-            String url = "http://genprodev.lavenderprograms.com/img/mobile_apps/"+pic;
-            view.loadUrl(url);
-        }else if (!pic1.isEmpty()){
-            String url = "http://genprodev.lavenderprograms.com/img/mobile_apps/"+pic1;
-            view.loadUrl(url);
-        }else {
-            view.setVisibility(View.GONE);
-        }
+                    if (!urlfoto.isEmpty()){
+                        String url = urlfoto;
+                        view.loadUrl(url);
+                    }else if (!urlfoto.isEmpty()){
+                        String url = urlfoto;
+                        view.loadUrl(url);
+                    }else {
+                        view.setVisibility(View.GONE);
+                    }
 
+                }catch (JSONException e){
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d("volley", "Error: " + error.getMessage());
+                error.printStackTrace();
+            }
+        }){
+            @Override
+            public String getBodyContentType() {
+                return "application/x-www-form-urlencoded; charset=UTF-8";
+            }
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                final String userid = user.getString("user_id","");
+                params.put("user_id",userid);
+                return params;
+            }
+        };
+        AppController.getInstance().addToRequestQueue(stringRequest);
     }
 
     private class profile_pic extends WebViewClient {
@@ -92,7 +142,7 @@ public class Profile extends AppCompatActivity {
 
     public void edit_dalem(View view) {
 
-        Intent h= new Intent(Profile.this,Edit_Profile.class);
+        Intent h= new Intent(Profile.this,EditProfileActivity.class);
         startActivity(h);
 
     }

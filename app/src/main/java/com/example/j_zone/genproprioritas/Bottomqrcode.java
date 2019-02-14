@@ -15,12 +15,14 @@ import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkError;
 import com.android.volley.NoConnectionError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.bumptech.glide.Glide;
 import com.example.j_zone.genproprioritas.helper.AppConfig;
@@ -65,9 +67,9 @@ public class Bottomqrcode extends BottomSheetDialogFragment  {
 
         views = view.findViewById(R.id.Profile);
         views.loadUrl("http://genprodev.lavenderprograms.com/img/mobiile_apps/");
-        WebSettings webSettings = views.getSettings();
-        webSettings.setJavaScriptEnabled(true);
+        views.getSettings().setJavaScriptEnabled(true);
         views.setWebViewClient(new profile());
+        getFoto();
 
         SharedPreferences user = this.getActivity().getSharedPreferences("data_user", Context.MODE_PRIVATE);
         final String nama = user.getString("user_name", "");
@@ -79,19 +81,6 @@ public class Bottomqrcode extends BottomSheetDialogFragment  {
         final String no_anggota = updt.getString("no_anggota", "");
         final String pic = updt.getString("picture", "");
         final String link = updt.getString("url", "");
-
-        if (!pic.isEmpty()){
-            String url = "http://genprodev.lavenderprograms.com/img/mobile_apps/"+pic;
-            views.loadUrl(url);
-//            Toast.makeText(getApplicationContext(), "url-updated="+url, Toast.LENGTH_SHORT).show();
-        }else if (!pic1.isEmpty()){
-            String url = "http://genprodev.lavenderprograms.com/img/mobile_apps/"+pic1;
-            views.loadUrl(url);
-//            Toast.makeText(getApplicationContext(), "url-no-updated="+url, Toast.LENGTH_SHORT).show();
-        }else {
-            view.setVisibility(View.GONE);
-        }
-
 
 
         text2qr = "nama :"+nama+" Nomor :"+no_anggota;
@@ -109,70 +98,51 @@ public class Bottomqrcode extends BottomSheetDialogFragment  {
         return view;
     }
 
-        private void getdata(final String userid,final String foto) {
-
-        // Tag biasanya digunakan ketika ingin membatalkan request volley
-        String tag_string_req = "req_data";
-
-        StringRequest strReq = new StringRequest(Request.Method.GET,
-                AppConfig.URL_GET_EDIT_PROFILE, new Response.Listener<String>() {
-
+    private void getFoto() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.URL_GET_EDIT_PROFILE, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.d(TAG, "LOADING: " + response.toString());
+                try {
+                    JSONObject object = new JSONObject(response);
+                    JSONObject data = object.getJSONObject("data").getJSONObject("umum");
+                    String urlfoto = data.getString("picture");
 
-                try
-                {
-                    JSONObject jObj = new JSONObject(response);
-                    boolean error = jObj.getBoolean("error");
-                    // ngecek node error dari api
-                    if (!error) {
-                        JSONObject obj = jObj.getJSONObject("data");
-                        JSONObject umum = obj.getJSONObject("umum");
-                        String picture = umum.getString("picture");
-
-                        Toast.makeText(getActivity(), "fotonya"+picture, Toast.LENGTH_SHORT).show();
-
-                        Glide.with(getActivity()).load(picture).into(images);
-                        //coba run ya
-
-                    } else {
-                        //terjadi error dan tampilkan pesan error dari API
-                        //String errorMsg = jObj.getString("message");
-                        Toast.makeText(getActivity(),
-                                "Some Eror , Please Contact Developer", Toast.LENGTH_LONG).show();
+                    if (!urlfoto.isEmpty()){
+                        String url = urlfoto;
+                        views.loadUrl(url);
+                    }else if (!urlfoto.isEmpty()){
+                        String url = urlfoto;
+                        views.loadUrl(url);
+                    }else {
+                        views.setVisibility(View.GONE);
                     }
-                } catch (JSONException e) {
-                    // JSON error
+
+                }catch (JSONException e){
                     e.printStackTrace();
-                    Toast.makeText(getActivity(), "Json error: " + e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         }, new Response.ErrorListener() {
-
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e(TAG, "Login Error: " + error.getMessage());
-                //cek error timeout, noconnection dan network error
-                if ( error instanceof TimeoutError || error instanceof NoConnectionError ||error instanceof NetworkError) {
-                    Toast.makeText(getActivity(),
-                            "Please Check Your Connection" + error.getMessage(),
-                            Toast.LENGTH_SHORT).show();}
+                VolleyLog.d("volley", "Error: " + error.getMessage());
+                error.printStackTrace();
             }
-        }) {
+        }){
             @Override
-            protected Map<String, String> getParams() {
-                // kirim parameter ke server
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("user_id", userid);
-                params.put("pic", foto);
+            public String getBodyContentType() {
+                return "application/x-www-form-urlencoded; charset=UTF-8";
+            }
 
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                SharedPreferences user = getActivity().getSharedPreferences("data_user", Context.MODE_PRIVATE);
+                final String userid = user.getString("user_id","");
+                params.put("user_id",userid);
                 return params;
             }
         };
-        // menggunakan fungsi volley adrequest yang kita taro di appcontroller
-        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
-
+        AppController.getInstance().addToRequestQueue(stringRequest);
     }
 
     private class profile extends WebViewClient {
